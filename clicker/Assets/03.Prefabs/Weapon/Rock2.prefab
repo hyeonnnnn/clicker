@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2974041921317614063
+--- !u!1 &5455118095873661396
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8721968903701476096}
-  - component: {fileID: 4735587378992783536}
-  - component: {fileID: 3686905351767740073}
+  - component: {fileID: 1123118343820204836}
+  - component: {fileID: 879550822517454587}
+  - component: {fileID: 2149971819188005535}
+  - component: {fileID: 8806152789368932643}
+  - component: {fileID: -6541849249675282535}
   m_Layer: 0
-  m_Name: Shuriken
+  m_Name: Rock2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8721968903701476096
+--- !u!4 &1123118343820204836
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2974041921317614063}
+  m_GameObject: {fileID: 5455118095873661396}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4735587378992783536
+--- !u!212 &879550822517454587
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2974041921317614063}
+  m_GameObject: {fileID: 5455118095873661396}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -82,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: a94be76efe03d4f448ddb3283d2d3a85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c131f38d86bf882489fbbd074c107cd7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,20 +94,67 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &3686905351767740073
+--- !u!58 &2149971819188005535
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455118095873661396}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.2375
+--- !u!114 &8806152789368932643
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2974041921317614063}
+  m_GameObject: {fileID: 5455118095873661396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f5cca596968c6744abc7027311e252f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
-  _planetHealth: {fileID: 0}
-  _target: {fileID: 0}
-  _damage: 10
-  _attackDuration: 0.2
-  _returnDuration: 0.3
+  m_EditorClassIdentifier: Assembly-CSharp::RockAttack
+--- !u!114 &-6541849249675282535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455118095873661396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e392f6c6747e58a45a53bf2b5390b6f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RockMove
+  _speed: 4
+  _bounceRandomAngle: 30
+  _boostMultiplier: 2
+  _boostDuration: 0.2

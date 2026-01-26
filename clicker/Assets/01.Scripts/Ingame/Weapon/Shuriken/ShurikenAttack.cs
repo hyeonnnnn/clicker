@@ -14,11 +14,11 @@ public class ShurikenAttack : MonoBehaviour
     private Quaternion _localRotation;
     private bool _isAttacking;
 
-    private void Start()
+    public void Initialize(Vector3 localPosition, Quaternion localRotation)
     {
         _parent = transform.parent;
-        _localPosition = transform.localPosition;
-        _localRotation = transform.localRotation;
+        _localPosition = localPosition;
+        _localRotation = localRotation;
     }
 
     public void Attack()

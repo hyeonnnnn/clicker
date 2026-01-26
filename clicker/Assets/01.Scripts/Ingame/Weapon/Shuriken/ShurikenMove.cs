@@ -41,6 +41,12 @@ public class ShurikenMove : MonoBehaviour
             Transform child = transform.GetChild(i);
             child.localPosition = position;
             child.localRotation = Quaternion.Euler(0f, 0f, angleDeg);
+
+            var attack = child.GetComponent<ShurikenAttack>();
+            if (attack != null)
+            {
+                attack.Initialize(position, Quaternion.Euler(0f, 0f, angleDeg));
+            }
         }
     }
 }
