@@ -17,8 +17,11 @@ public class ClickTarget : MonoBehaviour, Clickable
     public bool OnClick(ClickInfo clickInfo)
     {
         Debug.Log($"{_name}: 클릭됨.");
-        _scaleTweeningFeedback.Play();
-        _colorFlashFeedback.Play();
+        var feedbacks = GetComponentsInChildren<IFeedback>();
+        foreach ( var feedback in feedbacks)
+        {
+            feedback.Play();
+        }
 
         return true;
     }

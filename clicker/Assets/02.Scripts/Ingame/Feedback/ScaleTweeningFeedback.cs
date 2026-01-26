@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 
-public class ScaleTweeningFeedback : MonoBehaviour
+public class ScaleTweeningFeedback : MonoBehaviour, IFeedback
 {
     [SerializeField] private ClickTarget _owner;
 

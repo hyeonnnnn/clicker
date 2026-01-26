@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ColorFlashFeedback : MonoBehaviour
+public class ColorFlashFeedback : MonoBehaviour, IFeedback
 {
     private Coroutine _coroutine;
 
