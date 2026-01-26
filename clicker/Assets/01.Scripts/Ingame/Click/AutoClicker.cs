@@ -9,7 +9,7 @@ public class AutoClicker : MonoBehaviour
 
     private void Start()
     {
-        _clickables = GameObject.FindGameObjectsWithTag("Clickable");
+        _clickables = GameObject.FindGameObjectsWithTag("Planet");
     }
 
     private void Update()

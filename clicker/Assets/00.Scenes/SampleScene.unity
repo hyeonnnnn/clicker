@@ -174,7 +174,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1689344837}
   m_SourcePrefab: {fileID: 100100000, guid: c4f11a5635696144ab0932e272803948, type: 3}
 --- !u!1001 &76844883
 PrefabInstance:
@@ -231,7 +234,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1467605048}
   m_SourcePrefab: {fileID: 100100000, guid: c4f11a5635696144ab0932e272803948, type: 3}
 --- !u!1 &275325452
 GameObject:
@@ -536,6 +542,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &657004945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 213360229203052961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &717476509
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,6 +638,158 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1647883577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &778572449 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 845065106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &778572450 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 845065106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &778572452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778572449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
+  _planetHealth: {fileID: 1420666656}
+  _damage: 10
+--- !u!1001 &845065106
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1097545525}
+    m_Modifications:
+    - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_Name
+      value: Shuriken (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 778572452}
+  m_SourcePrefab: {fileID: 100100000, guid: c4f11a5635696144ab0932e272803948, type: 3}
+--- !u!1001 &850026556
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1097545525}
+    m_Modifications:
+    - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_Name
+      value: Shuriken (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1077657938}
+  m_SourcePrefab: {fileID: 100100000, guid: c4f11a5635696144ab0932e272803948, type: 3}
 --- !u!1 &888543047
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +949,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1077657935 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 850026556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1077657936 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 850026556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1077657938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077657935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
+  _planetHealth: {fileID: 1420666656}
+  _damage: 10
 --- !u!1 &1097545524
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +983,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1097545525}
   - component: {fileID: 1097545526}
+  - component: {fileID: 1097545529}
   m_Layer: 0
   m_Name: ShurikenEncounter
   m_TagString: Untagged
@@ -819,6 +1007,9 @@ Transform:
   - {fileID: 2134091463}
   - {fileID: 927129079}
   - {fileID: 469824723}
+  - {fileID: 778572450}
+  - {fileID: 1345713680}
+  - {fileID: 1077657936}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1097545526
@@ -833,8 +1024,116 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2003ccf912449534390ec9cd936c15f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShurikenRotation
-  _radius: 2
-  _rotationSpeed: 90
+  _radius: 1.7
+  _rotationSpeed: 40
+--- !u!114 &1097545529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097545524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2c2e63b89ecd741a83739ccfc2aa5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttackerSelector
+  _shurikens:
+  - {fileID: 2134091465}
+  - {fileID: 1689344837}
+  - {fileID: 1467605048}
+  - {fileID: 778572452}
+  - {fileID: 1345713682}
+  - {fileID: 1077657938}
+  _interval: 3
+--- !u!1001 &1295108313
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1097545525}
+    m_Modifications:
+    - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_Name
+      value: Shuriken (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1345713682}
+  m_SourcePrefab: {fileID: 100100000, guid: c4f11a5635696144ab0932e272803948, type: 3}
+--- !u!1 &1345713679 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 1295108313}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1345713680 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 1295108313}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1345713682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345713679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
+  _planetHealth: {fileID: 1420666656}
+  _damage: 10
 --- !u!1 &1345976438
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,7 +1273,7 @@ GameObject:
   - component: {fileID: 1420666657}
   m_Layer: 0
   m_Name: Planet
-  m_TagString: Clickable
+  m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1145,6 +1444,25 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1.1
+--- !u!1 &1467605046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 76844883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1467605048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467605046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
+  _planetHealth: {fileID: 1420666656}
+  _damage: 10
 --- !u!1 &1647883576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,6 +1498,25 @@ Transform:
   - {fileID: 2012119215}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1689344835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 51854267}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1689344837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689344835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
+  _planetHealth: {fileID: 1420666656}
+  _damage: 10
 --- !u!1 &2012119214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,6 +1751,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
   m_PrefabInstance: {fileID: 213360229203052961}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2134091465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657004945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
+  _planetHealth: {fileID: 1420666656}
+  _damage: 10
 --- !u!1001 &213360229203052961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1469,7 +1820,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2134091465}
   m_SourcePrefab: {fileID: 100100000, guid: c4f11a5635696144ab0932e272803948, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
