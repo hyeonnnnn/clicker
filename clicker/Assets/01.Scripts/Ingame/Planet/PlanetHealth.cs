@@ -25,6 +25,8 @@ public class PlanetHealth : MonoBehaviour
         _currentHealth = Mathf.Max(0, _currentHealth);
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
 
+        CoinManager.Instance.GetCoin(damage);
+
         if (_currentHealth <= 0)
         {
             OnDepleted?.Invoke();
