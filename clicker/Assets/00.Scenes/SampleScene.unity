@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shuriken (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.8
@@ -171,7 +175,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1052650697987794475, guid: c4f11a5635696144ab0932e272803948, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -191,6 +196,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shuriken (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.8
@@ -231,7 +240,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1052650697987794475, guid: c4f11a5635696144ab0932e272803948, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -542,11 +552,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &657004945 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
-  m_PrefabInstance: {fileID: 213360229203052961}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &717476509
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,7 +666,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
   _planetHealth: {fileID: 1420666656}
+  _target: {fileID: 1420666650}
   _damage: 10
+  _attackDuration: 0.2
+  _returnDuration: 0.3
 --- !u!1001 &845065106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -718,7 +726,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1052650697987794475, guid: c4f11a5635696144ab0932e272803948, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -782,7 +791,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1052650697987794475, guid: c4f11a5635696144ab0932e272803948, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -972,7 +982,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
   _planetHealth: {fileID: 1420666656}
+  _target: {fileID: 1420666650}
   _damage: 10
+  _attackDuration: 0.2
+  _returnDuration: 0.3
 --- !u!1 &1097545524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,7 +1115,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1052650697987794475, guid: c4f11a5635696144ab0932e272803948, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1133,7 +1147,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
   _planetHealth: {fileID: 1420666656}
+  _target: {fileID: 1420666650}
   _damage: 10
+  _attackDuration: 0.2
+  _returnDuration: 0.3
 --- !u!1 &1345976438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,7 +1479,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
   _planetHealth: {fileID: 1420666656}
+  _target: {fileID: 1420666650}
   _damage: 10
+  _attackDuration: 0.2
+  _returnDuration: 0.3
 --- !u!1 &1647883576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,7 +1536,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
   _planetHealth: {fileID: 1420666656}
+  _target: {fileID: 1420666650}
   _damage: 10
+  _attackDuration: 0.2
+  _returnDuration: 0.3
 --- !u!1 &2012119214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,20 +1774,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
   m_PrefabInstance: {fileID: 213360229203052961}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2134091465
+--- !u!114 &2134091465 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1052650697987794475, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 213360229203052961}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 657004945}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
-  _planetHealth: {fileID: 1420666656}
-  _damage: 10
 --- !u!1001 &213360229203052961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1773,6 +1793,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1097545525}
     m_Modifications:
+    - target: {fileID: 1052650697987794475, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 1420666650}
+    - target: {fileID: 1052650697987794475, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: _planetHealth
+      value: 
+      objectReference: {fileID: 1420666656}
     - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_Name
       value: Shuriken
@@ -1820,10 +1848,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2134091465}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4f11a5635696144ab0932e272803948, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
