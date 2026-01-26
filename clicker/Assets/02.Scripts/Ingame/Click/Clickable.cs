@@ -2,5 +2,5 @@
 
 public interface Clickable
 {
-    bool OnClick();
+    bool OnClick(ClickInfo clickInfo);
 }

@@ -21,7 +21,14 @@ public class Clicker : MonoBehaviour
         if (hit == true)
         {
             Clickable clickable = hit.collider.GetComponent<Clickable>();
-            clickable?.OnClick();
+
+            ClickInfo clickInfo = new ClickInfo
+            {
+                Type = EClickType.Manual,
+                Damage = 10,
+            };
+
+            clickable?.OnClick(clickInfo);
         }
     }
 }
