@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ClickInfo : MonoBehaviour
+public class ClickInfo
 {
     public EClickType Type;
     public int Damage;

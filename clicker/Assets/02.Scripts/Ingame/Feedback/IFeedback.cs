@@ -2,5 +2,5 @@
 
 public interface IFeedback
 {
-    void Play();
+    void Play(ClickInfo clickInfo);
 }

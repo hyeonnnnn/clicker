@@ -15,8 +15,10 @@ public class ColorFlashFeedback : MonoBehaviour, IFeedback
         _originalColor = _spriteRenderer.color;
     }
 
-    public void Play()
+    public void Play(ClickInfo clickInfo)
     {
+        if (clickInfo.Type == EClickType.Auto) return;
+
         if (_coroutine != null)
         {
             StopCoroutine(_coroutine);

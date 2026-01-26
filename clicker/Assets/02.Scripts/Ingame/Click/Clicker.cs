@@ -25,7 +25,7 @@ public class Clicker : MonoBehaviour
             ClickInfo clickInfo = new ClickInfo
             {
                 Type = EClickType.Manual,
-                Damage = 10,
+                Damage = GameManager.Instance.ManualDamage,
             };
 
             clickable?.OnClick(clickInfo);
