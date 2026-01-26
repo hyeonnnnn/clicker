@@ -3,7 +3,7 @@
 public class PlanetRotation : MonoBehaviour
 {
     [SerializeField] private Transform _transform;
-    [SerializeField] private float _speed = 0.1f;
+    [SerializeField] private float _speed = 3f;
 
     private void Update()
     {

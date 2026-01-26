@@ -4,9 +4,20 @@ public class ClickTarget : MonoBehaviour, Clickable
 {
     [SerializeField] private string _name;
 
+    private PlanetHealth _planetHealth;
+
+    private void Awake()
+    {
+        _planetHealth = GetComponent<PlanetHealth>();
+    }
+
     public bool OnClick(ClickInfo clickInfo)
     {
-        Debug.Log($"{_name}: 클릭됨.");
+        if ( _planetHealth != null)
+        {
+            _planetHealth.TakeDamage(70);
+        }
+
         var feedbacks = GetComponentsInChildren<IFeedback>();
         foreach (var feedback in feedbacks)
         {
