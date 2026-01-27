@@ -11,6 +11,13 @@ public class RockSpawner : MonoBehaviour
     private void Start()
     {
         _camera = Camera.main;
+
+        // 테스트용
+        SpawnRock();
+        SpawnRock();
+        SpawnRock();
+        SpawnRock();
+        SpawnRock();
     }
 
     private void Update()

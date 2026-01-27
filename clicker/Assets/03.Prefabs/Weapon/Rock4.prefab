@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3253620239624224936}
   - component: {fileID: 4669728082639268345}
   - component: {fileID: -1000135485261811075}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rock4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -846857923
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 2712b6e85669d2648985d38fb8238681, type: 3}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RockAttack
   _damage: 1
-  _hitCooldown: 0.2
+  _ignoreDuration: 0.3
 --- !u!114 &4669728082639268345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e392f6c6747e58a45a53bf2b5390b6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RockMove
-  _speed: 4
+  _speed: 6
   _bounceRandomAngle: 30
   _boostMultiplier: 2
   _boostDuration: 0.2
