@@ -11,18 +11,23 @@ public class RockMove : MonoBehaviour
     private Vector2 _direction;
     private Camera _camera;
     private float _currentSpeed;
+    private Rigidbody2D _rigidbody;
 
     private void Start()
     {
         _camera = Camera.main;
         _direction = Random.insideUnitCircle.normalized;
         _currentSpeed = _speed;
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
         Move();
         Bounce();
+
+        _rigidbody.linearVelocity = Vector2.zero;
+        _rigidbody.angularVelocity = 0f;
     }
 
     private void Move()
@@ -59,6 +64,15 @@ public class RockMove : MonoBehaviour
         viewportPos.x = Mathf.Clamp(viewportPos.x, 0f, 1f);
         viewportPos.y = Mathf.Clamp(viewportPos.y, 0f, 1f);
         transform.position = _camera.ViewportToWorldPoint(viewportPos);
+    }
+
+    public void BounceFromCollision(Vector2 normal)
+    {
+        _direction = Vector2.Reflect(_direction, normal).normalized;
+        float randomAngle = Random.Range(-_bounceRandomAngle, _bounceRandomAngle);
+        _direction = Rotate(_direction, randomAngle);
+
+        SpeedBoost();
     }
 
     private void SpeedBoost()

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RockSpawner : MonoBehaviour
 {
-    [SerializeField] private List<RockAttack> _rocks;
+    [SerializeField] private GameObject[] _rocks;
 
     private void Update()
     {

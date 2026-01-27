@@ -1,16 +1,40 @@
+﻿using System.Collections;
 using UnityEngine;
 
 public class RockAttack : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private int _damage = 1;
+    [SerializeField] private float _ignoreDuration = 0.3f;
+
+    private RockMove _rockMove;
+    private Collider2D _collider;
+
+    private void Awake()
     {
-        
+        _rockMove = GetComponent<RockMove>();
+        _collider = GetComponent<Collider2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.collider.CompareTag("Planet"))
+        {
+            if (collision.collider.TryGetComponent(out PlanetHealth planetHealth))
+            {
+                planetHealth.TakeDamage(_damage);
+            }
+
+            Vector2 normal = collision.contacts[0].normal;
+            _rockMove.BounceFromCollision(normal);
+
+            StartCoroutine(IgnoreCollisionTemporarily(collision.collider));
+        }
+    }
+
+    private IEnumerator IgnoreCollisionTemporarily(Collider2D other)
+    {
+        Physics2D.IgnoreCollision(_collider, other, true);
+        yield return new WaitForSeconds(_ignoreDuration);
+        Physics2D.IgnoreCollision(_collider, other, false);
     }
 }
