@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5cca596968c6744abc7027311e252f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RockAttack
-  _damage: 1
+  _damage: 500
   _ignoreDuration: 0.3
 --- !u!114 &-6541849249675282535
 MonoBehaviour:

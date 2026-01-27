@@ -6,6 +6,7 @@ public class DamageFloaterSpawner : MonoBehaviour
     public static DamageFloaterSpawner Instance { get; private set; }
 
     [SerializeField] private LeanGameObjectPool _pool;
+    [SerializeField] private Vector2 _spawnOffset;
 
     private void Awake()
     {
@@ -15,11 +16,11 @@ public class DamageFloaterSpawner : MonoBehaviour
 
     public void ShowDamage(ClickInfo clickInfo)
     {
-        // 풀로부터 데미지 플로터를 가져와서
-        GameObject damageFloaterObject = _pool.Spawn(clickInfo.Position, Quaternion.identity);
+        Vector3 spawnPosition = (Vector3)clickInfo.Position + (Vector3)_spawnOffset;
+
+        GameObject damageFloaterObject = _pool.Spawn(spawnPosition, Quaternion.identity);
         DamageFloater damageFloater = damageFloaterObject.GetComponent<DamageFloater>();
 
-        // 클릭한 위치에 생성한다.
         damageFloater.Show(clickInfo);
     }
 }

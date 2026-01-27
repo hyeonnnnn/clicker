@@ -18,13 +18,13 @@ public class PlanetCrack : MonoBehaviour
 
     private void OnEnable()
     {
-        _planetHealth.OnHealthChanged += OnHealthChanged;
+        _planetHealth.OnHealthChanged += ShowCrack;
         _planetHealth.OnDepleted += Initialize;
     }
 
     private void OnDisable()
     {
-        _planetHealth.OnHealthChanged -= OnHealthChanged;
+        _planetHealth.OnHealthChanged -= ShowCrack;
         _planetHealth.OnDepleted -= Initialize;
     }
 
@@ -36,7 +36,7 @@ public class PlanetCrack : MonoBehaviour
         }
     }
 
-    private void OnHealthChanged(int currentHealth, int maxHealth)
+    private void ShowCrack(int currentHealth, int maxHealth)
     {
         float healthPercent = (float)currentHealth / maxHealth;
 
