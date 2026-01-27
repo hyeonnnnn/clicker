@@ -1,9 +1,17 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RockSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] _rocks;
+    [SerializeField] private float _spawnMargin = 0.1f;
+    [SerializeField] private float _spawnDepth = 10f;
+
+    private Camera _camera;
+
+    private void Start()
+    {
+        _camera = Camera.main;
+    }
 
     private void Update()
     {
@@ -13,8 +21,18 @@ public class RockSpawner : MonoBehaviour
         }
     }
 
-    private void SpawnRock()
+    public void SpawnRock()
     {
-        // 화면 내 랜덤한 위치, 랜덤한 방향으로 rock 스폰
+        Vector3 spawnPosition = GetRandomScreenPosition();
+        GameObject rockPrefab = _rocks[Random.Range(0, _rocks.Length)];
+        Instantiate(rockPrefab, spawnPosition, Quaternion.identity);
+    }
+
+    private Vector3 GetRandomScreenPosition()
+    {
+        float x = Random.Range(_spawnMargin, 1f - _spawnMargin);
+        float y = Random.Range(_spawnMargin, 1f - _spawnMargin);
+        Vector3 viewportPos = new Vector3(x, y, _spawnDepth);
+        return _camera.ViewportToWorldPoint(viewportPos);
     }
 }
