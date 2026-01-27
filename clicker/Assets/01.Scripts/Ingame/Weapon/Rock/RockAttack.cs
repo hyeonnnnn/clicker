@@ -26,7 +26,7 @@ public class RockAttack : MonoBehaviour
 
             Vector2 contactPoint = collision.contacts[0].point;
 
-            DamageFloaterSpawner.Instance.ShowDamage(new ClickInfo
+            TextFloaterSpawner.Instance.ShowDamage(new ClickInfo
             {
                 Type = EClickType.Auto,
                 Damage = _damage,

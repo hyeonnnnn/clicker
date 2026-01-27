@@ -14,22 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlanetInfo
   _planets:
   - Sprite: {fileID: 21300000, guid: 8ff5851d96e353540b1e6d34f6dafe7b, type: 3}
-    Health: 3000
+    Health: 5000
+    BonusCoin: 10000
   - Sprite: {fileID: 21300000, guid: 1eebe61fa30929248bdcda4d7c3c51ec, type: 3}
-    Health: 3000
+    Health: 5000
+    BonusCoin: 20000
   - Sprite: {fileID: 21300000, guid: 0aab17f474ae0434eb7aff4a29cc0123, type: 3}
-    Health: 3000
+    Health: 5000
+    BonusCoin: 30000
   - Sprite: {fileID: 21300000, guid: c37b6465dcc722340a3a437ce8dbbe96, type: 3}
-    Health: 3000
+    Health: 5000
+    BonusCoin: 40000
   - Sprite: {fileID: 21300000, guid: 8d93f8b646fad08429a3686590a61bf7, type: 3}
     Health: 50000
+    BonusCoin: 50000
   - Sprite: {fileID: 21300000, guid: c135213a5c54f2f4984eaa105cc33b20, type: 3}
     Health: 60000
+    BonusCoin: 60000
   - Sprite: {fileID: 21300000, guid: 4a868e28be12a6349a2742aa1909ed42, type: 3}
     Health: 70000
+    BonusCoin: 70000
   - Sprite: {fileID: 21300000, guid: 01e466e2fb6eea34ea00e20acc789c01, type: 3}
     Health: 80000
+    BonusCoin: 80000
   - Sprite: {fileID: 21300000, guid: 0a73328190b6a1b4787cc6921bbe0f94, type: 3}
     Health: 90000
+    BonusCoin: 90000
   - Sprite: {fileID: 21300000, guid: d1633d80f997845418c21db664ba138f, type: 3}
-    Health: 10000
+    Health: 100000
+    BonusCoin: 100000

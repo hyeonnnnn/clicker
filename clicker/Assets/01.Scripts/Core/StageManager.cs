@@ -12,7 +12,8 @@ public class StageManager : MonoBehaviour
     private int _currentStage;
 
     public int CurrentStage => _currentStage;
-    public Sprite CurrentSprite => _planetInfo.GetPlanet(_currentStage).Sprite;
+    public PlanetData CurrentPlanetData => _planetInfo.GetPlanet(_currentStage);
+    public Sprite CurrentSprite => CurrentPlanetData.Sprite;
 
     public event Action<int> OnStageChanged;
 

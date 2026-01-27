@@ -55,5 +55,8 @@ TagManager:
   - name: Effect
     uniqueID: 703166375
     locked: 0
+  - name: BonusCoin
+    uniqueID: 3330520309
+    locked: 0
   m_RenderingLayers:
   - Default

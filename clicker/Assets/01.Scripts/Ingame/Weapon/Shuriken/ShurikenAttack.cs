@@ -43,7 +43,7 @@ public class ShurikenAttack : MonoBehaviour
                 // 데미지 입히기
                 _planetHealth.TakeDamage(_damage);
 
-                DamageFloaterSpawner.Instance.ShowDamage(new ClickInfo
+                TextFloaterSpawner.Instance.ShowDamage(new ClickInfo
                 {
                     Type = EClickType.Auto,
                     Damage = _damage,

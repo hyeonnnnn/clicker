@@ -17,4 +17,5 @@ public class PlanetData
 {
     public Sprite Sprite;
     public int Health;
+    public int BonusCoin;
 }

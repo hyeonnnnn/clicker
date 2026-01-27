@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8760969876071606993}
   - component: {fileID: 1385178905273943708}
   - component: {fileID: 5174534381574826576}
+  - component: {fileID: 4639394180144914795}
   m_Layer: 0
   m_Name: ManualDamageFloater
   m_TagString: Untagged
@@ -200,3 +201,17 @@ MonoBehaviour:
   _randomOffsetX: 0.3
   _punchScale: 0.3
   _punchDuration: 0.2
+--- !u!114 &4639394180144914795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6326483096500329616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 2
+  m_VerticalFit: 0

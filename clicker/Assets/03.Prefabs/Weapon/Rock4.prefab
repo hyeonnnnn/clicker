@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e392f6c6747e58a45a53bf2b5390b6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RockMove
-  _speed: 6
+  _speed: 3
   _bounceRandomAngle: 30
   _boostMultiplier: 2
   _boostDuration: 0.2
