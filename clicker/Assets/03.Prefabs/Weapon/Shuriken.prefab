@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8721968903701476096}
   - component: {fileID: 4735587378992783536}
   - component: {fileID: 3686905351767740073}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shuriken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -846857923
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: a94be76efe03d4f448ddb3283d2d3a85, type: 3}
@@ -104,8 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
-  _planetHealth: {fileID: 0}
+  _planetPressure: {fileID: 0}
   _target: {fileID: 0}
-  _damage: 10
+  _damage: 1000
   _attackDuration: 0.2
   _returnDuration: 0.3
+  _impactEffectPrefab: {fileID: 0}
+  _effectDespawnDelay: 1.5

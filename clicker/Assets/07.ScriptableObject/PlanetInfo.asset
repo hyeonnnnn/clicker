@@ -31,11 +31,11 @@ MonoBehaviour:
     BonusCoin: 30000
     Name: "\uD14C\uB77C \uC5D0\uCF54"
     Number: 3
-  - Sprite: {fileID: 21300000, guid: ef1bf2ecc16140f4195ed991ac4136c1, type: 3}
-    Icon: {fileID: -5908689177192356609, guid: 951ba0cd2cc6b124988d53e999aa33dc, type: 3}
+  - Sprite: {fileID: 21300000, guid: 8ff5851d96e353540b1e6d34f6dafe7b, type: 3}
+    Icon: {fileID: 21300000, guid: 8ff5851d96e353540b1e6d34f6dafe7b, type: 3}
     Pressure: 40000
     BonusCoin: 40000
-    Name: "\uD504\uB9AC\uAE00\uB77C"
+    Name: "\uBE14\uB8E8\uB9C1"
     Number: 4
   - Sprite: {fileID: 21300000, guid: ddc556a241acd514ba8409f6e064201c, type: 3}
     Icon: {fileID: 1044084559177906930, guid: 951ba0cd2cc6b124988d53e999aa33dc, type: 3}
@@ -69,7 +69,7 @@ MonoBehaviour:
     Number: 9
   - Sprite: {fileID: 21300000, guid: a27406c97e517164cbd7003354e6739c, type: 3}
     Icon: {fileID: -7970368505078206281, guid: 951ba0cd2cc6b124988d53e999aa33dc, type: 3}
-    Pressure: 1000000
-    BonusCoin: 1000000
+    Pressure: 500000
+    BonusCoin: 500000
     Name: "\uD654\uC774\uD2B8 \uB4DC\uC6CC\uD504"
     Number: 10

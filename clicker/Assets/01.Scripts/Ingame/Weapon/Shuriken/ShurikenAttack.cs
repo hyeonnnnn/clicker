@@ -9,6 +9,10 @@ public class ShurikenAttack : MonoBehaviour
     [SerializeField] private float _attackDuration = 0.2f;
     [SerializeField] private float _returnDuration = 0.3f;
 
+    [Header("Effects")]
+    [SerializeField] private GameObject _impactEffectPrefab;
+    [SerializeField] private float _effectDespawnDelay = 1.5f;
+
     private Transform _parent;
     private Vector3 _localPosition;
     private Quaternion _localRotation;
@@ -37,25 +41,43 @@ public class ShurikenAttack : MonoBehaviour
 
         // 행성으로 이동
         transform.DOMove(_target.position, _attackDuration)
-            .SetEase(Ease.OutQuad)
-            .OnComplete(() =>
-            {
-                // 데미지 입히기
-                _planetPressure.TakeDamage(_damage);
+                    .SetEase(Ease.OutQuad)
+                    .OnComplete(() =>
+                    {
+                        HandleImpact(direction);
 
-                TextFloaterSpawner.Instance.ShowDamage(new ClickInfo
-                {
-                    Type = EClickType.Auto,
-                    Damage = _damage,
-                    Position = _target.position
-                });
+                        transform.SetParent(_parent);
 
-                transform.SetParent(_parent);
-                transform.DOLocalMove(_localPosition, _returnDuration)
-                    .SetEase(Ease.OutBack);
-                transform.DOLocalRotateQuaternion(_localRotation, _returnDuration)
-                    .SetEase(Ease.OutBack)
-                    .OnComplete(() => _isAttacking = false);
-            });
+                        Sequence returnSequence = DOTween.Sequence();
+                        returnSequence.Join(transform.DOLocalMove(_localPosition, _returnDuration).SetEase(Ease.OutBack));
+                        returnSequence.Join(transform.DOLocalRotateQuaternion(_localRotation, _returnDuration).SetEase(Ease.OutBack));
+                        returnSequence.OnComplete(() => _isAttacking = false);
+                    });
+    }
+
+    private void HandleImpact(Vector3 attackDirection)
+    {
+        _planetPressure.TakeDamage(_damage);
+
+        TextFloaterSpawner.Instance.ShowDamage(new ClickInfo
+        {
+            Type = EClickType.Auto,
+            Damage = _damage,
+            Position = _target.position
+        });
+
+        Vector2 impactPoint = (Vector2)_target.position;
+        Vector2 impactNormal = -(Vector2)attackDirection;
+
+        SpawnImpactEffect(impactPoint, impactNormal);
+    }
+
+    private void SpawnImpactEffect(Vector2 position, Vector2 normal)
+    {
+        if (_impactEffectPrefab == null) return;
+
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, normal);
+        GameObject effect = EffectSpawner.Instance.Spawn(_impactEffectPrefab, position, rotation);
+        EffectSpawner.Instance.Despawn(effect, _effectDespawnDelay);
     }
 }

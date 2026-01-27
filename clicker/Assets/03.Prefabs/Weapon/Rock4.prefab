@@ -143,8 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5cca596968c6744abc7027311e252f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RockAttack
-  _damage: 500
+  _damage: 400
   _ignoreDuration: 0
+  _impactEffectPrefab: {fileID: 8190856933934120873, guid: 3d4c4425b69231e4fb42e928f9f97b1e, type: 3}
+  _effectDespawnDelay: 1.5
 --- !u!114 &4669728082639268345
 MonoBehaviour:
   m_ObjectHideFlags: 0
