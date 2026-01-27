@@ -15,7 +15,7 @@ public class ClickTarget : MonoBehaviour, Clickable
     {
         if ( _planetHealth != null)
         {
-            _planetHealth.TakeDamage(70);
+            _planetHealth.TakeDamage((int)clickInfo.Damage);
         }
 
         var feedbacks = GetComponentsInChildren<IFeedback>();

@@ -16,6 +16,9 @@ public class PlanetInfo : ScriptableObject
 public class PlanetData
 {
     public Sprite Sprite;
+    public Sprite Icon;
     public int Health;
     public int BonusCoin;
+    public string Name;
+    public int Number;
 }
