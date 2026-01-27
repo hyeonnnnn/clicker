@@ -349,7 +349,7 @@ MonoBehaviour:
   m_text: "\uC6B4\uC11D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
-  m_sharedMaterial: {fileID: -194207908182354357, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 26cf4808c89901348834eaad3abd0735, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -980,7 +980,7 @@ MonoBehaviour:
   m_text: "\uAC1C\uC218 +1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
-  m_sharedMaterial: {fileID: -194207908182354357, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 26cf4808c89901348834eaad3abd0735, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3366,9 +3366,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1537590307}
   - component: {fileID: 1537590306}
-  - component: {fileID: 1537590308}
   m_Layer: 0
-  m_Name: DamageFloaterSpawner
+  m_Name: AutoDamageFloaterPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3386,7 +3385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea08375da243a441b88d1e6b0713006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: LeanPool::Lean.Pool.LeanGameObjectPool
-  prefab: {fileID: 6326483096500329616, guid: 2793b2f0fac9e374e982f6de528c0b36, type: 3}
+  prefab: {fileID: 1356002616630928986, guid: 14a06021af56a3e48a5466c8e6af27bc, type: 3}
   notification: 3
   strategy: 0
   preload: 30
@@ -3414,20 +3413,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1537590308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537590305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a955f6efff5d2d64baaa37772876b960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamageFloaterSpawner
-  _pool: {fileID: 1537590306}
-  _spawnOffset: {x: 0, y: 2.4}
 --- !u!1 &1550681935
 GameObject:
   m_ObjectHideFlags: 0
@@ -3488,7 +3473,7 @@ MonoBehaviour:
   m_text: "\uAC1C\uC218 +1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
-  m_sharedMaterial: {fileID: -194207908182354357, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 26cf4808c89901348834eaad3abd0735, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3625,7 +3610,7 @@ MonoBehaviour:
   m_text: "\uB2E8\uAC80"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
-  m_sharedMaterial: {fileID: -194207908182354357, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 26cf4808c89901348834eaad3abd0735, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3762,7 +3747,7 @@ MonoBehaviour:
   m_text: "\uD30C\uC6CC +100"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
-  m_sharedMaterial: {fileID: -194207908182354357, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 26cf4808c89901348834eaad3abd0735, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4022,6 +4007,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1707477549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1707477551}
+  - component: {fileID: 1707477550}
+  m_Layer: 0
+  m_Name: DamageFloaterSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1707477550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707477549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a955f6efff5d2d64baaa37772876b960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFloaterSpawner
+  _manualPool: {fileID: 1928241621}
+  _autoPool: {fileID: 1537590306}
+  _manualSpawnOffset: {x: 0, y: 2.5}
+  _autoSpawnOffset: {x: 0, y: 0}
+--- !u!4 &1707477551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707477549}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1835369285
 GameObject:
   m_ObjectHideFlags: 0
@@ -4099,6 +4132,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835369285}
   m_CullTransparentMesh: 1
+--- !u!1 &1928241620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1928241622}
+  - component: {fileID: 1928241621}
+  m_Layer: 0
+  m_Name: ManualDamageFloaterPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1928241621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928241620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea08375da243a441b88d1e6b0713006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LeanPool::Lean.Pool.LeanGameObjectPool
+  prefab: {fileID: 6326483096500329616, guid: 2793b2f0fac9e374e982f6de528c0b36, type: 3}
+  notification: 3
+  strategy: 0
+  preload: 30
+  capacity: 100
+  recycle: 1
+  persist: 0
+  stamp: 0
+  warnings: 1
+  spawnedClonesList: []
+  despawnedClones: []
+  delays: []
+  deactivatedChild: {fileID: 0}
+--- !u!4 &1928241622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928241620}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2012119214
 GameObject:
   m_ObjectHideFlags: 0
@@ -4341,7 +4431,7 @@ MonoBehaviour:
   m_text: "\uD074\uB9AD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
-  m_sharedMaterial: {fileID: -194207908182354357, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 26cf4808c89901348834eaad3abd0735, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4607,7 +4697,7 @@ MonoBehaviour:
   m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
-  m_sharedMaterial: {fileID: -194207908182354357, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 26cf4808c89901348834eaad3abd0735, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5103,4 +5193,6 @@ SceneRoots:
   - {fileID: 671724675}
   - {fileID: 1255796173}
   - {fileID: 1695315394}
+  - {fileID: 1928241622}
   - {fileID: 1537590307}
+  - {fileID: 1707477551}

@@ -29,7 +29,7 @@ public class UI_Coin : MonoBehaviour
 
     private void UpdateCoinText(int amount)
     {
-        _coinTextUI.text = amount.ToString();
+        _coinTextUI.text = amount.ToFormattedString();
 
         PlayScaleEffect(_coinTextUI.transform);
         PlayShakeEffect(_coinImageUI.transform);

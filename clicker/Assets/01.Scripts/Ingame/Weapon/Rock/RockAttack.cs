@@ -24,6 +24,15 @@ public class RockAttack : MonoBehaviour
                 planetHealth.TakeDamage(_damage);
             }
 
+            Vector2 contactPoint = collision.contacts[0].point;
+
+            DamageFloaterSpawner.Instance.ShowDamage(new ClickInfo
+            {
+                Type = EClickType.Auto,
+                Damage = _damage,
+                Position = contactPoint
+            });
+
             Vector2 normal = collision.contacts[0].normal;
             _rockMove.BounceFromCollision(normal);
 

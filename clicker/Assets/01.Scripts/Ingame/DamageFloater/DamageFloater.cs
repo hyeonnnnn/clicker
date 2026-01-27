@@ -17,16 +17,23 @@ public class DamageFloater : MonoBehaviour
     [SerializeField] private float _punchDuration = 0.2f;
 
     private Vector3 _initialScale;
+    private Material _material;
+    private float _initialGlowPower;
+
+    private static readonly int GlowPower = Shader.PropertyToID("_GlowPower");
 
     private void Awake()
     {
         _initialScale = transform.localScale;
+        _material = _text.fontMaterial;
+        _initialGlowPower = _material.GetFloat(GlowPower);
     }
 
-    public void Show(ClickInfo clickInfo)
+    public void ShowManual(ClickInfo clickInfo)
     {
-        _text.text = clickInfo.Damage.ToFormattedString();
+        _text.text = "+" + clickInfo.Damage.ToFormattedString();
         _text.alpha = 1f;
+        _material.SetFloat(GlowPower, _initialGlowPower);
         transform.localScale = _initialScale;
 
         float randomX = Random.Range(-_randomOffsetX, _randomOffsetX);
@@ -36,7 +43,25 @@ public class DamageFloater : MonoBehaviour
 
         sequence.Append(transform.DOMove(targetPosition, _duration).SetEase(Ease.OutCubic));
         sequence.Join(_text.DOFade(0f, _duration).SetEase(Ease.InQuad));
+        sequence.Join(_material.DOFloat(0f, GlowPower, _duration).SetEase(Ease.InQuad));
         sequence.Join(transform.DOPunchScale(Vector3.one * _punchScale, _punchDuration, 1, 0f));
+
+        sequence.OnComplete(() => LeanPool.Despawn(gameObject));
+    }
+
+    public void ShowAuto(ClickInfo clickInfo)
+    {
+        _text.text = "+" + clickInfo.Damage.ToFormattedString();
+        _text.alpha = 1f;
+        _material.SetFloat(GlowPower, _initialGlowPower);
+        transform.localScale = Vector3.zero;
+
+        Sequence sequence = DOTween.Sequence();
+
+        sequence.Append(transform.DOScale(_initialScale * 1.2f, _duration * 0.3f).SetEase(Ease.OutBack));
+        sequence.Append(transform.DOScale(Vector3.zero, _duration * 0.7f).SetEase(Ease.InBack));
+        sequence.Join(_text.DOFade(0f, _duration * 0.7f).SetEase(Ease.InQuad));
+        sequence.Join(_material.DOFloat(0f, GlowPower, _duration * 0.7f).SetEase(Ease.InQuad));
 
         sequence.OnComplete(() => LeanPool.Despawn(gameObject));
     }
@@ -45,5 +70,6 @@ public class DamageFloater : MonoBehaviour
     {
         DOTween.Kill(transform);
         DOTween.Kill(_text);
+        DOTween.Kill(_material);
     }
 }

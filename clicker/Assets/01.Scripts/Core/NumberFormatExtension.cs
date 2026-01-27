@@ -14,7 +14,7 @@ public static class NumberFormatExtension
 
     public static string ToFormattedString(this double value)
     {
-        if (value < 1000) return value.ToString("N0");
+        if (value < 1000) return ((int)value).ToString();
 
         int suffixIndex = 0;
 
@@ -25,8 +25,11 @@ public static class NumberFormatExtension
             suffixIndex++;
         }
 
-        if (displayValue >= 100) return $"{displayValue:F0}{_suffixes[suffixIndex]}";
-        if (displayValue >= 10) return $"{displayValue:F1}{_suffixes[suffixIndex]}";
-        return $"{displayValue:F2}{_suffixes[suffixIndex]}";
+        return $"{(int)displayValue}{_suffixes[suffixIndex]}";
+    }
+
+    public static string ToFormattedString(this int value)
+    {
+        return ToFormattedString((double)value);
     }
 }

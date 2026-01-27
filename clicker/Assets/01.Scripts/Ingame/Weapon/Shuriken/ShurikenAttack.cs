@@ -43,6 +43,13 @@ public class ShurikenAttack : MonoBehaviour
                 // 데미지 입히기
                 _planetHealth.TakeDamage(_damage);
 
+                DamageFloaterSpawner.Instance.ShowDamage(new ClickInfo
+                {
+                    Type = EClickType.Auto,
+                    Damage = _damage,
+                    Position = _target.position
+                });
+
                 transform.SetParent(_parent);
                 transform.DOLocalMove(_localPosition, _returnDuration)
                     .SetEase(Ease.OutBack);
