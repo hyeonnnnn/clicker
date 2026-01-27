@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 1c65b86fd980496449d33e33b379f939
+guid: b7a236c0e9389bf40864cad18de10728
 AssetOrigin:
   serializedVersion: 1
   productId: 178094
   packageName: Space Adventure - Endless Game Template
   packageVersion: 1.0.1
-  assetPath: Assets/Space Adventure/Sounds/Music/Bobber Loop.wav
+  assetPath: Assets/Space Adventure/Sounds/button-click.wav
   uploadId: 741529
 AudioImporter:
   externalObjects: {}

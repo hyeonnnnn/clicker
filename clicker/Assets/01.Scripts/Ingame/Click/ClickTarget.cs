@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static SoundManager;
 
 public class ClickTarget : MonoBehaviour, Clickable
 {
@@ -22,7 +23,7 @@ public class ClickTarget : MonoBehaviour, Clickable
         foreach (var feedback in feedbacks)
         {
             feedback.Play(clickInfo);
-        }
+        };
 
         return true;
     }

@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using UnityEngine;
+using static SoundManager;
 
 public class ShurikenAttack : MonoBehaviour
 {
@@ -53,6 +54,8 @@ public class ShurikenAttack : MonoBehaviour
                         returnSequence.Join(transform.DOLocalRotateQuaternion(_localRotation, _returnDuration).SetEase(Ease.OutBack));
                         returnSequence.OnComplete(() => _isAttacking = false);
                     });
+
+        SoundManager.Instance.PlaySFX(Sfx.SHURIKEN);
     }
 
     private void HandleImpact(Vector3 attackDirection)

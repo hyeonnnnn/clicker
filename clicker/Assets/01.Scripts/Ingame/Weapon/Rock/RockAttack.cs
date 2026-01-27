@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using static SoundManager;
 
 public class RockAttack : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class RockAttack : MonoBehaviour
         ApplyDamage(collision.collider);
         SpawnImpactEffect(contactPoint, normal);
         ShowDamageText(contactPoint);
+
+        SoundManager.Instance.PlaySFX(Sfx.ROCK);
 
         _rockMove.BounceFromCollision(normal);
     }

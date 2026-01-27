@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static SoundManager;
 
 public class PlanetPop : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class PlanetPop : MonoBehaviour
         int bonusCoin = StageManager.Instance.CurrentPlanetData.BonusCoin;
         CoinManager.Instance.GetCoin(bonusCoin);
         TextFloaterSpawner.Instance.ShowBonusCoin(transform.position, bonusCoin);
+        SoundManager.Instance.PlaySFX(Sfx.COIN);
 
         SpawnStars();
     }
