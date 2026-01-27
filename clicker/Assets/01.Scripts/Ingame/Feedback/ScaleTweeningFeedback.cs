@@ -21,7 +21,6 @@ public class ScaleTweeningFeedback : MonoBehaviour, IFeedback
         if (clickInfo.Type == EClickType.Auto) return;
 
         _owner.transform.DOKill();
-        _owner.transform.localScale = Vector3.one;
         _owner.transform.DOPunchScale(Vector3.one * _punchScale, _duration, _vibrato, _elasticity);
     }
 }

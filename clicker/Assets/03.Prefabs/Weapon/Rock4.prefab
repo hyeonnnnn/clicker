@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RockAttack
   _damage: 500
-  _ignoreDuration: 0.3
+  _ignoreDuration: 0
 --- !u!114 &4669728082639268345
 MonoBehaviour:
   m_ObjectHideFlags: 0

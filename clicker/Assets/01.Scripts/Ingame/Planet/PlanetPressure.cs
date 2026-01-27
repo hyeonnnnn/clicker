@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlanetPressure : MonoBehaviour
 {
+    [SerializeField] private PlanetExpansion _planetExpansion;
+
     private int _currentPressure;
     private int _maxPressure;
 
@@ -12,20 +14,32 @@ public class PlanetPressure : MonoBehaviour
     public event Action<int, int> OnPressureChanged;
     public event Action OnDepleted;
 
-    public void Initialize(int maxHealth)
+    private void Awake()
     {
-        _maxPressure = maxHealth;
+        _planetExpansion = GetComponent<PlanetExpansion>();
+    }
+
+    public void Initialize(int maxPressure)
+    {
+        _maxPressure = maxPressure;
         _currentPressure = 0;
         OnPressureChanged?.Invoke(_currentPressure, _maxPressure);
+
+        _planetExpansion.Initialize();
+        _planetExpansion.ExpendPlanet(_currentPressure, _maxPressure);
     }
 
     public void TakeDamage(int damage)
     {
         _currentPressure += damage;
-        _currentPressure = Mathf.Min(_maxPressure, _currentPressure);
+
+        _currentPressure = Mathf.Min(_currentPressure, _maxPressure);
         OnPressureChanged?.Invoke(_currentPressure, _maxPressure);
 
         CoinManager.Instance.GetCoin(damage);
+        _planetExpansion.ExpendPlanet(_currentPressure, _maxPressure);
+
+        _planetExpansion.ExpendPlanet(_currentPressure, _maxPressure);
 
         if (_currentPressure >= _maxPressure)
         {
