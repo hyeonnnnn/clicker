@@ -4,11 +4,11 @@ public class ClickTarget : MonoBehaviour, Clickable
 {
     [SerializeField] private string _name;
 
-    private PlanetHealth _planetHealth;
+    private PlanetPressure _planetHealth;
 
     private void Awake()
     {
-        _planetHealth = GetComponent<PlanetHealth>();
+        _planetHealth = GetComponent<PlanetPressure>();
     }
 
     public bool OnClick(ClickInfo clickInfo)

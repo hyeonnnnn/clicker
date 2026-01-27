@@ -4,7 +4,7 @@ public class PlanetPop : MonoBehaviour
 {
     [Header("별 배경 이펙트")]
     [SerializeField] private ParticleSystem _starParticleEffect;
-    [SerializeField] private PlanetHealth _planetHealth;
+    [SerializeField] private PlanetPressure _planetHealth;
 
     [Header("별 아이콘 이펙트")]
     [SerializeField] private GameObject _starPrefab;
@@ -18,7 +18,7 @@ public class PlanetPop : MonoBehaviour
 
     private void Awake()
     {
-        _planetHealth = GetComponent<PlanetHealth>();
+        _planetHealth = GetComponent<PlanetPressure>();
     }
 
     private void Start()

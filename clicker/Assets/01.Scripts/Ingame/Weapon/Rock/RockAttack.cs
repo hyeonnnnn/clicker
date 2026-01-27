@@ -19,7 +19,7 @@ public class RockAttack : MonoBehaviour
     {
         if (collision.collider.CompareTag("Planet"))
         {
-            if (collision.collider.TryGetComponent(out PlanetHealth planetHealth))
+            if (collision.collider.TryGetComponent(out PlanetPressure planetHealth))
             {
                 planetHealth.TakeDamage(_damage);
             }

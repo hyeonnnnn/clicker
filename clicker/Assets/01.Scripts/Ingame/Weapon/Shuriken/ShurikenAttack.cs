@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ShurikenAttack : MonoBehaviour
 {
-    [SerializeField] private PlanetHealth _planetHealth;
+    [SerializeField] private PlanetPressure _planetPressure;
     [SerializeField] private Transform _target;
     [SerializeField] private int _damage = 10;
     [SerializeField] private float _attackDuration = 0.2f;
@@ -41,7 +41,7 @@ public class ShurikenAttack : MonoBehaviour
             .OnComplete(() =>
             {
                 // 데미지 입히기
-                _planetHealth.TakeDamage(_damage);
+                _planetPressure.TakeDamage(_damage);
 
                 TextFloaterSpawner.Instance.ShowDamage(new ClickInfo
                 {

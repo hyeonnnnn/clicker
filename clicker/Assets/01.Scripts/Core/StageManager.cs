@@ -7,7 +7,7 @@ public class StageManager : MonoBehaviour
 
     [SerializeField] private PlanetInfo _planetInfo;
     [SerializeField] private SpriteRenderer _planetRenderer;
-    [SerializeField] private PlanetHealth _planetHealth;
+    [SerializeField] private PlanetPressure _planetPressure;
 
     private int _currentStage;
 
@@ -31,13 +31,13 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
-        _planetHealth.OnDepleted += NextStage;
+        _planetPressure.OnDepleted += NextStage;
         InitializeStage(0);
     }
 
     private void OnDestroy()
     {
-        _planetHealth.OnDepleted -= NextStage;
+        _planetPressure.OnDepleted -= NextStage;
     }
 
     public void InitializeStage(int stageIndex)
@@ -46,7 +46,7 @@ public class StageManager : MonoBehaviour
         var planetData = _planetInfo.GetPlanet(_currentStage);
 
         _planetRenderer.sprite = planetData.Sprite;
-        _planetHealth.Initialize(planetData.Health);
+        _planetPressure.Initialize(planetData.Pressure);
 
         OnStageChanged?.Invoke(_currentStage);
     }

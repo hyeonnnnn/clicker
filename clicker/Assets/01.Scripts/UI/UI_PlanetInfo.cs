@@ -10,26 +10,26 @@ public class UI_PlanetInfo : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _planetNumberText;
     [SerializeField] private TextMeshProUGUI _planetNameText;
     [SerializeField] private TextMeshProUGUI _planetHealthText;
-    [SerializeField] private Slider _healthBar;
+    [SerializeField] private Slider _pressureBar;
 
-    [SerializeField] private PlanetHealth _planetHealth;
+    [SerializeField] private PlanetPressure _planetPressure;
 
-    private Tween _healthTween;
+    private Tween _pressureTween;
 
     private void Start()
     {
         StageManager.Instance.OnStageChanged += UpdateStageInfo;
         UpdateStageInfo(StageManager.Instance.CurrentStage);
 
-        _planetHealth.OnHealthChanged += UpdateHealthUI;
-        UpdateHealthUI(_planetHealth.CurrentHealth, _planetHealth.MaxHealth, true);
+        _planetPressure.OnPressureChanged += UpdatePressureUI;
+        UpdatePressureUI(_planetPressure.CurrentPressure, _planetPressure.MaxPressure, true);
     }
 
     private void OnDestroy()
     {
         StageManager.Instance.OnStageChanged -= UpdateStageInfo;
-        _planetHealth.OnHealthChanged -= UpdateHealthUI;
-        _healthTween?.Kill();
+        _planetPressure.OnPressureChanged -= UpdatePressureUI;
+        _pressureTween?.Kill();
     }
 
     private void UpdateStageInfo(int stageIndex)
@@ -44,29 +44,29 @@ public class UI_PlanetInfo : MonoBehaviour
         }
     }
 
-    private void UpdateHealthUI(int current, int max) => UpdateHealthUI(current, max, false);
-    private void UpdateHealthUI(int current, int max, bool immediate)
+    private void UpdatePressureUI(int current, int max) => UpdatePressureUI(current, max, false);
+    private void UpdatePressureUI(int current, int max, bool immediate)
     {
         if (max <= 0)
         {
-            _healthBar.value = 1;
+            _pressureBar.value = 0;
             return;
         }
 
         float targetValue = (float)current / max;
         _planetHealthText.text = $"{current} / {max}";
 
-        if (_healthBar != null)
+        if (_pressureBar != null)
         {
-            _healthTween?.Kill();
+            _pressureTween?.Kill();
 
             if (immediate)
             {
-                _healthBar.value = targetValue;
+                _pressureBar.value = targetValue;
             }
             else
             {
-                _healthTween = _healthBar.DOValue(targetValue, 0.2f)
+                _pressureTween = _pressureBar.DOValue(targetValue, 0.2f)
                     .SetEase(Ease.OutQuad);
             }
         }

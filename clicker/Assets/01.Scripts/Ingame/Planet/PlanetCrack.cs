@@ -3,12 +3,12 @@
 public class PlanetCrack : MonoBehaviour
 {
     [SerializeField] private GameObject[] _cracks;
-    [SerializeField] private PlanetHealth _planetHealth;
+    [SerializeField] private PlanetPressure _planetHealth;
     [SerializeField] private float[] _crackThresholds = { 0.8f, 0.5f, 0.1f };
 
     private void Awake()
     {
-        _planetHealth = GetComponent<PlanetHealth>();
+        _planetHealth = GetComponent<PlanetPressure>();
     }
 
     private void Start()
@@ -18,13 +18,13 @@ public class PlanetCrack : MonoBehaviour
 
     private void OnEnable()
     {
-        _planetHealth.OnHealthChanged += ShowCrack;
+        _planetHealth.OnPressureChanged += ShowCrack;
         _planetHealth.OnDepleted += Initialize;
     }
 
     private void OnDisable()
     {
-        _planetHealth.OnHealthChanged -= ShowCrack;
+        _planetHealth.OnPressureChanged -= ShowCrack;
         _planetHealth.OnDepleted -= Initialize;
     }
 
