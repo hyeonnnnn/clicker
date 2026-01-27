@@ -15,61 +15,61 @@ MonoBehaviour:
   _planets:
   - Sprite: {fileID: 21300000, guid: 1eebe61fa30929248bdcda4d7c3c51ec, type: 3}
     Icon: {fileID: -1703410670043421328, guid: 951ba0cd2cc6b124988d53e999aa33dc, type: 3}
-    Pressure: 5000
+    Pressure: 10000
     BonusCoin: 10000
     Name: "\uC544\uCFE0\uC544\uB9AC\uC2A4"
     Number: 1
   - Sprite: {fileID: 21300000, guid: 709f6dc460a0f30408be2662721887c0, type: 3}
     Icon: {fileID: -3690971825853330661, guid: 951ba0cd2cc6b124988d53e999aa33dc, type: 3}
-    Pressure: 10000
+    Pressure: 20000
     BonusCoin: 20000
     Name: "\uB178\uD06C\uD0C0\uB77C"
     Number: 2
   - Sprite: {fileID: 21300000, guid: 0aab17f474ae0434eb7aff4a29cc0123, type: 3}
     Icon: {fileID: -6641553170438197816, guid: 951ba0cd2cc6b124988d53e999aa33dc, type: 3}
-    Pressure: 15000
+    Pressure: 30000
     BonusCoin: 30000
     Name: "\uD14C\uB77C \uC5D0\uCF54"
     Number: 3
   - Sprite: {fileID: 21300000, guid: ef1bf2ecc16140f4195ed991ac4136c1, type: 3}
     Icon: {fileID: -5908689177192356609, guid: 951ba0cd2cc6b124988d53e999aa33dc, type: 3}
-    Pressure: 20000
+    Pressure: 40000
     BonusCoin: 40000
     Name: "\uD504\uB9AC\uAE00\uB77C"
     Number: 4
   - Sprite: {fileID: 21300000, guid: ddc556a241acd514ba8409f6e064201c, type: 3}
     Icon: {fileID: 1044084559177906930, guid: 951ba0cd2cc6b124988d53e999aa33dc, type: 3}
-    Pressure: 25000
+    Pressure: 50000
     BonusCoin: 50000
     Name: "\uC774\uADF8\uB2C8\uC2A4"
     Number: 5
   - Sprite: {fileID: 21300000, guid: 8d93f8b646fad08429a3686590a61bf7, type: 3}
     Icon: {fileID: -1000548074705426254, guid: 951ba0cd2cc6b124988d53e999aa33dc, type: 3}
-    Pressure: 30000
+    Pressure: 60000
     BonusCoin: 60000
     Name: "\uC194\uB77C\uC2A4 \uC624\uB80C"
     Number: 6
   - Sprite: {fileID: 21300000, guid: c135213a5c54f2f4984eaa105cc33b20, type: 3}
     Icon: {fileID: 100902165652345171, guid: 951ba0cd2cc6b124988d53e999aa33dc, type: 3}
-    Pressure: 35000
+    Pressure: 70000
     BonusCoin: 70000
     Name: "\uBC14\uC774\uC62C\uB77C"
     Number: 7
   - Sprite: {fileID: 21300000, guid: 765aab9d7d5f75f478521312f0b8a3dd, type: 3}
     Icon: {fileID: 3055896292189173696, guid: 951ba0cd2cc6b124988d53e999aa33dc, type: 3}
-    Pressure: 40000
+    Pressure: 80000
     BonusCoin: 80000
     Name: "\uB9C8\uB974\uCE74\uB974"
     Number: 8
   - Sprite: {fileID: 21300000, guid: 01e466e2fb6eea34ea00e20acc789c01, type: 3}
     Icon: {fileID: -1048176050769970390, guid: 951ba0cd2cc6b124988d53e999aa33dc, type: 3}
-    Pressure: 45000
+    Pressure: 90000
     BonusCoin: 90000
     Name: "\uD15C\uD398\uC2A4\uD0C0"
     Number: 9
   - Sprite: {fileID: 21300000, guid: a27406c97e517164cbd7003354e6739c, type: 3}
     Icon: {fileID: -7970368505078206281, guid: 951ba0cd2cc6b124988d53e999aa33dc, type: 3}
-    Pressure: 50000
-    BonusCoin: 100000
+    Pressure: 1000000
+    BonusCoin: 1000000
     Name: "\uD654\uC774\uD2B8 \uB4DC\uC6CC\uD504"
     Number: 10
