@@ -26,6 +26,7 @@ public class Clicker : MonoBehaviour
             {
                 Type = EClickType.Manual,
                 Damage = GameManager.Instance.ManualDamage,
+                Position = worldPosition,
             };
 
             clickable?.OnClick(clickInfo);

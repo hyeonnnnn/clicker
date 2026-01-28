@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using UnityEngine;
+using static EffectSpawner;
 using static SoundManager;
 
 public class RocketAttack : MonoBehaviour
@@ -9,10 +10,6 @@ public class RocketAttack : MonoBehaviour
     [SerializeField] private int _damage = 10;
     [SerializeField] private float _attackDuration = 0.2f;
     [SerializeField] private float _returnDuration = 0.3f;
-
-    [Header("Effects")]
-    [SerializeField] private GameObject _impactEffectPrefab;
-    [SerializeField] private float _effectDespawnDelay = 1.5f;
 
     private Transform _parent;
     private Vector3 _localPosition;
@@ -77,10 +74,7 @@ public class RocketAttack : MonoBehaviour
 
     private void SpawnImpactEffect(Vector2 position, Vector2 normal)
     {
-        if (_impactEffectPrefab == null) return;
-
         Quaternion rotation = Quaternion.FromToRotation(Vector3.up, normal);
-        GameObject effect = EffectSpawner.Instance.Spawn(_impactEffectPrefab, position, rotation);
-        EffectSpawner.Instance.Despawn(effect, _effectDespawnDelay);
+        EffectSpawner.Instance.PlayEffect(Effect.ROCKETATTACK, position, rotation);
     }
 }

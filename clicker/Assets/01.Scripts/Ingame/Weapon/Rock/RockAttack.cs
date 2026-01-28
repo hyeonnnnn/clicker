@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using static EffectSpawner;
 using static SoundManager;
 
 public class RockAttack : MonoBehaviour
 {
     [SerializeField] private double _damage = 1;
-
-    [Header("Effects")]
-    [SerializeField] private GameObject _impactEffectPrefab;
-    [SerializeField] private float _effectDespawnDelay = 1.5f;
 
     private RockMove _rockMove;
     private Collider2D _collider;
@@ -52,12 +48,8 @@ public class RockAttack : MonoBehaviour
 
     private void SpawnImpactEffect(Vector2 position, Vector2 normal)
     {
-        if (_impactEffectPrefab == null) return;
-
         Quaternion rotation = Quaternion.FromToRotation(Vector3.up, normal);
-
-        GameObject effect = EffectSpawner.Instance.Spawn(_impactEffectPrefab, position, rotation);
-        EffectSpawner.Instance.Despawn(effect, _effectDespawnDelay);
+        EffectSpawner.Instance.PlayEffect(Effect.ROCKATTACK, position, rotation);
     }
 
     private void ShowDamageText(Vector2 position)

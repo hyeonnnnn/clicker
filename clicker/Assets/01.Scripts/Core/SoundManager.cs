@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -17,27 +17,27 @@ public class SoundManager : MonoBehaviour
     [System.Serializable]
     public struct BgmData
     {
-        public Bgm type;
-        public AudioClip clip;
-        [Range(0, 1)] public float volume;
+        public Bgm Type;
+        public AudioClip Clip;
+        [Range(0, 1)] public float Volume;
     }
 
     [System.Serializable]
     public struct SfxData
     {
-        public Sfx type;
-        public AudioClip clip;
-        [Range(0, 1)] public float volume;
+        public Sfx Type;
+        public AudioClip Clip;
+        [Range(0, 1)] public float Volume;
     }
 
-    [SerializeField] private List<BgmData> bgmList;
-    [SerializeField] private List<SfxData> sfxList;
+    [SerializeField] private List<BgmData> _bgmList;
+    [SerializeField] private List<SfxData> _sfxList;
 
-    [SerializeField] private AudioSource audioBgm;
-    [SerializeField] private AudioSource audioSfx;
+    [SerializeField] private AudioSource _audioBgm;
+    [SerializeField] private AudioSource _audioSfx;
 
-    private Dictionary<Bgm, BgmData> bgmDict = new Dictionary<Bgm, BgmData>();
-    private Dictionary<Sfx, SfxData> sfxDict = new Dictionary<Sfx, SfxData>();
+    private Dictionary<Bgm, BgmData> _bgmDict = new Dictionary<Bgm, BgmData>();
+    private Dictionary<Sfx, SfxData> _sfxDict = new Dictionary<Sfx, SfxData>();
 
     private void Awake()
     {
@@ -45,31 +45,31 @@ public class SoundManager : MonoBehaviour
         _instance = this;
         DontDestroyOnLoad(gameObject);
 
-        foreach (var item in bgmList) bgmDict[item.type] = item;
-        foreach (var item in sfxList) sfxDict[item.type] = item;
+        foreach (var item in _bgmList) _bgmDict[item.Type] = item;
+        foreach (var item in _sfxList) _sfxDict[item.Type] = item;
     }
 
     public void PlaySFX(Sfx type)
     {
-        if (sfxDict.TryGetValue(type, out SfxData data))
+        if (_sfxDict.TryGetValue(type, out SfxData data))
         {
-            float finalVolume = masterVolume * sfxGroupVolume * data.volume;
+            float finalVolume = masterVolume * sfxGroupVolume * data.Volume;
 
-            audioSfx.PlayOneShot(data.clip, finalVolume);
+            _audioSfx.PlayOneShot(data.Clip, finalVolume);
         }
     }
 
     public void PlayBGM(Bgm type)
     {
-        if (bgmDict.TryGetValue(type, out BgmData data))
+        if (_bgmDict.TryGetValue(type, out BgmData data))
         {
-            if (audioBgm.clip == data.clip) return;
+            if (_audioBgm.clip == data.Clip) return;
 
-            audioBgm.clip = data.clip;
-            audioBgm.loop = true;
+            _audioBgm.clip = data.Clip;
+            _audioBgm.loop = true;
 
-            audioBgm.volume = masterVolume * bgmGroupVolume * data.volume;
-            audioBgm.Play();
+            _audioBgm.volume = masterVolume * bgmGroupVolume * data.Volume;
+            _audioBgm.Play();
         }
     }
 
