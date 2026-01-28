@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ShurikenAttackerSelector : MonoBehaviour
 {
-    [SerializeField] private List<ShurikenAttack> _shurikens;
+    [SerializeField] private List<RocketAttack> _shurikens;
     [SerializeField] private float _interval = 3f;
 
     private float _timer;
@@ -30,14 +30,14 @@ public class ShurikenAttackerSelector : MonoBehaviour
         _currentIndex = (_currentIndex + 1) % activeList.Count;
     }
 
-    private List<ShurikenAttack> GetActiveShurikens()
+    private List<RocketAttack> GetActiveShurikens()
     {
-        var activeList = new List<ShurikenAttack>();
-        foreach (var shuriken in _shurikens)
+        var activeList = new List<RocketAttack>();
+        foreach (var rocket in _shurikens)
         {
-            if (shuriken.gameObject.activeInHierarchy)
+            if (rocket.gameObject.activeInHierarchy)
             {
-                activeList.Add(shuriken);
+                activeList.Add(rocket);
             }
         }
         return activeList;

@@ -129,7 +129,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_Name
-      value: Shuriken (1)
+      value: Rocket
       objectReference: {fileID: 0}
     - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_Layer
@@ -159,6 +159,10 @@ PrefabInstance:
       propertyPath: _impactEffectPrefab
       value: 
       objectReference: {fileID: 3206530977505427910, guid: b429a27e99480a0458d3fe7fb2a06f26, type: 3}
+    - target: {fileID: 4735587378992783536, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 23179e256cdab994f98ec3efa179cab6, type: 3}
     - target: {fileID: 7861177689878301593, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: _target
       value: 
@@ -169,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.y
@@ -210,8 +214,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1739718910}
   m_SourcePrefab: {fileID: 100100000, guid: c4f11a5635696144ab0932e272803948, type: 3}
+--- !u!1 &56080704 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 1295108313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &76844883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -222,7 +234,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_Name
-      value: Shuriken (2)
+      value: Rocket
       objectReference: {fileID: 0}
     - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_Layer
@@ -260,9 +272,13 @@ PrefabInstance:
       propertyPath: _planetHealth
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4735587378992783536, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 23179e256cdab994f98ec3efa179cab6, type: 3}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.y
@@ -303,7 +319,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1467605050}
   m_SourcePrefab: {fileID: 100100000, guid: c4f11a5635696144ab0932e272803948, type: 3}
 --- !u!1 &138872378
 GameObject:
@@ -1259,7 +1278,7 @@ GameObject:
   - component: {fileID: 530613937}
   - component: {fileID: 530613936}
   m_Layer: 5
-  m_Name: ShurikenGuideText
+  m_Name: RocketGuideText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1396,7 +1415,7 @@ GameObject:
   - component: {fileID: 537270096}
   - component: {fileID: 537270095}
   m_Layer: 5
-  m_Name: ShurikenIcon
+  m_Name: RocketIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1419,7 +1438,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 47.090908, y: 74.27273}
+  m_SizeDelta: {x: 75.29411, y: 75.29411}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &537270095
 MonoBehaviour:
@@ -1441,7 +1460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4345462867533152315, guid: ddfa69f3efd51e0419e974b517e4f330, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e55a0e562587c445ba2fce00c56757bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1737,7 +1756,7 @@ GameObject:
   - component: {fileID: 651643693}
   - component: {fileID: 651643692}
   m_Layer: 5
-  m_Name: UI_ShurikenButton
+  m_Name: UI_RocketButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2492,17 +2511,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
   m_PrefabInstance: {fileID: 845065106}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &778572452 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3686905351767740073, guid: c4f11a5635696144ab0932e272803948, type: 3}
-  m_PrefabInstance: {fileID: 845065106}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
 --- !u!1001 &796185057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2578,7 +2586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_Name
-      value: Shuriken (3)
+      value: Rocket
       objectReference: {fileID: 0}
     - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_Layer
@@ -2608,9 +2616,13 @@ PrefabInstance:
       propertyPath: _impactEffectPrefab
       value: 
       objectReference: {fileID: 3206530977505427910, guid: b429a27e99480a0458d3fe7fb2a06f26, type: 3}
+    - target: {fileID: 4735587378992783536, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 23179e256cdab994f98ec3efa179cab6, type: 3}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2651,7 +2663,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1717167612}
   m_SourcePrefab: {fileID: 100100000, guid: c4f11a5635696144ab0932e272803948, type: 3}
 --- !u!1001 &850026556
 PrefabInstance:
@@ -2663,7 +2678,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_Name
-      value: Shuriken (5)
+      value: Rocket
       objectReference: {fileID: 0}
     - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_Layer
@@ -2693,9 +2708,13 @@ PrefabInstance:
       propertyPath: _impactEffectPrefab
       value: 
       objectReference: {fileID: 3206530977505427910, guid: b429a27e99480a0458d3fe7fb2a06f26, type: 3}
+    - target: {fileID: 4735587378992783536, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 23179e256cdab994f98ec3efa179cab6, type: 3}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2736,7 +2755,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1855504841}
   m_SourcePrefab: {fileID: 100100000, guid: c4f11a5635696144ab0932e272803948, type: 3}
 --- !u!114 &851141528 stripped
 MonoBehaviour:
@@ -3360,17 +3382,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
   m_PrefabInstance: {fileID: 850026556}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1077657938 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3686905351767740073, guid: c4f11a5635696144ab0932e272803948, type: 3}
-  m_PrefabInstance: {fileID: 850026556}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
 --- !u!1 &1097545524
 GameObject:
   m_ObjectHideFlags: 0
@@ -3383,7 +3394,7 @@ GameObject:
   - component: {fileID: 1097545526}
   - component: {fileID: 1097545529}
   m_Layer: 0
-  m_Name: ShurikenSpawner
+  m_Name: RocketSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3437,12 +3448,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttackerSelector
   _shurikens:
-  - {fileID: 2134091465}
-  - {fileID: 1689344837}
-  - {fileID: 1467605048}
-  - {fileID: 778572452}
-  - {fileID: 1345713682}
-  - {fileID: 1077657938}
+  - {fileID: 2134091467}
+  - {fileID: 1739718910}
+  - {fileID: 1467605050}
+  - {fileID: 1717167612}
+  - {fileID: 1345713684}
+  - {fileID: 1855504841}
   _interval: 1
 --- !u!224 &1097819004 stripped
 RectTransform:
@@ -3719,7 +3730,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_Name
-      value: Shuriken (4)
+      value: Rocket
       objectReference: {fileID: 0}
     - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_Layer
@@ -3749,9 +3760,13 @@ PrefabInstance:
       propertyPath: _impactEffectPrefab
       value: 
       objectReference: {fileID: 3206530977505427910, guid: b429a27e99480a0458d3fe7fb2a06f26, type: 3}
+    - target: {fileID: 4735587378992783536, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 23179e256cdab994f98ec3efa179cab6, type: 3}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3792,24 +3807,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1345713684}
   m_SourcePrefab: {fileID: 100100000, guid: c4f11a5635696144ab0932e272803948, type: 3}
+--- !u!1 &1326212643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 76844883}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1345713680 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
   m_PrefabInstance: {fileID: 1295108313}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1345713682 stripped
+--- !u!114 &1345713684
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3686905351767740073, guid: c4f11a5635696144ab0932e272803948, type: 3}
-  m_PrefabInstance: {fileID: 1295108313}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 56080704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
+  m_Script: {fileID: 11500000, guid: 086d9ee09690ea04ca6992a5ff37772d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
+  m_EditorClassIdentifier: Assembly-CSharp::RocketAttack
+  _planetPressure: {fileID: 1420666661}
+  _target: {fileID: 1420666650}
+  _damage: 10
+  _attackDuration: 0.2
+  _returnDuration: 0.3
+  _impactEffectPrefab: {fileID: 3206530977505427910, guid: b429a27e99480a0458d3fe7fb2a06f26, type: 3}
+  _effectDespawnDelay: 1.5
 --- !u!1 &1345976438
 GameObject:
   m_ObjectHideFlags: 0
@@ -3941,26 +3972,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1414231506}
-  - component: {fileID: 1414231505}
+  - component: {fileID: 1414231507}
   m_Layer: 0
-  m_Name: CoinManager
+  m_Name: CurrencyManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1414231505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1414231504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c34de5e694c7734480f9a48c1801ce2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CoinManager
 --- !u!4 &1414231506
 Transform:
   m_ObjectHideFlags: 0
@@ -3976,6 +3995,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1414231507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414231504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af74279be800d0438f63f66909fc118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CurrencyManager
 --- !u!1 &1420666647
 GameObject:
   m_ObjectHideFlags: 0
@@ -3987,14 +4018,15 @@ GameObject:
   - component: {fileID: 1420666650}
   - component: {fileID: 1420666654}
   - component: {fileID: 1420666657}
+  - component: {fileID: 1420666664}
   - component: {fileID: 1420666648}
   - component: {fileID: 1420666652}
   - component: {fileID: 1420666659}
   - component: {fileID: 1420666663}
-  - component: {fileID: 1420666655}
   - component: {fileID: 1420666660}
   - component: {fileID: 1420666661}
   - component: {fileID: 1420666662}
+  - component: {fileID: 1420666665}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Planet
@@ -4014,7 +4046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff6bd576d53f534ab92ffdb174e7c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClickTarget
-  _name: a
+  _name: Planet
 --- !u!4 &1420666650
 Transform:
   m_ObjectHideFlags: 0
@@ -4106,20 +4138,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &1420666655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420666647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ced76c14c3b0ab459f3de6c2f2eb365, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlanetRotation
-  _transform: {fileID: 1420666650}
-  _speed: 5
 --- !u!58 &1420666657
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4181,7 +4199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlanetPop
   _starParticleEffect: {fileID: 495337803}
-  _planetHealth: {fileID: 0}
+  _planetHealth: {fileID: 1420666661}
   _starPrefab: {fileID: 3062445430651280400, guid: 0f990ef1f95c85a46a50111f554b3e86, type: 3}
   _starCount: 40
   _yPosition: 2
@@ -4215,7 +4233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExtensionFeedback
   _owner: {fileID: 1420666648}
   _maxScaleMultiplier: 1.7
-  _lerpSpeed: 10
 --- !u!114 &1420666663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4228,6 +4245,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c6284a79f821c4ab90528fed5ec3d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundFeedback
+--- !u!50 &1420666664
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420666647}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1420666665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420666647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ced76c14c3b0ab459f3de6c2f2eb365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlanetRotation
+  _rigidbody: {fileID: 1420666664}
+  _speed: 3
 --- !u!4 &1442490625 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 107540711077034587, guid: d3015b7eea383f64d8b81f965cc466e7, type: 3}
@@ -4313,17 +4371,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451253341}
   m_CullTransparentMesh: 1
---- !u!114 &1467605048 stripped
+--- !u!114 &1467605050
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3686905351767740073, guid: c4f11a5635696144ab0932e272803948, type: 3}
-  m_PrefabInstance: {fileID: 76844883}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1326212643}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
+  m_Script: {fileID: 11500000, guid: 086d9ee09690ea04ca6992a5ff37772d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
+  m_EditorClassIdentifier: Assembly-CSharp::RocketAttack
+  _planetPressure: {fileID: 1420666661}
+  _target: {fileID: 1420666650}
+  _damage: 10
+  _attackDuration: 0.2
+  _returnDuration: 0.3
+  _impactEffectPrefab: {fileID: 3206530977505427910, guid: b429a27e99480a0458d3fe7fb2a06f26, type: 3}
+  _effectDespawnDelay: 1.5
+--- !u!1 &1494296819 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 213360229203052961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1537590305
 GameObject:
   m_ObjectHideFlags: 0
@@ -4530,7 +4601,7 @@ GameObject:
   - component: {fileID: 1562585104}
   - component: {fileID: 1562585103}
   m_Layer: 5
-  m_Name: ShurikenTitleText
+  m_Name: RocketTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4575,7 +4646,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB2E8\uAC80"
+  m_text: "\uB85C\uCF13"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1dd52486c1f12f499c4c9aeabe66dd2, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 26cf4808c89901348834eaad3abd0735, type: 2}
@@ -4949,17 +5020,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4195110076297580122, guid: 23047860cb3611b46b735f83af1220ee, type: 3}
   m_PrefabInstance: {fileID: 1652408251055777617}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1689344837 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3686905351767740073, guid: c4f11a5635696144ab0932e272803948, type: 3}
-  m_PrefabInstance: {fileID: 51854267}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
 --- !u!1 &1695315393
 GameObject:
   m_ObjectHideFlags: 0
@@ -5041,6 +5101,54 @@ MonoBehaviour:
   _autoSpawnOffset: {x: 0, y: 0}
   _bonusCoinPrefab: {fileID: 6326483096500329616, guid: fa9395f133857144ead58dbfb4f484c0, type: 3}
   _bonusCoinSpawnOffset: {x: 0, y: 0}
+--- !u!1 &1717167610 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 845065106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1717167612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717167610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086d9ee09690ea04ca6992a5ff37772d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RocketAttack
+  _planetPressure: {fileID: 1420666661}
+  _target: {fileID: 1420666650}
+  _damage: 10
+  _attackDuration: 0.2
+  _returnDuration: 0.3
+  _impactEffectPrefab: {fileID: 3206530977505427910, guid: b429a27e99480a0458d3fe7fb2a06f26, type: 3}
+  _effectDespawnDelay: 1.5
+--- !u!1 &1739718908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 51854267}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1739718910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739718908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086d9ee09690ea04ca6992a5ff37772d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RocketAttack
+  _planetPressure: {fileID: 1420666661}
+  _target: {fileID: 1420666650}
+  _damage: 10
+  _attackDuration: 0.2
+  _returnDuration: 0.3
+  _impactEffectPrefab: {fileID: 3206530977505427910, guid: b429a27e99480a0458d3fe7fb2a06f26, type: 3}
+  _effectDespawnDelay: 1.5
 --- !u!114 &1805121325 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7737529758861296021, guid: 9795456726a4344cb999c2e8030b16b0, type: 3}
@@ -5064,7 +5172,7 @@ GameObject:
   - component: {fileID: 1835369288}
   - component: {fileID: 1835369287}
   m_Layer: 5
-  m_Name: ShurikenFrame
+  m_Name: RocketFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5129,6 +5237,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835369285}
   m_CullTransparentMesh: 1
+--- !u!1 &1855504839 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+  m_PrefabInstance: {fileID: 850026556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1855504841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855504839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086d9ee09690ea04ca6992a5ff37772d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RocketAttack
+  _planetPressure: {fileID: 1420666661}
+  _target: {fileID: 1420666650}
+  _damage: 10
+  _attackDuration: 0.2
+  _returnDuration: 0.3
+  _impactEffectPrefab: {fileID: 3206530977505427910, guid: b429a27e99480a0458d3fe7fb2a06f26, type: 3}
+  _effectDespawnDelay: 1.5
 --- !u!224 &1856390614 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7737529759578349150, guid: 9795456726a4344cb999c2e8030b16b0, type: 3}
@@ -6032,7 +6164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_Coin
   _coinTextUI: {fileID: 2108707809}
   _coinImageUI: {fileID: 1451253343}
-  _coinManager: {fileID: 1414231505}
+  _currencyManager: {fileID: 0}
   _punchScale: 0.2
   _scaleDuration: 0.3
   _shakeStrength: 4
@@ -6485,17 +6617,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
   m_PrefabInstance: {fileID: 213360229203052961}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2134091465 stripped
+--- !u!114 &2134091467
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3686905351767740073, guid: c4f11a5635696144ab0932e272803948, type: 3}
-  m_PrefabInstance: {fileID: 213360229203052961}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1494296819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36630cbd6240f5b45b20f78b248f7317, type: 3}
+  m_Script: {fileID: 11500000, guid: 086d9ee09690ea04ca6992a5ff37772d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShurikenAttack
+  m_EditorClassIdentifier: Assembly-CSharp::RocketAttack
+  _planetPressure: {fileID: 1420666661}
+  _target: {fileID: 1420666650}
+  _damage: 10
+  _attackDuration: 0.2
+  _returnDuration: 0.3
+  _impactEffectPrefab: {fileID: 3206530977505427910, guid: b429a27e99480a0458d3fe7fb2a06f26, type: 3}
+  _effectDespawnDelay: 1.5
 --- !u!1001 &213360229203052961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6506,7 +6646,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_Name
-      value: Shuriken
+      value: Rocket
       objectReference: {fileID: 0}
     - target: {fileID: 3686905351767740073, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: _damage
@@ -6524,9 +6664,13 @@ PrefabInstance:
       propertyPath: _impactEffectPrefab
       value: 
       objectReference: {fileID: 3206530977505427910, guid: b429a27e99480a0458d3fe7fb2a06f26, type: 3}
+    - target: {fileID: 4735587378992783536, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 23179e256cdab994f98ec3efa179cab6, type: 3}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8721968903701476096, guid: c4f11a5635696144ab0932e272803948, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6567,7 +6711,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2974041921317614063, guid: c4f11a5635696144ab0932e272803948, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2134091467}
   m_SourcePrefab: {fileID: 100100000, guid: c4f11a5635696144ab0932e272803948, type: 3}
 --- !u!1001 &1652408251055777617
 PrefabInstance:

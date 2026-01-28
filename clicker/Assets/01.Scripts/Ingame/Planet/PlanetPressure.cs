@@ -6,13 +6,13 @@ public class PlanetPressure : MonoBehaviour
 {
     [SerializeField] private PlanetExpansion _planetExpansion;
 
-    private int _currentPressure;
-    private int _maxPressure;
+    private double _currentPressure;
+    private double _maxPressure;
 
-    public int CurrentPressure => _currentPressure;
-    public int MaxPressure => _maxPressure;
+    public double CurrentPressure => _currentPressure;
+    public double MaxPressure => _maxPressure;
 
-    public event Action<int, int> OnPressureChanged;
+    public event Action<double, double> OnPressureChanged;
     public event Action OnDepleted;
 
     private void Awake()
@@ -20,7 +20,7 @@ public class PlanetPressure : MonoBehaviour
         _planetExpansion = GetComponent<PlanetExpansion>();
     }
 
-    public void Initialize(int maxPressure)
+    public void Initialize(double maxPressure)
     {
         _maxPressure = maxPressure;
         _currentPressure = 0;
@@ -30,16 +30,14 @@ public class PlanetPressure : MonoBehaviour
         _planetExpansion.ExpendPlanet(_currentPressure, _maxPressure);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(double damage)
     {
         _currentPressure += damage;
 
-        _currentPressure = Mathf.Min(_currentPressure, _maxPressure);
+        _currentPressure = Mathf.Min((float)_currentPressure, (float)_maxPressure);
         OnPressureChanged?.Invoke(_currentPressure, _maxPressure);
 
-        CoinManager.Instance.GetCoin(damage);
-        _planetExpansion.ExpendPlanet(_currentPressure, _maxPressure);
-
+        CurrencyManager.Instance.Add(ECurrencyType.Star, damage);
         _planetExpansion.ExpendPlanet(_currentPressure, _maxPressure);
 
         if (_currentPressure >= _maxPressure)

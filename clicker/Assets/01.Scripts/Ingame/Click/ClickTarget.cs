@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using static SoundManager;
 
 public class ClickTarget : MonoBehaviour, Clickable
 {
@@ -16,7 +15,7 @@ public class ClickTarget : MonoBehaviour, Clickable
     {
         if ( _planetHealth != null)
         {
-            _planetHealth.TakeDamage((int)clickInfo.Damage);
+            _planetHealth.TakeDamage(clickInfo.Damage);
         }
 
         var feedbacks = GetComponentsInChildren<IFeedback>();

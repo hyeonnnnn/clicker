@@ -2,7 +2,7 @@
 using UnityEngine;
 using static SoundManager;
 
-public class ShurikenAttack : MonoBehaviour
+public class RocketAttack : MonoBehaviour
 {
     [SerializeField] private PlanetPressure _planetPressure;
     [SerializeField] private Transform _target;

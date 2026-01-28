@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ShurikenMove : MonoBehaviour
+public class RocketMove : MonoBehaviour
 {
     [SerializeField] private float _radius = 2f;
     [SerializeField] private float _rotationSpeed = 90f;
@@ -42,7 +42,7 @@ public class ShurikenMove : MonoBehaviour
             child.localPosition = position;
             child.localRotation = Quaternion.Euler(0f, 0f, angleDeg);
 
-            var attack = child.GetComponent<ShurikenAttack>();
+            var attack = child.GetComponent<RocketAttack>();
             if (attack != null)
             {
                 attack.Initialize(position, Quaternion.Euler(0f, 0f, angleDeg));

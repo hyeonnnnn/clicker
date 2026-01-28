@@ -7,7 +7,7 @@ public class UI_Coin : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _coinTextUI;
     [SerializeField] private Image _coinImageUI;
-    [SerializeField] private CoinManager _coinManager;
+    [SerializeField] private CurrencyManager _currencyManager;
 
     [Header("Text Effect")]
     [SerializeField] private float _punchScale = 0.2f;
@@ -19,15 +19,15 @@ public class UI_Coin : MonoBehaviour
 
     private void OnEnable()
     {
-        _coinManager.OnCoinChanged += UpdateCoinText;
+        CurrencyManager.OnDataChanged += UpdateCoinText;
     }
 
     private void OnDisable()
     {
-        _coinManager.OnCoinChanged -= UpdateCoinText;
+        CurrencyManager.OnDataChanged -= UpdateCoinText;
     }
 
-    private void UpdateCoinText(int amount)
+    private void UpdateCoinText(double amount)
     {
         _coinTextUI.text = amount.ToFormattedString();
 

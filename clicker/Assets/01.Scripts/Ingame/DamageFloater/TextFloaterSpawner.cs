@@ -48,13 +48,13 @@ public class TextFloaterSpawner : MonoBehaviour
         damageFloater.ShowAuto(clickInfo);
     }
 
-    public void ShowBonusCoin(Vector3 position, int amount)
+    public void ShowBonusCoin(Vector3 position, double amount)
     {
         Vector3 spawnPosition = position + (Vector3)_bonusCoinSpawnOffset;
 
         GameObject floaterObject = Instantiate(_bonusCoinPrefab, spawnPosition, Quaternion.identity);
         DamageFloater floater = floaterObject.GetComponent<DamageFloater>();
 
-        floater.ShowBonusCoin(amount);
+        floater.ShowBonusCoin((int)amount);
     }
 }

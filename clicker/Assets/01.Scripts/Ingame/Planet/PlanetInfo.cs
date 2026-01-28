@@ -17,8 +17,8 @@ public class PlanetData
 {
     public Sprite Sprite;
     public Sprite Icon;
-    public int Pressure;
-    public int BonusCoin;
+    public double Pressure;
+    public double BonusCoin;
     public string Name;
     public int Number;
 }

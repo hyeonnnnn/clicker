@@ -2,16 +2,17 @@
 
 public class PlanetRotation : MonoBehaviour
 {
-    [SerializeField] private Transform _transform;
+    [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private float _speed = 3f;
 
-    private void Update()
+    private void FixedUpdate()
     {
         Rotation();
     }
 
     private void Rotation()
     {
-        _transform.Rotate(0f, 0f, -_speed * Time.deltaTime);
+        float nextAngle = _rigidbody.rotation - (_speed * Time.fixedDeltaTime);
+        _rigidbody.MoveRotation(nextAngle);
     }
 }

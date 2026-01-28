@@ -8,7 +8,6 @@ public class PlanetExpansion : MonoBehaviour
 
     [Header("팽창 설정")]
     [SerializeField] private float _maxScaleMultiplier = 1.7f;
-    [SerializeField] private float _lerpSpeed = 10f; 
 
     private Vector3 _originalScale;
     private Vector3 _targetScale;
@@ -26,11 +25,11 @@ public class PlanetExpansion : MonoBehaviour
         _targetScale = _originalScale;
     }
 
-    public void ExpendPlanet(int currentPressure, int maxPressure)
+    public void ExpendPlanet(double currentPressure, double maxPressure)
     {
-        float ratio = (float)currentPressure / maxPressure;
-        float scaleOffset = (_maxScaleMultiplier - 1f) * ratio;
-        _targetScale = _originalScale * (1f + scaleOffset);
+        double ratio = currentPressure / maxPressure;
+        double scaleOffset = (_maxScaleMultiplier - 1f) * ratio;
+        _targetScale = _originalScale * (1f + (float)scaleOffset);
 
         _owner.transform.DOScale(_targetScale, 0.2f).SetEase(Ease.OutCubic);
     }

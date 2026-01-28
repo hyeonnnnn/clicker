@@ -4,8 +4,7 @@ using static SoundManager;
 
 public class RockAttack : MonoBehaviour
 {
-    [SerializeField] private int _damage = 1;
-    [SerializeField] private float _ignoreDuration = 0.3f;
+    [SerializeField] private double _damage = 1;
 
     [Header("Effects")]
     [SerializeField] private GameObject _impactEffectPrefab;

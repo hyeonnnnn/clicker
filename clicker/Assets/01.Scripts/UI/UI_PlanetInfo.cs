@@ -44,8 +44,8 @@ public class UI_PlanetInfo : MonoBehaviour
         }
     }
 
-    private void UpdatePressureUI(int current, int max) => UpdatePressureUI(current, max, false);
-    private void UpdatePressureUI(int current, int max, bool immediate)
+    private void UpdatePressureUI(double current, double max) => UpdatePressureUI(current, max, false);
+    private void UpdatePressureUI(double current, double max, bool immediate)
     {
         if (max <= 0)
         {
@@ -53,7 +53,7 @@ public class UI_PlanetInfo : MonoBehaviour
             return;
         }
 
-        float targetValue = (float)current / max;
+        double targetValue = current / max;
         _planetHealthText.text = $"{current.ToFormattedString()} / {max.ToFormattedString()}";
 
         if (_pressureBar != null)
@@ -62,11 +62,11 @@ public class UI_PlanetInfo : MonoBehaviour
 
             if (immediate)
             {
-                _pressureBar.value = targetValue;
+                _pressureBar.value = (float)targetValue;
             }
             else
             {
-                _pressureTween = _pressureBar.DOValue(targetValue, 0.2f)
+                _pressureTween = _pressureBar.DOValue((float)targetValue, 0.2f)
                     .SetEase(Ease.OutQuad);
             }
         }
