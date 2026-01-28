@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_Coin : MonoBehaviour
+public class UI_Star : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _coinTextUI;
     [SerializeField] private Image _coinImageUI;
@@ -29,7 +29,8 @@ public class UI_Coin : MonoBehaviour
 
     private void UpdateCoinText(double amount)
     {
-        _coinTextUI.text = amount.ToFormattedString();
+        Currency star = CurrencyManager.Instance.Star;
+        _coinTextUI.text = $"{star}";
 
         PlayScaleEffect(_coinTextUI.transform);
         PlayShakeEffect(_coinImageUI.transform);

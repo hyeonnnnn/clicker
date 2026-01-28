@@ -26,6 +26,8 @@ public class CurrencyManager : MonoBehaviour
 
     private void Start()
     {
+        double[] currencyValues = _repository.Load().Currencies;
+        
         _repository.Load();
     }
     
