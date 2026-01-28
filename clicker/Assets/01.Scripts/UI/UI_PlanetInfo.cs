@@ -54,7 +54,7 @@ public class UI_PlanetInfo : MonoBehaviour
         }
 
         float targetValue = (float)current / max;
-        _planetHealthText.text = $"{current} / {max}";
+        _planetHealthText.text = $"{current.ToFormattedString()} / {max.ToFormattedString()}";
 
         if (_pressureBar != null)
         {

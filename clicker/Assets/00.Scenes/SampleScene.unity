@@ -5919,7 +5919,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 66dc8462150eb9a4da94ce13cad8b43a, type: 3}
     volume: 0.5
   - type: 4
-    clip: {fileID: 8300000, guid: 2f8f0e90d7e8f3f44a19c94a63d161b2, type: 3}
+    clip: {fileID: 8300000, guid: 19dc569e4746cb8408b4be14625cccfd, type: 3}
     volume: 0.3
   audioBgm: {fileID: 516956654}
   audioSfx: {fileID: 867799780}
