@@ -5910,17 +5910,17 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b7a236c0e9389bf40864cad18de10728, type: 3}
     volume: 1
   - type: 1
-    clip: {fileID: 8300000, guid: f2f2403ac1e713f4e946a1a708745e51, type: 3}
+    clip: {fileID: 8300000, guid: e21bf4434f1725e4f9480881697b6e45, type: 3}
     volume: 1
   - type: 2
     clip: {fileID: 8300000, guid: a8f39ecfd73666a4693a1ec9e657f7eb, type: 3}
     volume: 1
   - type: 3
-    clip: {fileID: 8300000, guid: 66dc8462150eb9a4da94ce13cad8b43a, type: 3}
-    volume: 0.5
+    clip: {fileID: 8300000, guid: 7442b6d54e8e53e4d805764796dae7f6, type: 3}
+    volume: 1
   - type: 4
     clip: {fileID: 8300000, guid: 19dc569e4746cb8408b4be14625cccfd, type: 3}
-    volume: 0.3
+    volume: 0.783
   audioBgm: {fileID: 516956654}
   audioSfx: {fileID: 867799780}
 --- !u!4 &2042600690

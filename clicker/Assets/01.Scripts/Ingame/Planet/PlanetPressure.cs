@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using static SoundManager;
 
 public class PlanetPressure : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class PlanetPressure : MonoBehaviour
         if (_currentPressure >= _maxPressure)
         {
             OnDepleted?.Invoke();
+            SoundManager.Instance.PlaySFX(Sfx.POPPLANET);
         }
     }
 }
