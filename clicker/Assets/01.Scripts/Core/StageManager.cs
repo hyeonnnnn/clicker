@@ -10,10 +10,12 @@ public class StageManager : MonoBehaviour
     [SerializeField] private PlanetPressure _planetPressure;
 
     private int _currentStage;
+    private int _previousStage;
 
     public int CurrentStage => _currentStage;
     public PlanetData CurrentPlanetData => _planetInfo.GetPlanet(_currentStage);
     public Sprite CurrentSprite => CurrentPlanetData.Sprite;
+    public Sprite PreviousSprite => _planetInfo.GetPlanet(_previousStage).MiniSprite;
 
     public event Action<int> OnStageChanged;
 
@@ -47,15 +49,15 @@ public class StageManager : MonoBehaviour
 
         _planetRenderer.sprite = planetData.Sprite;
         _planetPressure.Initialize(planetData.Pressure);
-
-        OnStageChanged?.Invoke(_currentStage);
     }
 
     private void NextStage()
     {
         if (_currentStage < _planetInfo.Count - 1)
         {
+            _previousStage = _currentStage;
             InitializeStage(_currentStage + 1);
+            OnStageChanged?.Invoke(_currentStage);
         }
     }
 }
