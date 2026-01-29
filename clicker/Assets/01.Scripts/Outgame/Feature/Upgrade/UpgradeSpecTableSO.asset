@@ -14,58 +14,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSpecTableSO
   Datas:
   - Type: 0
-    MaxLevel: 0
-    BaseCost: 100
-    BaseDamage: 100
-    CostMultiplier: 100
-    DamageMultiplier: 100
     Name: "\uD074\uB9AD"
-    Description: "\uD30C\uC6CC +{0}"
+    BaseCost: 500
+    CostMultiplier: 3
+    Steps:
+    - Description: "\uD30C\uC6CC \uC99D\uAC00"
+      Effect: 0
+      BaseValue: 100
+      ValueMultiplier: 3
+      MaxLevel: 0
   - Type: 1
-    MaxLevel: 3
-    BaseCost: 100
-    BaseDamage: 100
-    CostMultiplier: 100
-    DamageMultiplier: 100
-    Name: "\uD074\uB9AD"
-    Description: "\uAC1C\uC218 +{0}"
+    Name: "\uB85C\uCF13"
+    BaseCost: 500
+    CostMultiplier: 3
+    Steps:
+    - Description: "\uAC1C\uC218"
+      Effect: 1
+      BaseValue: 1
+      ValueMultiplier: 1
+      MaxLevel: 3
+    - Description: "\uCFE8\uB2E4\uC6B4"
+      Effect: 2
+      BaseValue: 3
+      ValueMultiplier: 0.2
+      MaxLevel: 3
+    - Description: "\uD30C\uC6CC"
+      Effect: 3
+      BaseValue: 200
+      ValueMultiplier: 3
+      MaxLevel: 0
   - Type: 2
-    MaxLevel: 100
-    BaseCost: 100
-    BaseDamage: 100
-    CostMultiplier: 100
-    DamageMultiplier: 100
-    Name: "\uB85C\uCF13"
-    Description: "\uCFE8\uD0C0\uC784 -{0}"
-  - Type: 3
-    MaxLevel: 0
-    BaseCost: 100
-    BaseDamage: 100
-    CostMultiplier: 100
-    DamageMultiplier: 100
-    Name: "\uB85C\uCF13"
-    Description: "\uD30C\uC6CC +{0}"
-  - Type: 4
-    MaxLevel: 4
-    BaseCost: 100
-    BaseDamage: 100
-    CostMultiplier: 100
-    DamageMultiplier: 100
     Name: "\uC6B4\uC11D"
-    Description: "\uAC1C\uC218 +{0}"
-  - Type: 5
-    MaxLevel: 3
-    BaseCost: 100
-    BaseDamage: 100
-    CostMultiplier: 100
-    DamageMultiplier: 100
-    Name: "\uC6B4\uC11D"
-    Description: "\uC18D\uB3C4 +{0}"
-  - Type: 6
-    MaxLevel: 0
-    BaseCost: 100
-    BaseDamage: 100
-    CostMultiplier: 100
-    DamageMultiplier: 100
-    Name: "\uC6B4\uC11D"
-    Description: "\uD30C\uC6CC +{0}"
+    BaseCost: 500
+    CostMultiplier: 3
+    Steps:
+    - Description: "\uAC1C\uC218"
+      Effect: 4
+      BaseValue: 1
+      ValueMultiplier: 1
+      MaxLevel: 5
+    - Description: "\uC18D\uB3C4"
+      Effect: 5
+      BaseValue: 1
+      ValueMultiplier: 1.2
+      MaxLevel: 5
+    - Description: "\uD30C\uC6CC"
+      Effect: 6
+      BaseValue: 200
+      ValueMultiplier: 2
+      MaxLevel: 0

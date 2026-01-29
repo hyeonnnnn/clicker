@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
@@ -8,7 +9,7 @@ public class UpgradeManager : MonoBehaviour
 
     [SerializeField] private UpgradeSpecTableSO _specTable;
 
-    private Dictionary<EUpgradeType, Upgrade> _upgradeDict = new();
+    private Dictionary<EUpgradeEffect, Upgrade> _upgradeDict = new();
 
     public static event Action OnDataChanged;
 
@@ -22,38 +23,35 @@ public class UpgradeManager : MonoBehaviour
     {
         foreach (var specData in _specTable.Datas)
         {
-            if (_upgradeDict.ContainsKey(specData.Type))
+            foreach (var stepData in specData.Steps)
             {
-                Debug.LogWarning($"중복된 업그레이드 타입: {specData.Type}");
-                continue;
-            }
+                if (_upgradeDict.ContainsKey(stepData.Effect))
+                {
+                    Debug.LogWarning($"업그레이드 이펙트가 중복되었습니다. {stepData.Effect}");
+                    continue;
+                }
 
-            var upgrade = new Upgrade(specData);
-            _upgradeDict.Add(specData.Type, upgrade);
+                var upgrade = new Upgrade(specData, stepData);
+                _upgradeDict.Add(stepData.Effect, upgrade);
+            }
         }
     }
 
-    public Upgrade Get(EUpgradeType type) => _upgradeDict[type] ?? null;
-
-    public Upgrade GetUpgrade(EUpgradeType type)
+    public Upgrade Get(EUpgradeEffect effect)
     {
-        if (_upgradeDict.TryGetValue(type, out var upgrade))
-        {
-            return upgrade;
-        }
-
-        Debug.LogError($"업그레이드를 찾을 수 없습니다: {type}");
+        if (_upgradeDict.TryGetValue(effect, out var upgrade)) return upgrade;
         return null;
     }
 
-    public bool TryPurchase(EUpgradeType type)
+    public List<Upgrade> GetAll() => _upgradeDict.Values.ToList();
+
+    public bool TryUpgrade(EUpgradeEffect effect)
     {
-        var upgrade = GetUpgrade(type);
+        var upgrade = Get(effect);
         if (upgrade == null) return false;
-        if (upgrade.IsMaxLevel) return false;
+        if (!CanLevelUp(effect)) return false;
 
         double cost = (double)upgrade.Cost;
-
         if (!CurrencyManager.Instance.TrySpend(ECurrencyType.Star, cost))
         {
             return false;
@@ -64,31 +62,13 @@ public class UpgradeManager : MonoBehaviour
         return true;
     }
 
-    public bool CanAfford(EUpgradeType type)
+    public bool CanLevelUp(EUpgradeEffect effect)
     {
-        var upgrade = GetUpgrade(type);
+        var upgrade = Get(effect);
         if (upgrade == null) return false;
         if (upgrade.IsMaxLevel) return false;
 
         double cost = (double)upgrade.Cost;
         return CurrencyManager.Instance.CanAfford(ECurrencyType.Star, cost);
-    }
-
-    public int GetLevel(EUpgradeType type)
-    {
-        var upgrade = GetUpgrade(type);
-        return upgrade.Level;
-    }
-
-    public double GetDamage(EUpgradeType type)
-    {
-        var upgrade = GetUpgrade(type);
-        return upgrade.Damage;
-    }
-
-    public Currency GetCost(EUpgradeType type)
-    {
-        var upgrade = GetUpgrade(type);
-        return upgrade.Cost;
     }
 }

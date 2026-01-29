@@ -4,11 +4,8 @@
 public class UpgradeSpecData
 {
     public EUpgradeType Type;
-    public int MaxLevel;
-    public double BaseCost;
-    public double BaseDamage;
-    public double CostMultiplier;
-    public double DamageMultiplier;
     public string Name;
-    public string Description;
+    public double BaseCost;
+    public double CostMultiplier;
+    public UpgradeStepData[] Steps; // 레벨에 따라 순환
 }
