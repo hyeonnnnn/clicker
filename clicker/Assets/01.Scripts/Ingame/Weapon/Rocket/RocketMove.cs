@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class RocketMove : MonoBehaviour
@@ -13,7 +13,6 @@ public class RocketMove : MonoBehaviour
     private Vector3 _currentVelocity;
     private float _time;
     private bool _hasPassedCenter;
-    private bool _isMyTurn;
 
     public event Action OnPassedCenter;
 
@@ -34,22 +33,15 @@ public class RocketMove : MonoBehaviour
         bool approachingCenter = distFactor < 0.3f;
         float targetSpeed = _patrolSpeed;
 
-        if (_isMyTurn)
+        if (approachingCenter)
         {
-            if (approachingCenter)
-            {
-                targetSpeed = _attackBoostSpeed;
-                CheckCenterPass();
-            }
-        }
-        else
-        {
-            if (!approachingCenter) _hasPassedCenter = false;
+            targetSpeed = _attackBoostSpeed;
+            CheckCenterPass();
         }
 
         _time += Time.deltaTime * targetSpeed;
 
-        // 8자 궤도 계산 (XY 평면)
+        // 8자 궤도 계산
         float x = Mathf.Sin(_time) * _curveScale;
         float y = Mathf.Sin(2f * _time) * (_curveScale * 0.5f);
 
@@ -64,10 +56,10 @@ public class RocketMove : MonoBehaviour
     {
         float distToCenter = Vector3.Distance(transform.position, _target.position);
 
-        if (!_hasPassedCenter && distToCenter < 0.5f)
+        if (!_hasPassedCenter && distToCenter < 3f)
         {
+            Debug.Log("CenterPass");
             _hasPassedCenter = true;
-            _isMyTurn = false;
             OnPassedCenter?.Invoke();
         }
     }
@@ -82,7 +74,6 @@ public class RocketMove : MonoBehaviour
 
     public void SetMyTurn(bool isMyTurn)
     {
-        _isMyTurn = isMyTurn;
         if (isMyTurn)
         {
             _hasPassedCenter = false;
