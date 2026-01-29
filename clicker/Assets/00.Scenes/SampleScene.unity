@@ -127,9 +127,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 664082753876424532, guid: b0fec0bc4c8c1554ca035a2c1e367a19, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 664082753876424532, guid: b0fec0bc4c8c1554ca035a2c1e367a19, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 703166375
+      objectReference: {fileID: 0}
+    - target: {fileID: 3382225192163502828, guid: b0fec0bc4c8c1554ca035a2c1e367a19, type: 3}
+      propertyPath: _curveScale
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3382225192163502828, guid: b0fec0bc4c8c1554ca035a2c1e367a19, type: 3}
       propertyPath: _curveWidth
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3382225192163502828, guid: b0fec0bc4c8c1554ca035a2c1e367a19, type: 3}
+      propertyPath: _patrolSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3382225192163502828, guid: b0fec0bc4c8c1554ca035a2c1e367a19, type: 3}
+      propertyPath: _attackBoostSpeed
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4529110788987481893, guid: b0fec0bc4c8c1554ca035a2c1e367a19, type: 3}
       propertyPath: m_LocalPosition.x
@@ -174,6 +194,10 @@ PrefabInstance:
     - target: {fileID: 6970969925707434995, guid: b0fec0bc4c8c1554ca035a2c1e367a19, type: 3}
       propertyPath: m_Name
       value: Rocket
+      objectReference: {fileID: 0}
+    - target: {fileID: 7480644809178587085, guid: b0fec0bc4c8c1554ca035a2c1e367a19, type: 3}
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
