@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSpecTableSO
   Datas:
   - Type: 0
+    MaxLevel: 0
     Name: "\uD074\uB9AD"
     BaseCost: 500
     CostMultiplier: 3
@@ -24,6 +25,7 @@ MonoBehaviour:
       ValueMultiplier: 3
       MaxLevel: 0
   - Type: 1
+    MaxLevel: 0
     Name: "\uB85C\uCF13"
     BaseCost: 500
     CostMultiplier: 3
@@ -44,6 +46,7 @@ MonoBehaviour:
       ValueMultiplier: 3
       MaxLevel: 0
   - Type: 2
+    MaxLevel: 0
     Name: "\uC6B4\uC11D"
     BaseCost: 500
     CostMultiplier: 3

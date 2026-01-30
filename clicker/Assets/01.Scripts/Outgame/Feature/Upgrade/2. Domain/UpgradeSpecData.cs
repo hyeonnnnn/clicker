@@ -4,6 +4,7 @@
 public class UpgradeSpecData
 {
     public EUpgradeType Type;
+    public int MaxLevel;
     public string Name;
     public double BaseCost;
     public double CostMultiplier;

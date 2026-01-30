@@ -1,0 +1,213 @@
+﻿좋아. 지금 요구사항은 “업그레이드 UI는 3개(클릭/로켓/운석)인데, 각 UI 안에서 여러 효과가 돌아가며 1개만 표시되고, Max 찍은 효과는 로테이션에서 제외” 이거지.
+
+이 구조는 UpgradeType(=UI 단위) 과 UpgradeEffect(=실제 강화 단위) 를 분리해 두고, 각 Type이 “자기 효과 목록 + 현재 표시 커서”를 갖는 형태가 제일 깔끔해.
+
+아래처럼 잡으면 요구사항이 자연스럽게 들어맞아.
+
+핵심 도메인 모델
+
+EUpgradeType : Click / Rocket / Meteor (UI 3개)
+
+EUpgradeEffect :
+
+ClickPower
+
+RocketCount, RocketCooldown, RocketPower
+
+MeteorCount, MeteorSpeed, MeteorPower
+
+UpgradeGroup (타입 1개 = UI 1개)
+
+Effects[] : 이 UI가 순환 표시할 효과 목록
+
+Cursor : 지금 표시중인 효과 인덱스
+
+GetCurrentEffect() : “현재 커서 기준, Max 아닌 효과”를 반환
+
+Advance() : 다음 Max 아닌 효과로 커서 이동 (전부 Max면 null)
+
+저장은 Effect별 레벨만 저장하면 안정적이야. (Type 기준 배열로 저장하면 섞이기 쉬움)
+
+추가로 “표시 커서(Cursor)”도 저장하면 앱 재시작 후에도 같은 효과가 보임
+
+로테이션(순환) 규칙: Max는 스킵
+
+현재 커서에서 시작해서 다음 후보를 찾되, 전부 Max면 “완료 상태”.
+
+public sealed class UpgradeGroup
+{
+    public EUpgradeType Type { get; }
+    private readonly EUpgradeEffect[] _effects;
+    private int _cursor;
+
+    private readonly IReadOnlyDictionary<EUpgradeEffect, Upgrade> _upgrades;
+
+    public UpgradeGroup(EUpgradeType type, EUpgradeEffect[] effects,
+                        IReadOnlyDictionary<EUpgradeEffect, Upgrade> upgrades,
+                        int initialCursor = 0)
+    {
+        Type = type;
+        _effects = effects;
+        _upgrades = upgrades;
+        _cursor = Mathf.Clamp(initialCursor, 0, _effects.Length - 1);
+    }
+
+    // 현재 표시될 효과 (Max면 다음 가능한 효과로 당겨서 반환)
+    public EUpgradeEffect? GetCurrentEffect()
+    {
+        if (_effects.Length == 0) return null;
+
+        for (int i = 0; i < _effects.Length; i++)
+        {
+            int idx = (_cursor + i) % _effects.Length;
+            var effect = _effects[idx];
+
+            if (!_upgrades[effect].IsMaxLevel)
+            {
+                _cursor = idx; // 커서도 유효한 곳으로 보정
+                return effect;
+            }
+        }
+        return null; // 전부 Max
+    }
+
+    // 다음 표시로 이동 (현재 다음부터 탐색)
+    public EUpgradeEffect? AdvanceToNextAvailable()
+    {
+        if (_effects.Length == 0) return null;
+
+        for (int i = 1; i <= _effects.Length; i++)
+        {
+            int idx = (_cursor + i) % _effects.Length;
+            var effect = _effects[idx];
+
+            if (!_upgrades[effect].IsMaxLevel)
+            {
+                _cursor = idx;
+                return effect;
+            }
+        }
+        return null;
+    }
+
+    public int Cursor => _cursor;
+}
+
+
+이렇게 하면:
+
+“순환적으로 하나씩만 표시” : AdvanceToNextAvailable()로 다음으로 이동
+
+“Max 찍은 효과는 더 이상 나오지 않음” : IsMaxLevel이면 스킵
+
+“Max 안 찍은 효과만 나온다” : 가능한 효과만 반환
+
+업그레이드 버튼 동작(유스케이스)
+
+UI에서 “로켓 업그레이드” 버튼을 눌렀을 때:
+
+로켓 그룹에서 현재 표시 효과를 가져온다
+
+그 효과를 레벨업한다(재화 차감 포함)
+
+그 다음 표시 효과로 커서를 이동한다(Advance)
+
+public bool TryUpgradeType(EUpgradeType type)
+{
+    var group = _groups[type];
+
+    var currentEffect = group.GetCurrentEffect();
+    if (currentEffect == null) return false; // 전부 Max -> 버튼 비활성 같은 처리
+
+    var upgrade = _upgradeByEffect[currentEffect.Value];
+    if (upgrade.IsMaxLevel) return false;
+
+    double cost = upgrade.Cost;
+    if (!wallet.TrySpend(cost)) return false;
+
+    upgrade.TryLevelUp();
+
+    // 레벨업 직후 Max가 되었을 수도 있으니 다음 가능한 효과로 이동
+    group.AdvanceToNextAvailable();
+
+    Save();           // 저장
+    DataChanged?.Invoke();
+    return true;
+}
+
+“Max Level”은 효과 단위로 관리
+
+즉, 로켓 업그레이드는 “로켓 레벨 1,2,3…” 이런 게 아니라
+
+RocketCount 레벨
+
+RocketCooldown 레벨
+
+RocketPower 레벨
+이 각각이 따로 올라가고, 각각이 Max면 로테이션에서 빠지는 구조가 자연스러워.
+
+Upgrade 도메인은 effect 하나를 대표하게 두는 게 가장 단순해.
+
+public sealed class Upgrade
+{
+    public EUpgradeEffect Effect { get; }
+    public int Level { get; private set; }
+    public int MaxLevel { get; }
+    public double BaseCost { get; }
+    public double CostMultiplier { get; }
+
+    public bool IsMaxLevel => Level >= MaxLevel;
+    public double Cost => BaseCost * Math.Pow(CostMultiplier, Level);
+
+    public Upgrade(EUpgradeEffect effect, int level, int maxLevel, double baseCost, double costMultiplier)
+    {
+        Effect = effect;
+        Level = Math.Max(0, level);
+        MaxLevel = maxLevel;
+        BaseCost = baseCost;
+        CostMultiplier = costMultiplier;
+    }
+
+    public bool TryLevelUp()
+    {
+        if (IsMaxLevel) return false;
+        Level++;
+        return true;
+    }
+}
+
+저장 구조(권장)
+저장은 “Effect별 레벨 + Type별 커서”
+
+레벨은 effect 키로 저장 (enum int로 배열도 가능)
+
+커서는 type 키로 저장 (UI 상태 유지 목적)
+
+[Serializable]
+public class UpgradeSaveData
+{
+    public int[] EffectLevels; // length = (int)EUpgradeEffect.Count
+    public int[] TypeCursors;  // length = (int)EUpgradeType.Count
+}
+
+
+이러면 네가 겪고 있던 “Type.Count로 만들었는데 Effect로 인덱싱함” 같은 사고가 확 줄어들어.
+
+정리: “도메인 vs 매니저” 역할 분리 기준
+
+도메인(순수 C#):
+Upgrade, UpgradeGroup, “다음 효과 선택(스킵 규칙)”
+
+서비스(유스케이스):
+TryUpgradeType(type) / GetDisplayEffect(type) / Save/Load 매핑
+
+Unity Manager(MonoBehaviour):
+SO 읽어서 도메인 생성, Repository/Wallet 연결, Pause/Quit 저장 트리거
+
+원하면, 네 현재 UpgradeSpecTableSO 구조(클릭/로켓/운석 스펙을 어떻게 들고 있는지) 기준으로,
+
+EUpgradeEffect 설계
+
+SO → Upgrade(effect) 생성 매핑
+
+UpgradeGroup 구성 (Click: 1개, Rocket: 3개, Meteor: 3개)

@@ -1831,7 +1831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4fe3255219d22429dcd7364ec05d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_UpgradeItem
-  _effects: 010000000200000003000000
+  _upgradeType: 1
   _nameText: {fileID: 1562585103}
   _descriptionText: {fileID: 530613936}
   _levelText: {fileID: 2064999926}
@@ -2969,7 +2969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4fe3255219d22429dcd7364ec05d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_UpgradeItem
-  _effects: 040000000500000006000000
+  _upgradeType: 2
   _nameText: {fileID: 138872380}
   _descriptionText: {fileID: 1550681937}
   _levelText: {fileID: 2037662559}
@@ -6654,7 +6654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4fe3255219d22429dcd7364ec05d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_UpgradeItem
-  _effects: 00000000
+  _upgradeType: 0
   _nameText: {fileID: 1775589532}
   _descriptionText: {fileID: 1618018352}
   _levelText: {fileID: 2024582020}

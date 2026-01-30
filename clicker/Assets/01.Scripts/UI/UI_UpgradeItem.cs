@@ -4,17 +4,12 @@ using UnityEngine.UI;
 
 public class UI_UpgradeItem : MonoBehaviour
 {
-    [SerializeField] private EUpgradeEffect[] _effects;
+    [SerializeField] private EUpgradeType _upgradeType;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private TextMeshProUGUI _levelText;
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private Button _purchaseButton;
-
-    private int _currentIndex;
-    private Upgrade _upgrade;
-
-    private EUpgradeEffect CurrentEffect => _effects[_currentIndex];
 
     private void Start()
     {
@@ -23,70 +18,31 @@ public class UI_UpgradeItem : MonoBehaviour
 
     public void Refresh()
     {
-        if (_effects == null || _effects.Length == 0) return;
+        // 그룹을 가져와서
+        var group = UpgradeManager.Instance.GetGroup(_upgradeType);
+        if (group == null) return;
 
-        FindNextAvailable();
+        var upgrade = group.GetCurrentUpgrade();
 
-        _upgrade = UpgradeManager.Instance.Get(CurrentEffect);
-        if (_upgrade == null) return;
+        // ui 텍스트 채우기
+        _nameText.text = group.Name;
+        _descriptionText.text = upgrade != null ? upgrade.Description : "";
+        _levelText.text = $"Lv.{group.GetTotalLevel()}";
 
-        _nameText.text = _upgrade.SpecData.Name;
-        _descriptionText.text = _upgrade.StepData.Description;
-        _levelText.text = $"Lv.{_upgrade.Level}";
-
-        if (IsAllMaxLevel())
+        if (group.IsAllMaxLevel())
         {
             _costText.text = "MAX";
             _purchaseButton.interactable = false;
         }
         else
         {
-            _costText.text = _upgrade.Cost.ToString();
-            _purchaseButton.interactable = UpgradeManager.Instance.CanLevelUp(CurrentEffect);
+            _costText.text = upgrade != null ? upgrade.Cost.ToString() : "";
+            _purchaseButton.interactable = UpgradeManager.Instance.CanUpgradeType(_upgradeType);
         }
     }
 
     private void OnPurchaseClicked()
     {
-        if (_effects == null || _effects.Length == 0) return;
-
-        if (UpgradeManager.Instance.TryUpgrade(CurrentEffect))
-        {
-            MoveToNext();
-        }
-    }
-
-    private void MoveToNext()
-    {
-        _currentIndex = (_currentIndex + 1) % _effects.Length;
-        FindNextAvailable();
-    }
-
-    private void FindNextAvailable()
-    {
-        if (IsAllMaxLevel()) return;
-
-        for (int i = 0; i < _effects.Length; i++)
-        {
-            var upgrade = UpgradeManager.Instance.Get(CurrentEffect);
-            if (upgrade != null && !upgrade.IsMaxLevel)
-            {
-                return;
-            }
-            _currentIndex = (_currentIndex + 1) % _effects.Length;
-        }
-    }
-
-    private bool IsAllMaxLevel()
-    {
-        foreach (var effect in _effects)
-        {
-            var upgrade = UpgradeManager.Instance.Get(effect);
-            if (upgrade != null && !upgrade.IsMaxLevel)
-            {
-                return false;
-            }
-        }
-        return true;
+        UpgradeManager.Instance.TryUpgradeType(_upgradeType);
     }
 }

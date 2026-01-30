@@ -14,6 +14,7 @@ public enum EUpgradeEffect
 {
     // ManualClick
     ClickPower,
+    ClickPercent,
 
     // Rocket
     RocketCount,
@@ -24,4 +25,6 @@ public enum EUpgradeEffect
     RockCount,
     RockSpeed,
     RockPower,
+
+    Count
 }

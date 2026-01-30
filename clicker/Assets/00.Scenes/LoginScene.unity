@@ -2494,8 +2494,9 @@ GameObject:
   - component: {fileID: 986991460}
   - component: {fileID: 986991462}
   - component: {fileID: 986991461}
+  - component: {fileID: 986991463}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: UI_LoginPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2561,6 +2562,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 986991459}
   m_CullTransparentMesh: 1
+--- !u!114 &986991463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986991459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a6f454676f74b4fa4e55314a49fc38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_LoginPanel
+  _idInputField: {fileID: 0}
+  _passwordInputField: {fileID: 0}
 --- !u!1 &1013834224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2868,7 +2883,7 @@ GameObject:
   - component: {fileID: 1051515044}
   - component: {fileID: 1051515043}
   m_Layer: 5
-  m_Name: RegisterPanel
+  m_Name: UI_RegisterPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
