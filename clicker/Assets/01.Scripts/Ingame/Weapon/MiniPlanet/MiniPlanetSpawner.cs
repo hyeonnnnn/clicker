@@ -29,10 +29,10 @@ public class MiniPlanetSpawner : MonoBehaviour
 
     private void OnStageChanged(int newStage)
     {
-        SpawnMiniPlanet(StageManager.Instance.PreviousSprite);
+        Spawn(StageManager.Instance.PreviousSprite);
     }
 
-    private void SpawnMiniPlanet(Sprite sprite)
+    private void Spawn(Sprite sprite)
     {
         var miniPlanet = Instantiate(_miniPlanetPrefab, _spawnParent);
 
