@@ -7,7 +7,7 @@ public class EffectSpawner : MonoBehaviour
 
     [SerializeField] private float _defaultDespawnDelay = 2f;
 
-    public enum Effect { CLICKPLANET, ROCKETATTACK, ROCKATTACK }
+    public enum Effect { CLICKPLANET, ROCKETATTACK, METEORATTACK, PLANETATTACK }
 
     [System.Serializable]
     public struct EffectData

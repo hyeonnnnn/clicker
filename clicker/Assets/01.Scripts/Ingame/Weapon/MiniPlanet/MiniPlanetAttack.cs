@@ -84,6 +84,6 @@ public class MiniPlanetAttack : MonoBehaviour
     private void SpawnImpactEffect(Vector2 position, Vector2 normal)
     {
         Quaternion rotation = Quaternion.FromToRotation(Vector3.up, normal);
-        EffectSpawner.Instance.PlayEffect(Effect.ROCKETATTACK, position, rotation);
+        EffectSpawner.Instance.PlayEffect(Effect.PLANETATTACK, position, rotation);
     }
 }

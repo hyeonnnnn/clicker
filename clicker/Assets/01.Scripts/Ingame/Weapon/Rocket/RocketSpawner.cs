@@ -25,10 +25,6 @@ public class RocketSpawner : MonoBehaviour
         rocketMove.OnPassedCenter += () => AdvanceTurn();
         _rockets.Add(rocketMove);
 
-        if (_rockets.Count == 1)
-        {
-            rocketMove.SetMyTurn(true);
-        }
     }
 
     private void AdvanceTurn()
@@ -36,6 +32,5 @@ public class RocketSpawner : MonoBehaviour
         if (_rockets.Count == 0) return;
 
         _currentTurnIndex = (_currentTurnIndex + 1) % _rockets.Count;
-        _rockets[_currentTurnIndex].SetMyTurn(true);
     }
 }

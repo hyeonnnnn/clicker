@@ -7,7 +7,7 @@ public class RocketMove : MonoBehaviour
     [SerializeField] private float _curveScale = 3f;
     [SerializeField] private float _patrolSpeed = 2f;
     [SerializeField] private float _attackBoostSpeed = 8f;
-    [SerializeField] private float _smoothTime = 0.1f;
+    [SerializeField] private float _smoothTime = 0.01f;
 
     private Transform _target;
     private Vector3 _currentVelocity;
@@ -30,13 +30,22 @@ public class RocketMove : MonoBehaviour
         if (_target == null) return;
 
         float distFactor = Mathf.Abs(Mathf.Sin(_time));
-        bool approachingCenter = distFactor < 0.3f;
+
+        bool isNearCenter = distFactor < 0.3f;
+
         float targetSpeed = _patrolSpeed;
 
-        if (approachingCenter)
+        if (isNearCenter)
         {
             targetSpeed = _attackBoostSpeed;
             CheckCenterPass();
+        }
+        else
+        {
+            if (_hasPassedCenter)
+            {
+                _hasPassedCenter = false;
+            }
         }
 
         _time += Time.deltaTime * targetSpeed;
@@ -58,7 +67,6 @@ public class RocketMove : MonoBehaviour
 
         if (!_hasPassedCenter && distToCenter < 3f)
         {
-            Debug.Log("CenterPass");
             _hasPassedCenter = true;
             OnPassedCenter?.Invoke();
         }
@@ -70,13 +78,5 @@ public class RocketMove : MonoBehaviour
 
         float angle = Mathf.Atan2(_currentVelocity.y, _currentVelocity.x) * Mathf.Rad2Deg - 90f;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
-    }
-
-    public void SetMyTurn(bool isMyTurn)
-    {
-        if (isMyTurn)
-        {
-            _hasPassedCenter = false;
-        }
     }
 }
