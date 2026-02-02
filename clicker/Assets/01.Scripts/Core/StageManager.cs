@@ -56,7 +56,9 @@ public class StageManager : MonoBehaviour
         if (_currentStage < _planetInfo.Count - 1)
         {
             _previousStage = _currentStage;
-            InitializeStage(_currentStage + 1);
+            // 마지막 다음엔 처음부터
+            int next = (_currentStage + 1) % _planetInfo.Count;
+            InitializeStage(next);
             OnStageChanged?.Invoke(_currentStage);
         }
     }

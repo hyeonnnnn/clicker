@@ -20,8 +20,10 @@ public class Clicker : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
         if (hit == true)
         {
-            Clickable clickable = hit.collider.GetComponent<Clickable>();
+            // PlanetPressure _planetPressure = hit.collider.GetComponent<PlanetPressure>();
+            // _planetPressure.TakeDamage(GetManualClickDamage());
 
+            Clickable clickable = hit.collider.GetComponent<Clickable>();
             ClickInfo clickInfo = new ClickInfo
             {
                 Type = EClickType.Manual,

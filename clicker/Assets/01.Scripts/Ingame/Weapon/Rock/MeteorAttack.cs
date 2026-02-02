@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using static EffectSpawner; // 가정된 네임스페이스
-using static SoundManager;   // 가정된 네임스페이스
+using static EffectSpawner;
+using static SoundManager;
 
-public class RockAttack : MonoBehaviour
+public class MeteorAttack : MonoBehaviour
 {
     [SerializeField] private double _damage = 1;
 

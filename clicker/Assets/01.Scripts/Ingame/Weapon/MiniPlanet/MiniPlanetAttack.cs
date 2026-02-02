@@ -61,13 +61,12 @@ public class MiniPlanetAttack : MonoBehaviour
                         returnSequence.OnComplete(() => _isAttacking = false);
                     });
 
+        _planetPressure.TakeDamage(_damage);
         SoundManager.Instance.PlaySFX(Sfx.SHURIKEN);
     }
 
     private void HandleImpact(Vector3 attackDirection)
     {
-        _planetPressure.TakeDamage(_damage);
-
         TextFloaterSpawner.Instance.ShowDamage(new ClickInfo
         {
             Type = EClickType.Auto,

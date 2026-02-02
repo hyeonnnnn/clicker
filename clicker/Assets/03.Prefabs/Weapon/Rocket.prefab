@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086d9ee09690ea04ca6992a5ff37772d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RocketAttack
-  _damage: 20
+  _damage: 2000
 --- !u!114 &3382225192163502828
 MonoBehaviour:
   m_ObjectHideFlags: 0
