@@ -33,7 +33,7 @@ public class UI_LoginPanel : MonoBehaviour
 
         if (result.Success)
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("GameScene");
         }
         else
         {

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_RegisterPanel : MonoBehaviour
+public class UI_RegisterPopup : MonoBehaviour
 {
     [SerializeField] private TMP_InputField _emailInputField;
     [SerializeField] private TMP_InputField _passwordInputField;
@@ -18,6 +18,11 @@ public class UI_RegisterPanel : MonoBehaviour
         _registerButton.onClick.AddListener(Register);
         _backButton.onClick.AddListener(Back);
         _emailInputField.onValueChanged.AddListener(OnEmailChanged);
+    }
+
+    private void OnEnable()
+    {
+        _messageTextUI.text = "";
     }
 
     private void OnEmailChanged(string email)
