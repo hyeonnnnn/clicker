@@ -18,20 +18,22 @@ public class Clicker : MonoBehaviour
         Vector2 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
-        if (hit == true)
+        if (hit.collider != null)
         {
-            // PlanetPressure _planetPressure = hit.collider.GetComponent<PlanetPressure>();
-            // _planetPressure.TakeDamage(GetManualClickDamage());
-
+            double finalDamage = GetManualClickDamage();
             Clickable clickable = hit.collider.GetComponent<Clickable>();
-            ClickInfo clickInfo = new ClickInfo
-            {
-                Type = EClickType.Manual,
-                Damage = GetManualClickDamage(),
-                Position = worldPosition,
-            };
 
-            clickable?.OnClick(clickInfo);
+            if (clickable != null)
+            {
+                ClickInfo clickInfo = new ClickInfo
+                {
+                    Type = EClickType.Manual,
+                    Damage = finalDamage,
+                    Position = worldPosition,
+                };
+
+                clickable.OnClick(clickInfo);
+            }
         }
     }
 

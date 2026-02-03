@@ -4,7 +4,7 @@ using static SoundManager;
 
 public class PlanetPressure : MonoBehaviour
 {
-    [SerializeField] private PlanetExpansion _planetExpansion;
+    [SerializeField] private ScaleExpansionFeedback _planetExpansion;
 
     private double _currentPressure;
     private double _maxPressure;
@@ -17,7 +17,7 @@ public class PlanetPressure : MonoBehaviour
 
     private void Awake()
     {
-        _planetExpansion = GetComponent<PlanetExpansion>();
+        _planetExpansion = GetComponent<ScaleExpansionFeedback>();
     }
 
     public void Initialize(double maxPressure)
@@ -25,20 +25,21 @@ public class PlanetPressure : MonoBehaviour
         _maxPressure = maxPressure;
         _currentPressure = 0;
         OnPressureChanged?.Invoke(_currentPressure, _maxPressure);
-
         _planetExpansion.Initialize();
-        _planetExpansion.ExpendPlanet(_currentPressure, _maxPressure);
+        _planetExpansion.ExpandPlanet(_currentPressure, _maxPressure);
     }
 
     public void TakeDamage(double damage)
     {
+        // 데미지 적용
         _currentPressure += damage;
-
         _currentPressure = Mathf.Min((float)_currentPressure, (float)_maxPressure);
+
+        // 이벤트 발생
         OnPressureChanged?.Invoke(_currentPressure, _maxPressure);
 
         CurrencyManager.Instance.Add(ECurrencyType.Star, damage);
-        _planetExpansion.ExpendPlanet(_currentPressure, _maxPressure);
+        _planetExpansion.ExpandPlanet(_currentPressure, _maxPressure);
 
         if (_currentPressure >= _maxPressure)
         {

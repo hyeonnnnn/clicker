@@ -34,13 +34,17 @@ public class RocketAttack : MonoBehaviour
 
     private void OnPassedCenter()
     {
+        Attack();
         HandleImpact();
+    }
+
+    private void Attack()
+    {
+        _planetPressure.TakeDamage(_damage);
     }
 
     private void HandleImpact()
     {
-        _planetPressure.TakeDamage(_damage);
-
         TextFloaterSpawner.Instance.ShowDamage(new ClickInfo
         {
             Type = EClickType.Auto,
@@ -51,7 +55,6 @@ public class RocketAttack : MonoBehaviour
         var direction = (_target.position - transform.position).normalized;
         var rotation = Quaternion.FromToRotation(Vector3.up, direction);
         EffectSpawner.Instance.PlayEffect(Effect.ROCKETATTACK, _target.position, rotation);
-
         SoundManager.Instance.PlaySFX(Sfx.SHURIKEN);
     }
 }
