@@ -18,6 +18,7 @@ public class LocalCurrencyRepository : ICurrencyRepository
             var type = (ECurrencyType)i;
             PlayerPrefs.SetString(GetKey(type), saveData.Currencies[i].ToString("G17"));
         }
+        PlayerPrefs.Save();
     }
 
     // 재화 데이터 로드

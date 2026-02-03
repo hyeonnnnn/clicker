@@ -64,7 +64,7 @@ public class LocalAccountRepository : IAccountRepository
         return new AuthResult()
         {
             Success = true,
-            // Account = new Account(email, password)
+            Account = new Account(email, password)
         };
     }
 

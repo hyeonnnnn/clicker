@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-public class Account : MonoBehaviour
+public class Account
 {
     public readonly string Email;
     public readonly string Password;

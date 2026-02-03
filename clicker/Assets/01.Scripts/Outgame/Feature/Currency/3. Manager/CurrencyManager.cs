@@ -14,16 +14,23 @@ public class CurrencyManager : MonoBehaviour
     // 변경에는 닫혀있고, 확장에는 열려있게
     private Currency[] _currencies = new Currency[(int)ECurrencyType.Count];
 
-    public event Action<ECurrencyType, Currency> OnDataChanged;
+    public static event Action<ECurrencyType, Currency> OnDataChanged;
 
     private void Awake()
     {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
         _instance = this;
 
-        _repository = new LocalCurrencyRepository(AccountManager.Instance.Email);
+        string email = AccountManager.Instance.Email;
+
+        _repository = new LocalCurrencyRepository(AccountManager.Instance.Email); // 저장소 생성
+        InitializeCurrency();
     }
 
-    private void Start()
+    private void InitializeCurrency()
     {
         CurrencySaveData saveData = _repository.Load();
         for (int i = 0; i < (int)ECurrencyType.Count; i++)
@@ -31,15 +38,15 @@ public class CurrencyManager : MonoBehaviour
             _currencies[i] = new Currency(saveData.Currencies[i]);
         }
     }
-    
-    // 재화 조회
+
+    // ── 조회 ──
+    public Currency Star => Get(ECurrencyType.Star);
     public Currency Get(ECurrencyType type)
     {
         return _currencies[(int)type];
     }
-    public Currency Star => Get(ECurrencyType.Star);
 
-    // 재화 추가
+    // ── 비즈니스 로직 ──
     public void Add(ECurrencyType type, Currency amount)
     {
         _currencies[(int)type] += amount;
@@ -47,7 +54,6 @@ public class CurrencyManager : MonoBehaviour
         Save();
     }
 
-    // 재화 사용
     public bool TrySpend(ECurrencyType type, Currency amount)
     {
         if (_currencies[(int)type] >= amount)
@@ -59,6 +65,8 @@ public class CurrencyManager : MonoBehaviour
         }
         return false;
     }
+
+    // ── 저장/불러오기 ──
 
     private void Save()
     {
@@ -81,5 +89,15 @@ public class CurrencyManager : MonoBehaviour
     public bool CanAfford(ECurrencyType type, Currency amount)
     {
         return _currencies[(int)type] >= amount;
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause) Save();
+    }
+
+    private void OnApplicationQuit()
+    {
+        Save();
     }
 }
