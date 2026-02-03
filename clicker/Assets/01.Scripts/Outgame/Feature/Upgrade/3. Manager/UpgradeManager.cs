@@ -17,7 +17,7 @@ public class UpgradeManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        _repository = new JsonUpgradeRepository(); // 저장소 생성
+        _repository = new JsonUpgradeRepository(AccountManager.Instance.Email); // 저장소 생성
         InitializeUpgrades();
     }
 
