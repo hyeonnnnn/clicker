@@ -9,16 +9,16 @@ public class UI_UpgradePanel : MonoBehaviour
     {
         Refresh();
         UpgradeManager.OnDataChanged += Refresh;
-        CurrencyManager.OnDataChanged += OnCurrencyChanged;
+        CurrencyManager.Instance.OnDataChanged += OnCurrencyChanged;
     }
 
     private void OnDestroy()
     {
         UpgradeManager.OnDataChanged -= Refresh;
-        CurrencyManager.OnDataChanged -= OnCurrencyChanged;
+        CurrencyManager.Instance.OnDataChanged -= OnCurrencyChanged;
     }
 
-    private void OnCurrencyChanged(double _)
+    private void OnCurrencyChanged(ECurrencyType type, Currency currency)
     {
         Refresh();
     }

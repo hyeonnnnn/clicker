@@ -37,12 +37,12 @@ public class UI_UpgradeItem : MonoBehaviour
         else
         {
             _costText.text = upgrade != null ? upgrade.Cost.ToFormattedString() : "";
-            _purchaseButton.interactable = UpgradeManager.Instance.CanUpgradeType(_upgradeType);
+            _purchaseButton.interactable = UpgradeManager.Instance.CanLevelUp(_upgradeType);
         }
     }
 
     private void OnPurchaseClicked()
     {
-        UpgradeManager.Instance.TryUpgradeType(_upgradeType);
+        UpgradeManager.Instance.TryLevelUp(_upgradeType);
     }
 }

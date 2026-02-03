@@ -22,9 +22,9 @@ public enum EUpgradeEffect
     RocketPower,
 
     // Rock
-    RockCount,
-    RockSpeed,
-    RockPower,
+    MeteorCount,
+    MeteorSpeed,
+    MeteorPower,
 
     Count
 }

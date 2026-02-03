@@ -44,12 +44,7 @@ public class UpgradeManager : MonoBehaviour
                     savedLevel = saveData.EffectLevels[effectIndex];
                 }
 
-                var upgrade = new Upgrade(
-                    stepData.Effect, stepData.Description, stepData.MaxLevel,
-                    specData.BaseCost, specData.CostMultiplier,
-                    stepData.BaseValue, stepData.ValueMultiplier,
-                    savedLevel
-                );
+                var upgrade = new Upgrade(stepData, specData, savedLevel);
 
                 // 이펙트 별 업그레이드 상태 채우기
                 _upgradeDict[stepData.Effect] = upgrade;
@@ -90,7 +85,7 @@ public class UpgradeManager : MonoBehaviour
 
     // ── 비즈니스 로직 ──
 
-    public bool TryUpgradeType(EUpgradeType type)
+    public bool TryLevelUp(EUpgradeType type)
     {
         var group = GetGroup(type);
         if (group == null) return false;
@@ -113,7 +108,7 @@ public class UpgradeManager : MonoBehaviour
         return true;
     }
 
-    public bool CanUpgradeType(EUpgradeType type)
+    public bool CanLevelUp(EUpgradeType type)
     {
         var group = GetGroup(type);
         if (group == null) return false;
