@@ -15,7 +15,7 @@ public class Account
         }
 
         if (string.IsNullOrEmpty(password)) throw new ArgumentException($"비밀번호는 비어있을 수 없습니다.");
-        if (password.Length < 6 || password.Length > 15) throw new ArgumentException($"비밀번호는 6자 이상 16자 이하여야 합니다.");
+        if (password.Length < 6 || password.Length > 15) throw new ArgumentException($"비밀번호는 6자 이상 15자 이하여야 합니다.");
 
         Email = email;
         Password = password;

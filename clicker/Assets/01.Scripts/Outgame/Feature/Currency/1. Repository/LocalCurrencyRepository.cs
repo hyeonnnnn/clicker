@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 public class LocalCurrencyRepository : ICurrencyRepository
 {
@@ -11,18 +12,18 @@ public class LocalCurrencyRepository : ICurrencyRepository
     private string GetKey(ECurrencyType type) => $"{_userId}_{type}";
 
     // 재화 데이터 저장
-    public void Save(CurrencySaveData saveData)
+    public UniTask Save(CurrencySaveData saveData)
     {
         for (int i = 0; i < (int)ECurrencyType.Count; i++)
         {
             var type = (ECurrencyType)i;
             PlayerPrefs.SetString(GetKey(type), saveData.Currencies[i].ToString("G17"));
         }
-        PlayerPrefs.Save();
+        return UniTask.CompletedTask;
     }
 
     // 재화 데이터 로드
-    public CurrencySaveData Load()
+    public UniTask<CurrencySaveData> Load()
     {
         // 일단 기본값으로 초기화
         CurrencySaveData data = CurrencySaveData.Default;
@@ -38,8 +39,7 @@ public class LocalCurrencyRepository : ICurrencyRepository
                 data.Currencies[i] = double.Parse(PlayerPrefs.GetString(key, "0"));
             }
         }
-        return data;
+        return UniTask.FromResult(data);
     }
-
 }
 

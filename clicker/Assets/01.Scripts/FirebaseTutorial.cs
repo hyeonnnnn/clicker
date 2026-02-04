@@ -215,7 +215,7 @@ public class FirebaseTutorial : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Login("hongil@skku.re.kr", "12345678");
+            _ = Login("hongil@skku.re.kr", "12345678");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -230,7 +230,7 @@ public class FirebaseTutorial : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            SaveDog();
+            _ = SaveDog();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha6))

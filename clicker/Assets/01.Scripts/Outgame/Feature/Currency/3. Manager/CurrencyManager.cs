@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class CurrencyManager : MonoBehaviour
@@ -21,18 +22,19 @@ public class CurrencyManager : MonoBehaviour
         if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
+            return;
         }
         _instance = this;
 
         string email = AccountManager.Instance.Email;
-
-        _repository = new LocalCurrencyRepository(AccountManager.Instance.Email); // 저장소 생성
-        InitializeCurrency();
+        // _repository = new LocalCurrencyRepository(email);
+        _repository = new FirebaseCurrencyRepository();
+        InitializeCurrency().Forget();
     }
 
-    private void InitializeCurrency()
+    private async UniTask InitializeCurrency()
     {
-        CurrencySaveData saveData = _repository.Load();
+        CurrencySaveData saveData = await _repository.Load();
         for (int i = 0; i < (int)ECurrencyType.Count; i++)
         {
             _currencies[i] = new Currency(saveData.Currencies[i]);
@@ -47,20 +49,20 @@ public class CurrencyManager : MonoBehaviour
     }
 
     // ── 비즈니스 로직 ──
-    public void Add(ECurrencyType type, Currency amount)
+    public async UniTask Add(ECurrencyType type, Currency amount)
     {
         _currencies[(int)type] += amount;
         OnDataChanged?.Invoke(type, _currencies[(int)type]);
-        Save();
+        await Save();
     }
 
-    public bool TrySpend(ECurrencyType type, Currency amount)
+    public async UniTask<bool> TrySpend(ECurrencyType type, Currency amount)
     {
         if (_currencies[(int)type] >= amount)
         {
             _currencies[(int)type] -= amount;
             OnDataChanged?.Invoke(type, _currencies[(int)type]);
-            Save();
+            await Save();
             return true;
         }
         return false;
@@ -68,9 +70,9 @@ public class CurrencyManager : MonoBehaviour
 
     // ── 저장/불러오기 ──
 
-    private void Save()
+    private async UniTask Save()
     {
-        _repository.Save(new CurrencySaveData()
+        await _repository.Save(new CurrencySaveData()
         {
             Currencies = ToSaveData()
         });
@@ -93,11 +95,11 @@ public class CurrencyManager : MonoBehaviour
 
     private void OnApplicationPause(bool pause)
     {
-        if (pause) Save();
+        if (pause) Save().Forget();
     }
 
     private void OnApplicationQuit()
     {
-        Save();
+        Save().Forget();
     }
 }

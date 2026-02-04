@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 using static SoundManager;
 
 public class PlanetPop : MonoBehaviour
@@ -55,7 +56,7 @@ public class PlanetPop : MonoBehaviour
         }
 
         double bonusStar = StageManager.Instance.CurrentPlanetData.BonusCoin;
-        CurrencyManager.Instance.Add(ECurrencyType.Star, bonusStar);
+        CurrencyManager.Instance.Add(ECurrencyType.Star, bonusStar).Forget();
         TextFloaterSpawner.Instance.ShowBonusCoin(transform.position, bonusStar);
         SoundManager.Instance.PlaySFX(Sfx.COIN);
 

@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +28,7 @@ public class LoginScene : MonoBehaviour
 
     private void AddButtonEvents()
     {
-        _loginButton.onClick.AddListener(Login);
+        _loginButton.onClick.AddListener(() => Login().Forget());
         _goToRegisterButton.onClick.AddListener(GoToRegister);
         _emailInputField.onValueChanged.AddListener(OnEmailChanged);
     }
@@ -37,12 +38,12 @@ public class LoginScene : MonoBehaviour
         _loginButton.interactable = _emailSpec.IsSatisfiedBy(email);
     }
 
-    private void Login()
+    private async UniTaskVoid Login()
     {
         string email = _emailInputField.text;
         string password = _passwordInputField.text;
 
-        var result = AccountManager.Instance.TryLogin(email, password);
+        var result = await AccountManager.Instance.TryLogin(email, password);
 
         if (result.Success)
         {

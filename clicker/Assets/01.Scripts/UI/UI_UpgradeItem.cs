@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,7 @@ public class UI_UpgradeItem : MonoBehaviour
 
     private void Start()
     {
-        _purchaseButton.onClick.AddListener(OnPurchaseClicked);
+        _purchaseButton.onClick.AddListener(() => OnPurchaseClicked().Forget());
     }
 
     public void Refresh()
@@ -41,8 +42,8 @@ public class UI_UpgradeItem : MonoBehaviour
         }
     }
 
-    private void OnPurchaseClicked()
+    private async UniTaskVoid OnPurchaseClicked()
     {
-        UpgradeManager.Instance.TryLevelUp(_upgradeType);
+        await UpgradeManager.Instance.TryLevelUp(_upgradeType);
     }
 }

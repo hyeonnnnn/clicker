@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 public interface ICurrencyRepository
 {
-    public void Save(CurrencySaveData saveData);
-    public CurrencySaveData Load();
+    UniTask Save(CurrencySaveData saveData);
+    UniTask<CurrencySaveData> Load();
 }

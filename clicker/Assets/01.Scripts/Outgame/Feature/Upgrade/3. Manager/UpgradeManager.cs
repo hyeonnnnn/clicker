@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
@@ -16,8 +17,14 @@ public class UpgradeManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
-        _repository = new JsonUpgradeRepository(AccountManager.Instance.Email); // 저장소 생성
+
+        _repository = new JsonUpgradeRepository(AccountManager.Instance.Email);
         InitializeUpgrades();
     }
 
@@ -85,7 +92,7 @@ public class UpgradeManager : MonoBehaviour
 
     // ── 비즈니스 로직 ──
 
-    public bool TryLevelUp(EUpgradeType type)
+    public async UniTask<bool> TryLevelUp(EUpgradeType type)
     {
         var group = GetGroup(type);
         if (group == null) return false;
@@ -94,10 +101,9 @@ public class UpgradeManager : MonoBehaviour
         if (effect == null) return false;
 
         var upgrade = _upgradeDict[effect.Value];
-        if (upgrade.IsMaxLevel) return false;
 
         double cost = upgrade.Cost;
-        if (!CurrencyManager.Instance.TrySpend(ECurrencyType.Star, cost))
+        if (!await CurrencyManager.Instance.TrySpend(ECurrencyType.Star, cost))
             return false;
 
         upgrade.TryLevelUp();

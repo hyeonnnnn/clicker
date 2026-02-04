@@ -5,7 +5,6 @@ public readonly struct Currency
 {
     public readonly double Value;
 
-    // 더블이 값 타입
     public Currency(double value)
     {
         if (value < 0)
@@ -15,7 +14,6 @@ public readonly struct Currency
 
         Value = value;
     }
-
 
 
     // 연산자 오버라이딩
@@ -64,5 +62,4 @@ public readonly struct Currency
     {
         return Value.ToFormattedString();
     }
-
 }

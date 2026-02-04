@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using static SoundManager;
 
@@ -38,7 +39,7 @@ public class PlanetPressure : MonoBehaviour
         // 이벤트 발생
         OnPressureChanged?.Invoke(_currentPressure, _maxPressure);
 
-        CurrencyManager.Instance.Add(ECurrencyType.Star, damage);
+        CurrencyManager.Instance.Add(ECurrencyType.Star, damage).Forget();
         _planetExpansion.ExpandPlanet(_currentPressure, _maxPressure);
 
         if (_currentPressure >= _maxPressure)

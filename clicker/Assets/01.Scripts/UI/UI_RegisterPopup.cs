@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,7 @@ public class UI_RegisterPopup : MonoBehaviour
 
     private void Start()
     {
-        _registerButton.onClick.AddListener(Register);
+        _registerButton.onClick.AddListener(() => Register().Forget());
         _backButton.onClick.AddListener(Back);
         _emailInputField.onValueChanged.AddListener(OnEmailChanged);
     }
@@ -30,7 +31,7 @@ public class UI_RegisterPopup : MonoBehaviour
         _registerButton.interactable = _emailSpec.IsSatisfiedBy(email);
     }
 
-    private void Register()
+    private async UniTaskVoid Register()
     {
         string email = _emailInputField.text;
         string password = _passwordInputField.text;
@@ -42,7 +43,7 @@ public class UI_RegisterPopup : MonoBehaviour
             return;
         }
 
-        var result = AccountManager.Instance.TryRegister(email, password);
+        var result = await AccountManager.Instance.TryRegister(email, password);
 
         if (result.Success)
         {
