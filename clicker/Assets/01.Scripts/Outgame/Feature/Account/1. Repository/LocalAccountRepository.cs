@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Windows;
+﻿using UnityEngine;
 
 public class LocalAccountRepository : IAccountRepository
 {
