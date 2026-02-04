@@ -18,17 +18,36 @@ public class Clicker : MonoBehaviour
         Vector2 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
-        if (hit == true)
+        if (hit.collider != null)
         {
+            double finalDamage = GetManualClickDamage();
             Clickable clickable = hit.collider.GetComponent<Clickable>();
 
-            ClickInfo clickInfo = new ClickInfo
+            if (clickable != null)
             {
-                Type = EClickType.Manual,
-                Damage = GameManager.Instance.ManualDamage,
-            };
+                ClickInfo clickInfo = new ClickInfo
+                {
+                    Type = EClickType.Manual,
+                    Damage = finalDamage,
+                    Position = worldPosition,
+                };
 
-            clickable?.OnClick(clickInfo);
+                clickable.OnClick(clickInfo);
+            }
         }
+    }
+
+    // 클릭 최종 데미지 계산
+    private double GetManualClickDamage()
+    {
+        double baseDamage = 1;
+
+        var flatUpgrade = UpgradeManager.Instance.GetUpgrade(EUpgradeEffect.ClickPower);
+        var percentUpgrade = UpgradeManager.Instance.GetUpgrade(EUpgradeEffect.ClickPercent);
+
+        double flat = flatUpgrade?.Damage ?? 0;
+        double percent = percentUpgrade?.Damage ?? 0;
+
+        return (baseDamage + flat) * (1 + percent / 100.0);
     }
 }

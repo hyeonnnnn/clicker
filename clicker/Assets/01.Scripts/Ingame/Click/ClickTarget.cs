@@ -5,10 +5,12 @@ public class ClickTarget : MonoBehaviour, Clickable
     [SerializeField] private string _name;
 
     private PlanetPressure _planetHealth;
+    private IFeedback[] _feedbacks;
 
     private void Awake()
     {
         _planetHealth = GetComponent<PlanetPressure>();
+        _feedbacks = GetComponentsInChildren<IFeedback>();
     }
 
     public bool OnClick(ClickInfo clickInfo)
@@ -18,11 +20,13 @@ public class ClickTarget : MonoBehaviour, Clickable
             _planetHealth.TakeDamage(clickInfo.Damage);
         }
 
-        var feedbacks = GetComponentsInChildren<IFeedback>();
-        foreach (var feedback in feedbacks)
+        if (_feedbacks != null)
         {
-            feedback.Play(clickInfo);
-        };
+            for (int i = 0; i < _feedbacks.Length; i++)
+            {
+                _feedbacks[i].Play(clickInfo);
+            }
+        }
 
         return true;
     }
