@@ -12,14 +12,12 @@ public class UI_PlanetInfo : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _planetHealthText;
     [SerializeField] private Slider _pressureBar;
 
-    [SerializeField] private PlanetPressure _planetPressure;
-
     private Tween _pressureTween;
 
     private void OnEnable()
     {
-        PlanetManager.OnDataChanged += UpdateStageInfo;
-        _planetPressure.OnPressureChanged += UpdatePressureUI;
+        PlanetManager.OnDataChanged += UpdateStageInfo; // 정보창 업데이트
+        PlanetManager.OnPressureChanged += UpdatePressureUI; // 슬라이더 업데이트
 
         if (PlanetManager.Instance != null && PlanetManager.Instance.CurrentPlanet != null)
         {
@@ -30,12 +28,13 @@ public class UI_PlanetInfo : MonoBehaviour
     private void OnDisable()
     {
         PlanetManager.OnDataChanged -= UpdateStageInfo;
-        _planetPressure.OnPressureChanged -= UpdatePressureUI;
+        PlanetManager.OnPressureChanged -= UpdatePressureUI;
         _pressureTween?.Kill();
     }
 
     private void UpdateStageInfo()
     {
+        // 정보창 초기화
         PlanetData data = StageManager.Instance.CurrentPlanetData;
 
         if (data != null)
@@ -44,10 +43,13 @@ public class UI_PlanetInfo : MonoBehaviour
             if (_planetIconImage != null) _planetIconImage.sprite = data.Icon;
             if (_planetNumberText != null) _planetNumberText.text = $"{PlanetManager.Instance.CurrentPlanet.Level}";
         }
+
+        // 슬라이더 초기화
+        var planet = PlanetManager.Instance.CurrentPlanet;
+        UpdatePressureUI(planet.CurrentPressure, planet.MaxPressure);
     }
 
-    private void UpdatePressureUI(double current, double max) => UpdatePressureUI(current, max, false);
-    private void UpdatePressureUI(double current, double max, bool immediate)
+    private void UpdatePressureUI(double current, double max)
     {
         if (max <= 0)
         {
@@ -61,16 +63,9 @@ public class UI_PlanetInfo : MonoBehaviour
         if (_pressureBar != null)
         {
             _pressureTween?.Kill();
-
-            if (immediate)
-            {
-                _pressureBar.value = (float)targetValue;
-            }
-            else
-            {
-                _pressureTween = _pressureBar.DOValue((float)targetValue, 0.2f)
-                    .SetEase(Ease.OutQuad);
-            }
+            _pressureTween = _pressureBar.DOValue((float)targetValue, 0.2f)
+                                .SetEase(Ease.OutQuad);
         }
+
     }
 }

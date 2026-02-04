@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class UI_UpgradeItem : MonoBehaviour
 {
+    [Header("데이터")]
     [SerializeField] private EUpgradeType _upgradeType;
+
+    [Header("UI 컴포넌트")]
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private TextMeshProUGUI _levelText;
@@ -14,42 +17,31 @@ public class UI_UpgradeItem : MonoBehaviour
 
     private void Start()
     {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         _purchaseButton.onClick.AddListener(() => OnPurchaseClicked().Forget());
+        Refresh();
     }
 
     public void Refresh()
     {
-        // 그룹을 가져와서
-        var group = UpgradeManager.Instance.GetGroup(_upgradeType);
-        if (group == null) return;
+        var data = UpgradeManager.Instance.GetUpgradeItemViewData(_upgradeType);
 
-        var upgrade = group.GetCurrentUpgrade();
-
-        // ui 텍스트 채우기
-        _nameText.text = group.Name;
-        _descriptionText.text = upgrade != null ? FormatDescription(upgrade) : "";
-        _levelText.text = $"Lv.{group.GetTotalLevel()}";
-
-        if (group.IsAllMaxLevel())
-        {
-            _costText.text = "MAX";
-            _purchaseButton.interactable = false;
-        }
-        else
-        {
-            _costText.text = upgrade != null ? upgrade.Cost.ToFormattedString() : "";
-            _purchaseButton.interactable = UpgradeManager.Instance.CanLevelUp(_upgradeType);
-        }
+        _nameText.text = data.Name;
+        _descriptionText.text = data.Description;
+        _levelText.text = data.Level;
+        _costText.text = data.Cost;
+        _purchaseButton.interactable = data.CanPurchase;
     }
 
-    private string FormatDescription(Upgrade upgrade)
+    private async UniTask OnPurchaseClicked()
     {
-        string sign = upgrade.Effect == EUpgradeEffect.RocketCooldown ? "-" : "+";
-        return $"{upgrade.Description} {sign}{upgrade.BaseValue.ToFormattedString()}";
-    }
-
-    private async UniTaskVoid OnPurchaseClicked()
-    {
-        await UpgradeManager.Instance.TryLevelUp(_upgradeType);
+        // 중복 클릭 방지
+        _purchaseButton.interactable = false;
+        bool success = await UpgradeManager.Instance.TryLevelUp(_upgradeType);
+        Refresh();
     }
 }

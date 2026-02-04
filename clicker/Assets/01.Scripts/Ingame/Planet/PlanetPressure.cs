@@ -1,10 +1,9 @@
 ﻿using System;
 using UnityEngine;
-using static SoundManager;
 
 public class PlanetPressure : MonoBehaviour
 {
-    [SerializeField] private ScaleExpansionFeedback _planetExpansion;
+    private ScaleExpansionFeedback _planetExpansion;
 
     private double _currentPressure;
     private double _maxPressure;
@@ -12,7 +11,6 @@ public class PlanetPressure : MonoBehaviour
     public double CurrentPressure => _currentPressure;
     public double MaxPressure => _maxPressure;
 
-    public event Action<double, double> OnPressureChanged;
     public event Action<double> OnDamaged;
     public event Action OnDepleted;
 
@@ -21,34 +19,51 @@ public class PlanetPressure : MonoBehaviour
         _planetExpansion = GetComponent<ScaleExpansionFeedback>();
     }
 
+    private void Start()
+    {
+        PlanetManager.OnDataChanged += OnPlanetDataChanged;
+
+        if (PlanetManager.Instance.CurrentPlanet != null)
+        {
+            OnPlanetDataChanged();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        PlanetManager.OnDataChanged -= OnPlanetDataChanged;
+    }
+
+    private void OnPlanetDataChanged()
+    {
+        var planet = PlanetManager.Instance.CurrentPlanet;
+        Initialize(planet.MaxPressure, planet.CurrentPressure);
+    }
+
     public void Initialize(double maxPressure, double currentPressure = 0)
     {
         _maxPressure = maxPressure;
         _currentPressure = currentPressure;
-        OnPressureChanged?.Invoke(_currentPressure, _maxPressure);
+
         _planetExpansion.Initialize();
         _planetExpansion.ExpandPlanet(_currentPressure, _maxPressure);
     }
 
     public void TakeDamage(double damage)
     {
-        // 데미지 적용
-        _currentPressure += damage;
-        _currentPressure = Math.Min(_currentPressure, _maxPressure);
+        if (_currentPressure >= _maxPressure) return;
 
-        // 도메인 객체에 반영
+        _currentPressure = Math.Min(_currentPressure + damage, _maxPressure);
+
         PlanetManager.Instance.UpdatePressure(_currentPressure);
 
-        // 이벤트 발생
-        OnPressureChanged?.Invoke(_currentPressure, _maxPressure);
         OnDamaged?.Invoke(damage);
-
         _planetExpansion.ExpandPlanet(_currentPressure, _maxPressure);
 
         if (_currentPressure >= _maxPressure)
         {
             OnDepleted?.Invoke();
-            SoundManager.Instance.PlaySFX(Sfx.POPPLANET);
+            PlanetManager.Instance.NextStage();
         }
     }
 }

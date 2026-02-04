@@ -12,6 +12,7 @@ public class PlanetManager : MonoBehaviour
     private Planet _planet;
 
     public static event Action OnDataChanged;
+    public static event Action<double, double> OnPressureChanged;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class PlanetManager : MonoBehaviour
     public void UpdatePressure(double pressure)
     {
         _planet.UpdatePressure(pressure);
+        OnPressureChanged?.Invoke(_planet.CurrentPressure, _planet.MaxPressure);
     }
 
     public void NextStage()

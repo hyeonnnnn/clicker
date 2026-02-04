@@ -7,7 +7,6 @@ public class StageManager : MonoBehaviour
 
     [SerializeField] private PlanetInfo _planetInfo;
     [SerializeField] private SpriteRenderer _planetRenderer;
-    [SerializeField] private PlanetPressure _planetPressure;
 
     private int _previousStage;
 
@@ -30,38 +29,48 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
-        _planetPressure.OnDepleted += NextStage;
         PlanetManager.OnDataChanged += OnPlanetDataChanged;
 
         if (PlanetManager.Instance.CurrentPlanet != null)
         {
+            _previousStage = CurrentStage;
             InitializeStage();
         }
     }
 
     private void OnDestroy()
     {
-        _planetPressure.OnDepleted -= NextStage;
         PlanetManager.OnDataChanged -= OnPlanetDataChanged;
     }
 
     private void OnPlanetDataChanged()
     {
+        int newStage = CurrentStage;
+        bool stageChanged = _previousStage != 0 && _previousStage != newStage;
+
+        _previousStage = newStage;
         InitializeStage();
+
+        if (stageChanged)
+        {
+            SoundManager.Instance.PlaySFX(SoundManager.Sfx.POPPLANET);
+            OnStageChanged?.Invoke(newStage);
+        }
+    }
+
+    public PlanetInfoViewData GetPlanetInfoViewData()
+    {
+        var data = CurrentPlanetData;
+        return new PlanetInfoViewData
+        {
+            Name = data?.Name ?? "",
+            Level = $"{PlanetManager.Instance.CurrentPlanet.Level}",
+            Icon = data?.Icon
+        };
     }
 
     public void InitializeStage()
     {
-        var planetData = CurrentPlanetData;
-        _planetRenderer.sprite = planetData.Sprite;
-        var planet = PlanetManager.Instance.CurrentPlanet;
-        _planetPressure.Initialize(planet.MaxPressure, planet.CurrentPressure);
-    }
-
-    private void NextStage()
-    {
-        _previousStage = CurrentStage;
-        PlanetManager.Instance.NextStage();
-        OnStageChanged?.Invoke(CurrentStage);
+        _planetRenderer.sprite = CurrentPlanetData.Sprite;
     }
 }

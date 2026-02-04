@@ -2679,7 +2679,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   _planetInfo: {fileID: 11400000, guid: f462ef514a450f94a8978028116f60d9, type: 2}
   _planetRenderer: {fileID: 1420666654}
-  _planetPressure: {fileID: 1420666661}
 --- !u!4 &938281092
 Transform:
   m_ObjectHideFlags: 0
@@ -3799,7 +3798,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea7e964b708c9e4c9b228cc6ebdaa1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlanetPressure
-  _planetExpansion: {fileID: 1420666662}
 --- !u!114 &1420666662
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -92,6 +92,30 @@ public class UpgradeManager : MonoBehaviour
         return _upgradeDict.TryGetValue(effect, out var upgrade) ? upgrade : null;
     }
 
+    public UpgradeItemViewData GetUpgradeItemViewData(EUpgradeType type)
+    {
+        var group = GetGroup(type);
+        if (group == null) return default;
+
+        var upgrade = group.GetCurrentUpgrade();
+        bool isMax = group.IsAllMaxLevel();
+
+        return new UpgradeItemViewData
+        {
+            Name = group.Name,
+            Level = $"Lv.{group.GetTotalLevel()}",
+            Description = upgrade != null ? FormatDescription(upgrade) : (isMax ? "Max Level" : ""),
+            Cost = isMax ? "MAX" : (upgrade?.Cost.ToFormattedString() ?? ""),
+            CanPurchase = CanLevelUp(type)
+        };
+    }
+
+    private string FormatDescription(Upgrade upgrade)
+    {
+        string sign = upgrade.Effect == EUpgradeEffect.RocketCooldown ? "-" : "+";
+        return $"{upgrade.Description} {sign}{upgrade.BaseValue.ToFormattedString()}";
+    }
+
     // ── 비즈니스 로직 ──
 
     public async UniTask<bool> TryLevelUp(EUpgradeType type)
