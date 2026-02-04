@@ -26,12 +26,12 @@ public class AutoClicker : MonoBehaviour
         var clickInfo = new ClickInfo
         {
             Type = EClickType.Auto,
-            Damage = GameManager.Instance.AutoDamage
+            Damage = UpgradeManager.Instance.GetUpgrade(EUpgradeEffect.ClickPower)?.Value ?? 0
         };
 
         foreach (var clickable in _clickables)
         {
-            clickable.GetComponent<Clickable>().OnClick(clickInfo);
+            clickable.GetComponent<IClickable>().OnClick(clickInfo);
         }
     }
 }

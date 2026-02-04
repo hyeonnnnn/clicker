@@ -14,25 +14,7 @@ public class MiniPlanetSpawner : MonoBehaviour
         _spawnParent = transform;
     }
 
-    private void Start()
-    {
-        StageManager.Instance.OnStageChanged += OnStageChanged;
-    }
-
-    private void OnDestroy()
-    {
-        if (StageManager.Instance != null)
-        {
-            StageManager.Instance.OnStageChanged -= OnStageChanged;
-        }
-    }
-
-    private void OnStageChanged(int newStage)
-    {
-        Spawn(StageManager.Instance.PreviousSprite);
-    }
-
-    private void Spawn(Sprite sprite)
+    public void Spawn(Sprite sprite)
     {
         var miniPlanet = Instantiate(_miniPlanetPrefab, _spawnParent);
 

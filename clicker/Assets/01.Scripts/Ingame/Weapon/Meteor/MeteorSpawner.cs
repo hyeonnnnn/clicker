@@ -1,28 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MeteorSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _rocks;
+    [FormerlySerializedAs("_rocks")]
+    [SerializeField] private GameObject[] _meteors;
 
     [Header("Spawn Area")]
     [SerializeField] private Transform _parent;
     [SerializeField] private float _spawnRadius = 0.3f;
 
-    private Camera _camera;
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            SpawnRock();
-        }
-    }
-
-    public void SpawnRock()
+    public void Spawn()
     {
         Vector3 spawnPosition = GetRandomCircleWorldPosition(_parent.position);
-        GameObject rockPrefab = _rocks[Random.Range(0, _rocks.Length)];
-        Instantiate(rockPrefab, spawnPosition, Quaternion.identity, _parent);
+        GameObject meteorPrefab = _meteors[Random.Range(0, _meteors.Length)];
+        Instantiate(meteorPrefab, spawnPosition, Quaternion.identity, _parent);
     }
 
     private Vector3 GetRandomCircleWorldPosition(Vector3 centerWorld)

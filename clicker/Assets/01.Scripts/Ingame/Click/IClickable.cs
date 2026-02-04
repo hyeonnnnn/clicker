@@ -1,6 +1,6 @@
 ﻿
 
-public interface Clickable
+public interface IClickable
 {
     bool OnClick(ClickInfo clickInfo);
 }

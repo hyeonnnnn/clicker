@@ -1,5 +1,4 @@
 ﻿using System;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using static SoundManager;
 
@@ -14,6 +13,7 @@ public class PlanetPressure : MonoBehaviour
     public double MaxPressure => _maxPressure;
 
     public event Action<double, double> OnPressureChanged;
+    public event Action<double> OnDamaged;
     public event Action OnDepleted;
 
     private void Awake()
@@ -34,15 +34,15 @@ public class PlanetPressure : MonoBehaviour
     {
         // 데미지 적용
         _currentPressure += damage;
-        _currentPressure = Mathf.Min((float)_currentPressure, (float)_maxPressure);
+        _currentPressure = Math.Min(_currentPressure, _maxPressure);
 
         // 도메인 객체에 반영
         PlanetManager.Instance.UpdatePressure(_currentPressure);
 
         // 이벤트 발생
         OnPressureChanged?.Invoke(_currentPressure, _maxPressure);
+        OnDamaged?.Invoke(damage);
 
-        CurrencyManager.Instance.Add(ECurrencyType.Star, damage).Forget();
         _planetExpansion.ExpandPlanet(_currentPressure, _maxPressure);
 
         if (_currentPressure >= _maxPressure)

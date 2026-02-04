@@ -4,7 +4,8 @@ public enum EUpgradeType
 {
     ManualClick,
     Rocket,
-    Rock,
+    Meteor,
+    MiniPlanet,
 
     Count
 }

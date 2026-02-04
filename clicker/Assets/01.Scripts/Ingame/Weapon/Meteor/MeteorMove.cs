@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class RockMove : MonoBehaviour
+public class MeteorMove : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float _baseSpeed = 5f;
@@ -31,7 +31,7 @@ public class RockMove : MonoBehaviour
 
         // 초기 방향 설정
         _direction = Random.insideUnitCircle.normalized;
-        _currentSpeed = _baseSpeed;
+        _currentSpeed = GetUpgradedSpeed();
     }
 
     private void FixedUpdate()
@@ -108,12 +108,20 @@ public class RockMove : MonoBehaviour
         if (_speedTween != null && _speedTween.IsActive())
             _speedTween.Kill();
 
-        float targetBoostSpeed = _baseSpeed * _boostMultiplier;
+        float upgradedSpeed = GetUpgradedSpeed();
+        float targetBoostSpeed = upgradedSpeed * _boostMultiplier;
         _currentSpeed = targetBoostSpeed;
 
-        _speedTween = DOTween.To(() => _currentSpeed, x => _currentSpeed = x, _baseSpeed, _boostDuration)
+        _speedTween = DOTween.To(() => _currentSpeed, x => _currentSpeed = x, upgradedSpeed, _boostDuration)
             .SetEase(Ease.OutQuad)
             .SetTarget(this);
+    }
+
+    private float GetUpgradedSpeed()
+    {
+        var upgrade = UpgradeManager.Instance?.GetUpgrade(EUpgradeEffect.MeteorSpeed);
+        if (upgrade == null) return _baseSpeed;
+        return _baseSpeed * (float)upgrade.Value;
     }
 
     private Vector2 RotateVector(Vector2 v, float degrees)

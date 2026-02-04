@@ -20,8 +20,8 @@ public class Clicker : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
         if (hit.collider != null)
         {
-            double finalDamage = GetManualClickDamage();
-            Clickable clickable = hit.collider.GetComponent<Clickable>();
+            double finalDamage = UpgradeManager.Instance.GetUpgrade(EUpgradeEffect.ClickPower)?.Value ?? 0;
+            IClickable clickable = hit.collider.GetComponent<IClickable>();
 
             if (clickable != null)
             {
@@ -35,19 +35,5 @@ public class Clicker : MonoBehaviour
                 clickable.OnClick(clickInfo);
             }
         }
-    }
-
-    // 클릭 최종 데미지 계산
-    private double GetManualClickDamage()
-    {
-        double baseDamage = 1;
-
-        var flatUpgrade = UpgradeManager.Instance.GetUpgrade(EUpgradeEffect.ClickPower);
-        var percentUpgrade = UpgradeManager.Instance.GetUpgrade(EUpgradeEffect.ClickPercent);
-
-        double flat = flatUpgrade?.Damage ?? 0;
-        double percent = percentUpgrade?.Damage ?? 0;
-
-        return (baseDamage + flat) * (1 + percent / 100.0);
     }
 }

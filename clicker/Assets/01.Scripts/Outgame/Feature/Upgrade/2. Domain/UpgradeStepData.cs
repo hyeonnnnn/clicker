@@ -21,10 +21,13 @@ public enum EUpgradeEffect
     RocketCooldown,
     RocketPower,
 
-    // Rock
+    // Meteor
     MeteorCount,
     MeteorSpeed,
     MeteorPower,
+
+    // MiniPlanet
+    MiniPlanetPower,
 
     Count
 }

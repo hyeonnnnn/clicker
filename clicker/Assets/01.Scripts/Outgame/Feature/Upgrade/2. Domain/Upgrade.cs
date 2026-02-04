@@ -11,13 +11,22 @@ public sealed class Upgrade
 
     private readonly double _baseCost;
     private readonly double _costMultiplier;
-    private readonly double _baseValue;
-    private readonly double _valueMultiplier;
+    private readonly double _baseDamage;
+    private readonly double _damageMultiplier;
 
     // 규칙
     public bool IsMaxLevel => MaxLevel > 0 && Level >= MaxLevel;
     public double Cost => _baseCost * Math.Pow(_costMultiplier, Level);
-    public double Damage => _baseValue + Level * _valueMultiplier;
+    public double Value
+    {
+        get
+        {
+            if (_damageMultiplier == 1.0)
+                return _baseDamage * (1 + Level);
+            return _baseDamage * (1.0 + (Math.Pow(_damageMultiplier, Level) - 1.0) / (_damageMultiplier - 1.0));
+        }
+    }
+    public double BaseValue => _baseDamage;
 
     public Upgrade(UpgradeStepData stepData, UpgradeSpecData specData, int level = 0)
     {
@@ -37,8 +46,8 @@ public sealed class Upgrade
         Level = Math.Max(0, level);
         _baseCost = specData.BaseCost;
         _costMultiplier = specData.CostMultiplier;
-        _baseValue = stepData.BaseValue;
-        _valueMultiplier = stepData.ValueMultiplier;
+        _baseDamage = stepData.BaseValue;
+        _damageMultiplier = stepData.ValueMultiplier;
     }
 
     public bool CanLevelUp()

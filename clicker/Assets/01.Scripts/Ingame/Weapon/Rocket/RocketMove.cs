@@ -33,7 +33,8 @@ public class RocketMove : MonoBehaviour
 
         bool isNearCenter = distFactor < 0.3f;
 
-        float targetSpeed = _patrolSpeed;
+        float patrolSpeed = GetPatrolSpeed();
+        float targetSpeed = patrolSpeed;
 
         if (isNearCenter)
         {
@@ -70,6 +71,13 @@ public class RocketMove : MonoBehaviour
             _hasPassedCenter = true;
             OnPassedCenter?.Invoke();
         }
+    }
+
+    private float GetPatrolSpeed()
+    {
+        var upgrade = UpgradeManager.Instance?.GetUpgrade(EUpgradeEffect.RocketCooldown);
+        if (upgrade == null || upgrade.Level == 0) return _patrolSpeed;
+        return _patrolSpeed + (float)(upgrade.BaseValue * upgrade.Level);
     }
 
     private void RotateTowardVelocity()

@@ -5,9 +5,10 @@ using static SoundManager;
 
 public class MiniPlanetAttack : MonoBehaviour
 {
-    [SerializeField] private int _damage = 10;
     [SerializeField] private float _attackDuration = 0.2f;
     [SerializeField] private float _returnDuration = 0.3f;
+
+    private double Damage => UpgradeManager.Instance.GetUpgrade(EUpgradeEffect.MiniPlanetPower)?.Value ?? 0;
 
     private GameObject _targetObject;
     private PlanetPressure _planetPressure;
@@ -51,7 +52,16 @@ public class MiniPlanetAttack : MonoBehaviour
                     .SetEase(Ease.OutQuad)
                     .OnComplete(() =>
                     {
-                        HandleImpact(direction);
+                        Vector2 impactNormal = -(Vector2)direction;
+                        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, impactNormal);
+
+                        WeaponFeedback.PlayImpact(
+                            new ClickInfo { Type = EClickType.Auto, Damage = Damage, Position = _targetTransform.position },
+                            Effect.PLANETATTACK,
+                            Sfx.SHURIKEN,
+                            _targetTransform.position,
+                            rotation
+                        );
 
                         transform.SetParent(_parent);
 
@@ -61,28 +71,6 @@ public class MiniPlanetAttack : MonoBehaviour
                         returnSequence.OnComplete(() => _isAttacking = false);
                     });
 
-        _planetPressure.TakeDamage(_damage);
-        SoundManager.Instance.PlaySFX(Sfx.SHURIKEN);
-    }
-
-    private void HandleImpact(Vector3 attackDirection)
-    {
-        TextFloaterSpawner.Instance.ShowDamage(new ClickInfo
-        {
-            Type = EClickType.Auto,
-            Damage = _damage,
-            Position = _targetTransform.position
-        });
-
-        Vector2 impactPoint = (Vector2)_targetTransform.position;
-        Vector2 impactNormal = -(Vector2)attackDirection;
-
-        SpawnImpactEffect(impactPoint, impactNormal);
-    }
-
-    private void SpawnImpactEffect(Vector2 position, Vector2 normal)
-    {
-        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, normal);
-        EffectSpawner.Instance.PlayEffect(Effect.PLANETATTACK, position, rotation);
+        _planetPressure.TakeDamage(Damage);
     }
 }

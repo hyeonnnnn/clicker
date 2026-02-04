@@ -4,7 +4,7 @@ using static SoundManager;
 
 public class RocketAttack : MonoBehaviour
 {
-    [SerializeField] private int _damage = 20;
+    private double Damage => UpgradeManager.Instance.GetUpgrade(EUpgradeEffect.RocketPower)?.Value ?? 0;
 
     private RocketMove _rocketMove;
     private Transform _target;
@@ -34,27 +34,17 @@ public class RocketAttack : MonoBehaviour
 
     private void OnPassedCenter()
     {
-        Attack();
-        HandleImpact();
-    }
-
-    private void Attack()
-    {
-        _planetPressure.TakeDamage(_damage);
-    }
-
-    private void HandleImpact()
-    {
-        TextFloaterSpawner.Instance.ShowDamage(new ClickInfo
-        {
-            Type = EClickType.Auto,
-            Damage = _damage,
-            Position = _target.position
-        });
+        _planetPressure.TakeDamage(Damage);
 
         var direction = (_target.position - transform.position).normalized;
         var rotation = Quaternion.FromToRotation(Vector3.up, direction);
-        EffectSpawner.Instance.PlayEffect(Effect.ROCKETATTACK, _target.position, rotation);
-        SoundManager.Instance.PlaySFX(Sfx.SHURIKEN);
+
+        WeaponFeedback.PlayImpact(
+            new ClickInfo { Type = EClickType.Auto, Damage = Damage, Position = _target.position },
+            Effect.ROCKETATTACK,
+            Sfx.SHURIKEN,
+            _target.position,
+            rotation
+        );
     }
 }

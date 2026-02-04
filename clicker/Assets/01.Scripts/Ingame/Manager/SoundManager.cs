@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour
     [Range(0, 1)] public float sfxGroupVolume = 1.0f;
 
     public enum Bgm { BGM_GAME }
-    public enum Sfx { CLICKPLANET, POPPLANET, COIN, SHURIKEN, ROCK }
+    public enum Sfx { CLICKPLANET, POPPLANET, COIN, SHURIKEN, METEOR }
 
     [System.Serializable]
     public struct BgmData

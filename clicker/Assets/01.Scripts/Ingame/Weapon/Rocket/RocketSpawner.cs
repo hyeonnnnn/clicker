@@ -9,15 +9,7 @@ public class RocketSpawner : MonoBehaviour
     private readonly List<RocketMove> _rockets = new List<RocketMove>();
     private int _currentTurnIndex;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Spawn();
-        }
-    }
-
-    private void Spawn()
+    public void Spawn()
     {
         var rocket = Instantiate(_rocketPrefab, _spawnParent);
         var rocketMove = rocket.GetComponent<RocketMove>();

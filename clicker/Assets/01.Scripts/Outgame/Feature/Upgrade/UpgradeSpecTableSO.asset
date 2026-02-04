@@ -16,53 +16,64 @@ MonoBehaviour:
   - Type: 0
     MaxLevel: 0
     Name: "\uD074\uB9AD"
-    BaseCost: 500
+    BaseCost: 5000
     CostMultiplier: 3
     Steps:
-    - Description: "\uD30C\uC6CC \uC99D\uAC00"
+    - Description: "\uD30C\uC6CC"
       Effect: 0
-      BaseValue: 100
-      ValueMultiplier: 3
+      BaseValue: 1000
+      ValueMultiplier: 1.2
       MaxLevel: 0
   - Type: 1
     MaxLevel: 0
     Name: "\uB85C\uCF13"
-    BaseCost: 500
+    BaseCost: 5000
     CostMultiplier: 3
     Steps:
     - Description: "\uAC1C\uC218"
-      Effect: 1
+      Effect: 2
       BaseValue: 1
       ValueMultiplier: 1
       MaxLevel: 3
     - Description: "\uCFE8\uB2E4\uC6B4"
-      Effect: 2
-      BaseValue: 3
-      ValueMultiplier: 0.2
+      Effect: 3
+      BaseValue: 0.3
+      ValueMultiplier: 1
       MaxLevel: 3
     - Description: "\uD30C\uC6CC"
-      Effect: 3
-      BaseValue: 200
-      ValueMultiplier: 3
+      Effect: 4
+      BaseValue: 1000
+      ValueMultiplier: 1.2
       MaxLevel: 0
   - Type: 2
     MaxLevel: 0
     Name: "\uC6B4\uC11D"
-    BaseCost: 500
+    BaseCost: 5000
     CostMultiplier: 3
     Steps:
     - Description: "\uAC1C\uC218"
-      Effect: 4
+      Effect: 5
       BaseValue: 1
       ValueMultiplier: 1
       MaxLevel: 5
     - Description: "\uC18D\uB3C4"
-      Effect: 5
-      BaseValue: 1
+      Effect: 6
+      BaseValue: 0.5
       ValueMultiplier: 1.2
       MaxLevel: 5
     - Description: "\uD30C\uC6CC"
-      Effect: 6
-      BaseValue: 200
-      ValueMultiplier: 2
+      Effect: 7
+      BaseValue: 1000
+      ValueMultiplier: 1.2
+      MaxLevel: 0
+  - Type: 3
+    MaxLevel: 0
+    Name: "\uC704\uC131"
+    BaseCost: 500
+    CostMultiplier: 3
+    Steps:
+    - Description: "\uD30C\uC6CC"
+      Effect: 8
+      BaseValue: 10
+      ValueMultiplier: 1.2
       MaxLevel: 0

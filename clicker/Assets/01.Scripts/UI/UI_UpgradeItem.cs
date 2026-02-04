@@ -27,7 +27,7 @@ public class UI_UpgradeItem : MonoBehaviour
 
         // ui 텍스트 채우기
         _nameText.text = group.Name;
-        _descriptionText.text = upgrade != null ? upgrade.Description : "";
+        _descriptionText.text = upgrade != null ? FormatDescription(upgrade) : "";
         _levelText.text = $"Lv.{group.GetTotalLevel()}";
 
         if (group.IsAllMaxLevel())
@@ -40,6 +40,12 @@ public class UI_UpgradeItem : MonoBehaviour
             _costText.text = upgrade != null ? upgrade.Cost.ToFormattedString() : "";
             _purchaseButton.interactable = UpgradeManager.Instance.CanLevelUp(_upgradeType);
         }
+    }
+
+    private string FormatDescription(Upgrade upgrade)
+    {
+        string sign = upgrade.Effect == EUpgradeEffect.RocketCooldown ? "-" : "+";
+        return $"{upgrade.Description} {sign}{upgrade.BaseValue.ToFormattedString()}";
     }
 
     private async UniTaskVoid OnPurchaseClicked()

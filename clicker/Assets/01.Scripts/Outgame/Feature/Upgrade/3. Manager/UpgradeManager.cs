@@ -14,6 +14,7 @@ public class UpgradeManager : MonoBehaviour
     private Dictionary<EUpgradeType, UpgradeGroup> _groups = new(); // 순환 표시 규칙
     
     public static event Action OnDataChanged;
+    public static event Action<EUpgradeEffect> OnUpgraded;
 
     private void Awake()
     {
@@ -112,6 +113,7 @@ public class UpgradeManager : MonoBehaviour
 
         await Save();
         OnDataChanged?.Invoke();
+        OnUpgraded?.Invoke(effect.Value);
         return true;
     }
 
