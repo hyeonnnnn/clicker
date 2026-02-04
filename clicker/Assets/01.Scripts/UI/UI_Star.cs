@@ -19,15 +19,21 @@ public class UI_Star : MonoBehaviour
 
     private void OnEnable()
     {
-        CurrencyManager.OnDataChanged += UpdateCoinText;
+        CurrencyManager.OnDataChanged += UpdateStarText;
     }
 
     private void OnDisable()
     {
-        CurrencyManager.OnDataChanged -= UpdateCoinText;
+        CurrencyManager.OnDataChanged -= UpdateStarText;
     }
 
-    private void UpdateCoinText(double amount)
+    private void Start()
+    {
+        Currency star = CurrencyManager.Instance.Star;
+        _coinTextUI.text = $"{star}";
+    }
+
+    private void UpdateStarText(ECurrencyType type, Currency amount)
     {
         Currency star = CurrencyManager.Instance.Star;
         _coinTextUI.text = $"{star}";

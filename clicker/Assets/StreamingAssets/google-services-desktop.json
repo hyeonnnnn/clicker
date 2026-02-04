@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "490419606231",
+    "project_id": "planet-pangpang",
+    "storage_bucket": "planet-pangpang.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490419606231:android:5dba3790223ff7bbad5692",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.planet_pangpang"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiAR1DA-3vyJBvNYgOgP_7DefG4YM6gsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

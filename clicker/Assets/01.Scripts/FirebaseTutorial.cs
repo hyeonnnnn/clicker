@@ -1,0 +1,247 @@
+﻿using Firebase;
+using Firebase.Auth;
+using Firebase.Extensions;
+using Firebase.Firestore;
+using System;
+using System.Threading.Tasks;
+using TMPro;
+using UnityEngine;
+
+public class FirebaseTutorial : MonoBehaviour
+{
+    private FirebaseApp _app = null;
+    private FirebaseAuth _auth = null;
+    private FirebaseFirestore _db = null;
+
+    public TextMeshProUGUI _progressText;
+
+    private async void Start()
+    {
+        await InitFirebase();
+        _progressText.text = "파이어베이스 초기화 완료";
+
+        Logout();
+        _progressText.text = "로그아웃 완료";
+
+        await Login("hongil@skku.re.kr", "12345678");
+        _progressText.text = "로그인 완료";
+
+        await SaveDog();
+        _progressText.text = "강아지 추가 완료";
+    }
+
+    private async Task InitFirebase()
+    {
+        DependencyStatus status = await FirebaseApp.CheckAndFixDependenciesAsync();
+
+        try
+        {
+            if (status == DependencyStatus.Available)
+            {
+                // 1. 파이어베이스 연결에 성공했다면..
+                _app = FirebaseApp.DefaultInstance;       // 파이어베이스 앱   모듈 가져오기
+                _auth = FirebaseAuth.DefaultInstance;      // 파이어베이스 인증 모듈 가져오기 
+                _db = FirebaseFirestore.DefaultInstance; // 파이어베이스  DB 모듈 가져오기
+
+                Debug.Log("Firebase 초기화 성공!");
+            }
+        }
+        catch (FirebaseException e)
+        {
+            Debug.Log("Firebase 초기화 실패" + e.Message);
+        }
+
+    }
+
+
+    private void Register(string email, string password)
+    {
+        _auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task => {
+            if (task.IsCanceled || task.IsFaulted)
+            {
+                Debug.LogError("회원가입이 실패했습니다: " + task.Exception);
+                return;
+            }
+
+            Firebase.Auth.AuthResult result = task.Result;
+            Debug.LogFormat("회원가입에 성공했습니다.: {0} ({1})", result.User.DisplayName, result.User.UserId);
+        });
+    }
+
+    private async Task Login(string email, string password)
+    {
+        try
+        {
+            Firebase.Auth.AuthResult result = await _auth.SignInWithEmailAndPasswordAsync(email, password);
+            Debug.Log("Firebase 로그인 성공!");
+        }
+        catch (FirebaseException e)
+        {
+            Debug.Log("Firebase 로그인 실패" + e.Message);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("저장 실패" + e.Message);
+        }
+    }
+
+    private void Logout()
+    {
+        _auth.SignOut();
+        Debug.Log("로그아웃 성공!");
+    }
+
+    private void CheckLoginStatus()
+    {
+        FirebaseUser user = _auth.CurrentUser;
+        if (user == null)
+        {
+            Debug.Log("로그인 안됨");
+        }
+        else
+        {
+            Debug.LogFormat("로그인 중: {0} ({1})", user.Email, user.UserId);
+        }
+    }
+
+    private async Task SaveDog()
+    {
+        Dog dog = new Dog("소똥이", 4);
+
+        try
+        {
+            DocumentReference reference = await _db.Collection("Dog").AddAsync(dog);
+        }
+        catch (FirebaseException e)
+        {
+            Debug.Log("Firebase 저장 실패" + e.Message);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("저장 실패" + e.Message);
+        }
+    }
+
+    private void LoadMyDog()
+    {
+        _db.Collection("Dogs").Document("홍일이 개").GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompletedSuccessfully)
+            {
+                var snapshot = task.Result;
+                if (snapshot.Exists)
+                {
+                    Dog myDog = snapshot.ConvertTo<Dog>();
+                    Debug.Log($"{myDog.Name}({myDog.Age})");
+                }
+                else
+                {
+                    Debug.LogError("데이터가 없습니다.");
+                }
+            }
+            else
+            {
+                Debug.LogError("불러오기 실패: " + task.Exception);
+            }
+        });
+
+    }
+
+    private void LoadDogs()
+    {
+        _db.Collection("Dogs").GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompletedSuccessfully)
+            {
+                var snapshots = task.Result;
+                Debug.Log("강아지들-------------------------------------------");
+                foreach (DocumentSnapshot snapshot in snapshots.Documents)
+                {
+                    Dog myDog = snapshot.ConvertTo<Dog>();
+                    Debug.Log($"{myDog.Name}({myDog.Age})");
+                }
+
+                Debug.LogError("불러오기 성공!");
+            }
+            else
+            {
+                Debug.LogError("불러오기 실패: " + task.Exception);
+            }
+        });
+    }
+
+    private void DeleteDogs()
+    {
+        // 목표: 소똥이들 삭제
+        _db.Collection("Dogs").WhereEqualTo("Name", "소똥이").GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompletedSuccessfully)
+            {
+                var snapshots = task.Result;
+                Debug.Log("강아지들-------------------------------------------");
+                foreach (DocumentSnapshot snapshot in snapshots.Documents)
+                {
+                    Dog myDog = snapshot.ConvertTo<Dog>();
+                    if (myDog.Name == "소똥이")
+                    {
+                        _db.Collection("Dogs").Document(myDog.Id).DeleteAsync().ContinueWithOnMainThread(task =>
+                        {
+                            if (task.IsCompletedSuccessfully)
+                            {
+                                Debug.Log("데이터가 삭제됐습니다.");
+                            }
+                        });
+                    }
+                }
+
+                Debug.LogError("불러오기 성공!");
+            }
+            else
+            {
+                Debug.LogError("불러오기 실패: " + task.Exception);
+            }
+        });
+    }
+
+
+    private void Update()
+    {
+        if (_app == null) return;
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Register("hongil@skku.re.kr", "12345678");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            _ = Login("hongil@skku.re.kr", "12345678");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Logout();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            CheckLoginStatus();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            _ = SaveDog();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            LoadMyDog();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            LoadDogs();
+        }
+    }
+
+}
