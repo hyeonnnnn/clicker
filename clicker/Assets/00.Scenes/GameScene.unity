@@ -119,6 +119,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &5477008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5477010}
+  - component: {fileID: 5477009}
+  m_Layer: 0
+  m_Name: PlanetManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &5477009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5477008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb72575f18e111419830bf25c6d6880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlanetManager
+  _specTable: {fileID: 11400000, guid: 34b0ae5744f60a3418fff2cef5204923, type: 2}
+--- !u!4 &5477010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5477008}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &138872378
 GameObject:
   m_ObjectHideFlags: 0
@@ -3526,7 +3571,6 @@ GameObject:
   - component: {fileID: 1420666657}
   - component: {fileID: 1420666664}
   - component: {fileID: 1420666648}
-  - component: {fileID: 1420666652}
   - component: {fileID: 1420666659}
   - component: {fileID: 1420666663}
   - component: {fileID: 1420666666}
@@ -3569,22 +3613,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1420666652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420666647}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5814a2cef2eba8848a34bbb7e436bc53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScaleTweeningFeedback
-  _punchScale: 0.15
-  _duration: 0.3
-  _vibrato: 6
-  _elasticity: 0.5
 --- !u!212 &1420666654
 SpriteRenderer:
   serializedVersion: 2
@@ -6541,6 +6569,7 @@ SceneRoots:
   - {fileID: 1178131603}
   - {fileID: 2042600690}
   - {fileID: 140510395}
+  - {fileID: 5477010}
   - {fileID: 1019927631}
   - {fileID: 672511906}
   - {fileID: 1219064028}

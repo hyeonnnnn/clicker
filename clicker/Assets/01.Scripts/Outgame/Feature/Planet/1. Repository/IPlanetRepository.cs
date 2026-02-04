@@ -1,16 +1,8 @@
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class IPlanetRepository : MonoBehaviour
+public interface IPlanetRepository
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    UniTask Save(PlanetSaveData data);
+    UniTask<PlanetSaveData> Load();
 }

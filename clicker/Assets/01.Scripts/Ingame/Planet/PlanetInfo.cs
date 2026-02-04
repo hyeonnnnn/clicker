@@ -18,8 +18,5 @@ public class PlanetData
     public Sprite Sprite;
     public Sprite MiniSprite;
     public Sprite Icon;
-    public double Pressure;
-    public double BonusCoin;
     public string Name;
-    public int Number;
 }

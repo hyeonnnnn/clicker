@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CurrencyManager : MonoBehaviour
 {
-    private static CurrencyManager _instance;
-    public static CurrencyManager Instance => _instance;
+    public static CurrencyManager Instance { get; private set; }
 
     // DIP
     // 구현체에 의존하지 않고 약속에 의존
@@ -19,15 +18,16 @@ public class CurrencyManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null && _instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        _instance = this;
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         string email = AccountManager.Instance.Email;
-        // _repository = new LocalCurrencyRepository(email);
+      
         _repository = new FirebaseCurrencyRepository();
         InitializeCurrency().Forget();
     }

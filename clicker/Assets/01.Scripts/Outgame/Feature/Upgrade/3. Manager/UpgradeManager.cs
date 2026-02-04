@@ -8,11 +8,11 @@ public class UpgradeManager : MonoBehaviour
     public static UpgradeManager Instance { get; private set; }
 
     [SerializeField] private UpgradeSpecTableSO _specTable;
+    private IUpgradeRepository _repository; // 저장, 로드
 
     private Dictionary<EUpgradeEffect, Upgrade> _upgradeDict = new(); // 실제 업그레이드 상태
     private Dictionary<EUpgradeType, UpgradeGroup> _groups = new(); // 순환 표시 규칙
-    private IUpgradeRepository _repository; // 저장, 로드
-
+    
     public static event Action OnDataChanged;
 
     private void Awake()
@@ -23,8 +23,8 @@ public class UpgradeManager : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
 
-        // _repository = new JsonUpgradeRepository(AccountManager.Instance.Email);
         _repository = new FirebaseUpgradeRepository();
         InitializeUpgrades().Forget();
     }

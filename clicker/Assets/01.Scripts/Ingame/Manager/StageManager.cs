@@ -9,57 +9,59 @@ public class StageManager : MonoBehaviour
     [SerializeField] private SpriteRenderer _planetRenderer;
     [SerializeField] private PlanetPressure _planetPressure;
 
-    private int _currentStage;
     private int _previousStage;
 
-    public int CurrentStage => _currentStage;
-    public PlanetData CurrentPlanetData => _planetInfo.GetPlanet(_currentStage);
+    public int CurrentStage => PlanetManager.Instance.CurrentPlanet.Level;
+    public PlanetData CurrentPlanetData => _planetInfo.GetPlanet(CurrentStage % _planetInfo.Count);
     public Sprite CurrentSprite => CurrentPlanetData.Sprite;
-    public Sprite PreviousSprite => _planetInfo.GetPlanet(_previousStage).MiniSprite;
+    public Sprite PreviousSprite => _planetInfo.GetPlanet(_previousStage % _planetInfo.Count).MiniSprite;
 
     public event Action<int> OnStageChanged;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
+        Instance = this;
     }
 
     private void Start()
     {
         _planetPressure.OnDepleted += NextStage;
-        InitializeStage(0);
+        PlanetManager.OnDataChanged += OnPlanetDataChanged;
+
+        if (PlanetManager.Instance.CurrentPlanet != null)
+        {
+            InitializeStage();
+        }
     }
 
     private void OnDestroy()
     {
         _planetPressure.OnDepleted -= NextStage;
+        PlanetManager.OnDataChanged -= OnPlanetDataChanged;
     }
 
-    public void InitializeStage(int stageIndex)
+    private void OnPlanetDataChanged()
     {
-        _currentStage = Mathf.Clamp(stageIndex, 0, _planetInfo.Count - 1);
-        var planetData = _planetInfo.GetPlanet(_currentStage);
+        InitializeStage();
+    }
 
+    public void InitializeStage()
+    {
+        var planetData = CurrentPlanetData;
         _planetRenderer.sprite = planetData.Sprite;
-        _planetPressure.Initialize(planetData.Pressure);
+        var planet = PlanetManager.Instance.CurrentPlanet;
+        _planetPressure.Initialize(planet.MaxPressure, planet.CurrentPressure);
     }
 
     private void NextStage()
     {
-        if (_currentStage < _planetInfo.Count - 1)
-        {
-            _previousStage = _currentStage;
-            // 마지막 다음엔 처음부터
-            int next = (_currentStage + 1) % _planetInfo.Count;
-            InitializeStage(next);
-            OnStageChanged?.Invoke(_currentStage);
-        }
+        _previousStage = CurrentStage;
+        PlanetManager.Instance.NextStage();
+        OnStageChanged?.Invoke(CurrentStage);
     }
 }

@@ -1,16 +1,19 @@
-using UnityEngine;
+﻿using System;
+using Firebase.Firestore;
 
-public class PlanetSaveData : MonoBehaviour
+[Serializable]
+[FirestoreData]
+public class PlanetSaveData
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [FirestoreProperty]
+    public int CurrentStage { get; set; } // 행성의 순서
 
-    // Update is called once per frame
-    void Update()
+    [FirestoreProperty]
+    public double CurrentPressure { get; set; }  // 현재 행성의 압력
+
+    public static PlanetSaveData Default => new PlanetSaveData
     {
-        
-    }
+        CurrentStage = 0,
+        CurrentPressure = 0
+    };
 }

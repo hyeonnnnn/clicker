@@ -16,23 +16,25 @@ public class UI_PlanetInfo : MonoBehaviour
 
     private Tween _pressureTween;
 
-    private void Start()
+    private void OnEnable()
     {
-        StageManager.Instance.OnStageChanged += UpdateStageInfo;
-        UpdateStageInfo(StageManager.Instance.CurrentStage);
-
+        PlanetManager.OnDataChanged += UpdateStageInfo;
         _planetPressure.OnPressureChanged += UpdatePressureUI;
-        UpdatePressureUI(_planetPressure.CurrentPressure, _planetPressure.MaxPressure, true);
+
+        if (PlanetManager.Instance != null && PlanetManager.Instance.CurrentPlanet != null)
+        {
+            UpdateStageInfo();
+        }
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
-        StageManager.Instance.OnStageChanged -= UpdateStageInfo;
+        PlanetManager.OnDataChanged -= UpdateStageInfo;
         _planetPressure.OnPressureChanged -= UpdatePressureUI;
         _pressureTween?.Kill();
     }
 
-    private void UpdateStageInfo(int stageIndex)
+    private void UpdateStageInfo()
     {
         PlanetData data = StageManager.Instance.CurrentPlanetData;
 
@@ -40,7 +42,7 @@ public class UI_PlanetInfo : MonoBehaviour
         {
             if (_planetNameText != null) _planetNameText.text = data.Name;
             if (_planetIconImage != null) _planetIconImage.sprite = data.Icon;
-            if (_planetNumberText != null) _planetNumberText.text = $"{data.Number}";
+            if (_planetNumberText != null) _planetNumberText.text = $"{PlanetManager.Instance.CurrentPlanet.Level}";
         }
     }
 
