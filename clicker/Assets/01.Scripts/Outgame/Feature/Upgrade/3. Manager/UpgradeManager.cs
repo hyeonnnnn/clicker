@@ -24,13 +24,14 @@ public class UpgradeManager : MonoBehaviour
         }
         Instance = this;
 
-        _repository = new JsonUpgradeRepository(AccountManager.Instance.Email);
-        InitializeUpgrades();
+        // _repository = new JsonUpgradeRepository(AccountManager.Instance.Email);
+        _repository = new FirebaseUpgradeRepository();
+        InitializeUpgrades().Forget();
     }
 
-    private void InitializeUpgrades()
+    private async UniTask InitializeUpgrades()
     {
-        var saveData = _repository.Load();
+        var saveData = await _repository.Load();
 
         foreach (var specData in _specTable.Datas)
         {
@@ -109,7 +110,7 @@ public class UpgradeManager : MonoBehaviour
         upgrade.TryLevelUp();
         group.AdvanceToNextAvailable();
 
-        Save();
+        await Save();
         OnDataChanged?.Invoke();
         return true;
     }
@@ -130,7 +131,7 @@ public class UpgradeManager : MonoBehaviour
 
     // ── 저장/불러오기 ──
 
-    private void Save()
+    private async UniTask Save()
     {
         var data = new UpgradeSaveData
         {
@@ -148,16 +149,16 @@ public class UpgradeManager : MonoBehaviour
             data.TypeCursors[(int)pair.Key] = pair.Value.Cursor;
         }
 
-        _repository.Save(data);
+        await _repository.Save(data);
     }
 
     private void OnApplicationPause(bool pause)
     {
-        if (pause) Save();
+        if (pause) Save().Forget();
     }
 
     private void OnApplicationQuit()
     {
-        Save();
+        Save().Forget();
     }
 }

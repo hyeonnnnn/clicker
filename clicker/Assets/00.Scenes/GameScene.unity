@@ -5768,7 +5768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_Coin
   _coinTextUI: {fileID: 2108707809}
   _coinImageUI: {fileID: 1451253343}
-  _currencyManager: {fileID: 0}
+  _currencyManager: {fileID: 1414231507}
   _punchScale: 0.2
   _scaleDuration: 0.3
   _shakeStrength: 4

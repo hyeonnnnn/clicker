@@ -38,6 +38,7 @@ public class CurrencyManager : MonoBehaviour
         for (int i = 0; i < (int)ECurrencyType.Count; i++)
         {
             _currencies[i] = new Currency(saveData.Currencies[i]);
+            OnDataChanged?.Invoke((ECurrencyType)i, _currencies[i]);
         }
     }
 

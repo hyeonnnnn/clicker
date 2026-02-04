@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 using System.IO;
+using UnityEngine;
 
 public class JsonUpgradeRepository : IUpgradeRepository
 {
-
     private readonly string _filePath;
 
     // userId를 받아서 파일을 분리
@@ -12,19 +12,21 @@ public class JsonUpgradeRepository : IUpgradeRepository
         _filePath = Path.Combine(Application.persistentDataPath, $"{userId}_upgrade_save.json");
     }
 
-    public void Save(UpgradeSaveData data)
+    public UniTask Save(UpgradeSaveData data)
     {
         data.LastSaveTime = System.DateTime.Now.ToString("o");
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(_filePath, json);
+
+        return UniTask.CompletedTask;
     }
 
-    public UpgradeSaveData Load()
+    public UniTask<UpgradeSaveData> Load()
     {
         if (!File.Exists(_filePath))
-            return UpgradeSaveData.Default;
+            return UniTask.FromResult(UpgradeSaveData.Default);
 
         string json = File.ReadAllText(_filePath);
-        return JsonUtility.FromJson<UpgradeSaveData>(json);
+        return UniTask.FromResult(JsonUtility.FromJson<UpgradeSaveData>(json));
     }
 }

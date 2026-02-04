@@ -1,11 +1,18 @@
 ﻿using System;
+using Firebase.Firestore;
 
 [Serializable]
-public struct UpgradeSaveData
+[FirestoreData]
+public class UpgradeSaveData
 {
-    public int[] EffectLevels;
-    public int[] TypeCursors;
-    public string LastSaveTime;
+    [FirestoreProperty]
+    public int[] EffectLevels { get; set; }
+
+    [FirestoreProperty]
+    public int[] TypeCursors { get; set; }
+
+    [FirestoreProperty]
+    public string LastSaveTime { get; set; }
 
     public static UpgradeSaveData Default => new UpgradeSaveData
     {
