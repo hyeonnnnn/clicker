@@ -12,6 +12,11 @@ public class MiniPlanetSpawner : MonoBehaviour
         _miniPlanetMove = GetComponent<MiniPlanetMove>();
     }
 
+    private void Start()
+    {
+        SpawnController.Instance.RegisterMiniPlanetSpawner(this);
+    }
+
     public void Spawn(Sprite sprite)
     {
         var miniPlanet = Instantiate(_miniPlanetPrefab, transform);

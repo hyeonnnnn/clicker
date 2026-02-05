@@ -164,6 +164,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &29377215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 29377216}
+  m_Layer: 0
+  m_Name: ------- Manager ----------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &29377216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29377215}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &138872378
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,29 +859,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 451765697}
-  - component: {fileID: 451765696}
+  - component: {fileID: 451765698}
   m_Layer: 0
-  m_Name: SpawnManager
+  m_Name: SpawnController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &451765696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451765695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ad123da11c84c249b23b01879cd4c2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
-  _rocketSpawner: {fileID: 1124949118}
-  _meteorSpawner: {fileID: 672511907}
-  _miniPlanetSpawner: {fileID: 925293612}
 --- !u!4 &451765697
 Transform:
   m_ObjectHideFlags: 0
@@ -866,6 +882,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &451765698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451765695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e1a0c46b702eb42adb40d8a5783ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnController
 --- !u!224 &495337801 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2209688163053828306, guid: 6a40764bbeda039449091ee5f7905128, type: 3}
@@ -2398,6 +2426,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759019910}
   m_CullTransparentMesh: 1
+--- !u!1 &846642354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 846642356}
+  - component: {fileID: 846642355}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &846642355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846642354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad123da11c84c249b23b01879cd4c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnManager
+--- !u!4 &846642356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846642354}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &851141528 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7737529759778169010, guid: 9795456726a4344cb999c2e8030b16b0, type: 3}
@@ -2657,28 +2729,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 938281092}
-  - component: {fileID: 938281091}
+  - component: {fileID: 938281093}
   m_Layer: 0
-  m_Name: StageManager
+  m_Name: StageController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &938281091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 938281090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5f20267ddb13a34696de2080967db28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageManager
-  _planetInfo: {fileID: 11400000, guid: f462ef514a450f94a8978028116f60d9, type: 2}
-  _planetRenderer: {fileID: 1420666654}
 --- !u!4 &938281092
 Transform:
   m_ObjectHideFlags: 0
@@ -2694,6 +2752,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &938281093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938281090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e266560a4d18b0a40a0a7923ff578941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageController
+  _planetInfo: {fileID: 11400000, guid: f462ef514a450f94a8978028116f60d9, type: 2}
+  _planetRenderer: {fileID: 1420666654}
 --- !u!1 &946657587
 GameObject:
   m_ObjectHideFlags: 0
@@ -3096,7 +3168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1063974032}
   m_Layer: 0
-  m_Name: -----------------------------
+  m_Name: -------- Controller ---------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3254,7 +3326,7 @@ GameObject:
   - component: {fileID: 1178131603}
   - component: {fileID: 1178131602}
   m_Layer: 0
-  m_Name: PoolManager
+  m_Name: PoolController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5689,7 +5761,7 @@ GameObject:
   - component: {fileID: 2042600690}
   - component: {fileID: 2042600689}
   m_Layer: 0
-  m_Name: SoundManager
+  m_Name: SoundController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6609,13 +6681,15 @@ SceneRoots:
   - {fileID: 277219774}
   - {fileID: 2128992974}
   - {fileID: 1063974032}
-  - {fileID: 938281092}
-  - {fileID: 1414231506}
-  - {fileID: 1178131603}
   - {fileID: 2042600690}
+  - {fileID: 1178131603}
+  - {fileID: 451765697}
+  - {fileID: 938281092}
+  - {fileID: 29377216}
+  - {fileID: 1414231506}
   - {fileID: 140510395}
   - {fileID: 5477010}
-  - {fileID: 451765697}
+  - {fileID: 846642356}
   - {fileID: 1019927631}
   - {fileID: 1219064028}
   - {fileID: 672511906}

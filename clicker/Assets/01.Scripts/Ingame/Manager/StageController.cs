@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-public class StageManager : MonoBehaviour
+public class StageController : MonoBehaviour
 {
-    public static StageManager Instance { get; private set; }
+    public static StageController Instance { get; private set; }
 
     [SerializeField] private PlanetInfo _planetInfo;
     [SerializeField] private SpriteRenderer _planetRenderer;
@@ -67,6 +67,11 @@ public class StageManager : MonoBehaviour
             Level = $"{PlanetManager.Instance.CurrentPlanet.Level}",
             Icon = data?.Icon
         };
+    }
+
+    public Sprite GetMiniSprite(int stage)
+    {
+        return _planetInfo.GetPlanet(stage % _planetInfo.Count).MiniSprite;
     }
 
     public void InitializeStage()

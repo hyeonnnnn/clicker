@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 public class MeteorSpawner : MonoBehaviour
@@ -10,11 +11,35 @@ public class MeteorSpawner : MonoBehaviour
     [SerializeField] private Transform _parent;
     [SerializeField] private float _spawnRadius = 0.3f;
 
+    private readonly List<MeteorController> _meteorList = new();
+
+    private void Start()
+    {
+        SpawnController.Instance.RegisterMeteorSpawner(this);
+    }
+
     public void Spawn()
     {
         Vector3 spawnPosition = GetRandomCircleWorldPosition(_parent.position);
         GameObject meteorPrefab = _meteors[Random.Range(0, _meteors.Length)];
-        Instantiate(meteorPrefab, spawnPosition, Quaternion.identity, _parent);
+        var meteor = Instantiate(meteorPrefab, spawnPosition, Quaternion.identity, _parent);
+        var controller = meteor.GetComponent<MeteorController>();
+        _meteorList.Add(controller);
+    }
+
+    public Vector2[] GetDirections()
+    {
+        var directions = new Vector2[_meteorList.Count];
+        for (int i = 0; i < _meteorList.Count; i++)
+            directions[i] = _meteorList[i].GetDirection();
+        return directions;
+    }
+
+    public void SetDirections(Vector2[] directions)
+    {
+        int count = Mathf.Min(_meteorList.Count, directions.Length);
+        for (int i = 0; i < count; i++)
+            _meteorList[i].SetDirection(directions[i]);
     }
 
     private Vector3 GetRandomCircleWorldPosition(Vector3 centerWorld)

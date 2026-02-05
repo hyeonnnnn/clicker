@@ -10,6 +10,13 @@ public class RocketController : WeaponBase
 
     public event Action OnPassedCenter;
 
+    public float GetTime() => _move.CurrentTime;
+
+    public void SetTimeOffset(float offset)
+    {
+        _move.SetTimeOffset(offset);
+    }
+
     protected override void Init()
     {
         _move = GetComponent<RocketMove>();

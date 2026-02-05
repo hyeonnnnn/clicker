@@ -7,6 +7,10 @@ public class MeteorController : WeaponBase
     private MeteorMove _move;
     private MeteorAttack _attack;
 
+    public Vector2 GetDirection() => _move.Direction;
+
+    public void SetDirection(Vector2 dir) => _move.SetDirection(dir);
+
     protected override void Init()
     {
         _move = GetComponent<MeteorMove>();

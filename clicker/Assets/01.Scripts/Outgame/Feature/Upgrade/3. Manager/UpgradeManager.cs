@@ -13,6 +13,8 @@ public class UpgradeManager : MonoBehaviour
     private Dictionary<EUpgradeEffect, Upgrade> _upgradeDict = new(); // 실제 업그레이드 상태
     private Dictionary<EUpgradeType, UpgradeGroup> _groups = new(); // 순환 표시 규칙
     
+    public bool IsInitialized { get; private set; }
+
     public static event Action OnDataChanged;
     public static event Action<EUpgradeEffect> OnUpgraded;
 
@@ -77,6 +79,8 @@ public class UpgradeManager : MonoBehaviour
             var group = new UpgradeGroup(specData.Type, specData.Name, effects.ToArray(), _upgradeDict, savedCursor);
             _groups[specData.Type] = group;
         }
+
+        IsInitialized = true;
     }
 
     // ── 조회 ──

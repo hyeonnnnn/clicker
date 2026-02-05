@@ -15,6 +15,13 @@ public class MeteorMove : MonoBehaviour
     private Vector2 _direction;
     private float _currentSpeed;
 
+    public Vector2 Direction => _direction;
+
+    public void SetDirection(Vector2 dir)
+    {
+        _direction = dir;
+    }
+
     private Camera _mainCamera;
     private Rigidbody2D _rb;
     private Tween _speedTween;
@@ -29,8 +36,9 @@ public class MeteorMove : MonoBehaviour
     {
         InitializePhysics();
 
-        // 초기 방향 설정
-        _direction = Random.insideUnitCircle.normalized;
+        if (_direction == Vector2.zero)
+            _direction = Random.insideUnitCircle.normalized;
+
         _currentSpeed = GetUpgradedSpeed();
     }
 

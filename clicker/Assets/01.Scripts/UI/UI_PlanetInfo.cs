@@ -35,14 +35,11 @@ public class UI_PlanetInfo : MonoBehaviour
     private void UpdateStageInfo()
     {
         // 정보창 초기화
-        PlanetData data = StageManager.Instance.CurrentPlanetData;
+        var data = StageController.Instance.GetPlanetInfoViewData();
 
-        if (data != null)
-        {
-            if (_planetNameText != null) _planetNameText.text = data.Name;
-            if (_planetIconImage != null) _planetIconImage.sprite = data.Icon;
-            if (_planetNumberText != null) _planetNumberText.text = $"{PlanetManager.Instance.CurrentPlanet.Level}";
-        }
+        if (_planetNameText != null) _planetNameText.text = data.Name;
+        if (_planetIconImage != null) _planetIconImage.sprite = data.Icon;
+        if (_planetNumberText != null) _planetNumberText.text = data.Level;
 
         // 슬라이더 초기화
         var planet = PlanetManager.Instance.CurrentPlanet;
