@@ -6,17 +6,16 @@ public class RocketSpawner : MonoBehaviour
     [SerializeField] private GameObject _rocketPrefab;
     [SerializeField] private Transform _spawnParent;
 
-    private readonly List<RocketMove> _rockets = new List<RocketMove>();
+    private readonly List<RocketController> _rockets = new List<RocketController>();
     private int _currentTurnIndex;
 
     public void Spawn()
     {
         var rocket = Instantiate(_rocketPrefab, _spawnParent);
-        var rocketMove = rocket.GetComponent<RocketMove>();
+        var controller = rocket.GetComponent<RocketController>();
 
-        rocketMove.OnPassedCenter += () => AdvanceTurn();
-        _rockets.Add(rocketMove);
-
+        controller.OnPassedCenter += AdvanceTurn;
+        _rockets.Add(controller);
     }
 
     private void AdvanceTurn()

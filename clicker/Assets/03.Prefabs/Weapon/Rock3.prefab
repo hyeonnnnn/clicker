@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -9159081880025526557}
   - component: {fileID: -98410049891112008}
   - component: {fileID: 5059483879630864927}
+  - component: {fileID: -1940073647789153430}
   m_Layer: 6
   m_Name: Rock3
   m_TagString: Untagged
@@ -144,10 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5cca596968c6744abc7027311e252f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RockAttack
-  _damage: 400
-  _ignoreDuration: 0
-  _impactEffectPrefab: {fileID: 8190856933934120873, guid: 3d4c4425b69231e4fb42e928f9f97b1e, type: 3}
-  _effectDespawnDelay: 1.5
 --- !u!114 &-98410049891112008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e392f6c6747e58a45a53bf2b5390b6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RockMove
-  _speed: 3
+  _baseSpeed: 5
   _bounceRandomAngle: 30
   _boostMultiplier: 2
   _boostDuration: 0.2
@@ -191,3 +188,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-1940073647789153430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533035904973063086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46deaff24956bda42adcef94010beaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeteorController

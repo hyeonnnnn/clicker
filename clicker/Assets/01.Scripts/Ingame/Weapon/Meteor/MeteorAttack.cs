@@ -6,13 +6,9 @@ public class MeteorAttack : MonoBehaviour
 {
     private double Damage => UpgradeManager.Instance.GetUpgrade(EUpgradeEffect.MeteorPower)?.Value ?? 0;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Attack(Collider2D planetCollider, ContactPoint2D contact)
     {
-        if (!collision.collider.CompareTag("Planet")) return;
-
-        ContactPoint2D contact = collision.contacts[0];
-
-        if (collision.collider.TryGetComponent(out PlanetPressure planetPressure))
+        if (planetCollider.TryGetComponent(out PlanetPressure planetPressure))
         {
             planetPressure.TakeDamage(Damage);
         }

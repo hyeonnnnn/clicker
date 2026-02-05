@@ -7,7 +7,7 @@ public class MiniPlanetAttackSequence : MonoBehaviour
     [SerializeField] private float _cooldown = 5f;
     [SerializeField] private float _attackInterval = 0.2f;
 
-    private List<MiniPlanetAttack> _miniPlanets = new List<MiniPlanetAttack>();
+    private List<MiniPlanetController> _miniPlanets = new List<MiniPlanetController>();
     private float _timer;
     private bool _isAttacking;
 
@@ -40,9 +40,9 @@ public class MiniPlanetAttackSequence : MonoBehaviour
         _isAttacking = false;
     }
 
-    private List<MiniPlanetAttack> GetActiveMiniPlanets()
+    private List<MiniPlanetController> GetActiveMiniPlanets()
     {
-        var activeList = new List<MiniPlanetAttack>();
+        var activeList = new List<MiniPlanetController>();
         foreach (var miniPlanet in _miniPlanets)
         {
             if (miniPlanet.gameObject.activeInHierarchy)
@@ -53,7 +53,7 @@ public class MiniPlanetAttackSequence : MonoBehaviour
         return activeList;
     }
 
-    public void AddMiniPlanet(MiniPlanetAttack miniPlanet)
+    public void AddMiniPlanet(MiniPlanetController miniPlanet)
     {
         _miniPlanets.Add(miniPlanet);
     }

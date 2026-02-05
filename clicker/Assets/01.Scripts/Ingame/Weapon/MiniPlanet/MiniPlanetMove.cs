@@ -36,10 +36,10 @@ public class MiniPlanetMove : MonoBehaviour
             child.localPosition = position;
             child.localRotation = rotation;
 
-            var attack = child.GetComponent<MiniPlanetAttack>();
-            if (attack != null)
+            var controller = child.GetComponent<MiniPlanetController>();
+            if (controller != null)
             {
-                attack.Initialize(position, rotation);
+                controller.Initialize(position, rotation);
             }
         }
     }

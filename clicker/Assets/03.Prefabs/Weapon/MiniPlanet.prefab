@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 754935453592618407}
   - component: {fileID: 5818285995988047524}
   - component: {fileID: 8787007578820463606}
+  - component: {fileID: 6168347129813282798}
+  - component: {fileID: 3852442292763687817}
   m_Layer: 6
   m_Name: MiniPlanet
   m_TagString: Untagged
@@ -106,7 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0335d451371cd8e4ead10d6b78514e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniPlanetAttack
-  _damage: 1000
   _attackDuration: 0.2
   _returnDuration: 0.3
 --- !u!58 &5818285995988047524
@@ -172,3 +173,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6168347129813282798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4252077829074430282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c74e4b81fdd3448ba7fa240f10881e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniPlanetController
+--- !u!114 &3852442292763687817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4252077829074430282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2003ccf912449534390ec9cd936c15f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniPlanetMove
+  _planetInfo: {fileID: 11400000, guid: f462ef514a450f94a8978028116f60d9, type: 2}
+  _minRadius: 2
+  _minSpacing: 1
+  _rotationSpeed: 90

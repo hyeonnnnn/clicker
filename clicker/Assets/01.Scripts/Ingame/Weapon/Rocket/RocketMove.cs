@@ -16,13 +16,9 @@ public class RocketMove : MonoBehaviour
 
     public event Action OnPassedCenter;
 
-    private void Start()
+    public void Initialize(Transform target)
     {
-        var planet = GameObject.FindGameObjectWithTag("Planet");
-        if (planet != null)
-        {
-            _target = planet.transform;
-        }
+        _target = target;
     }
 
     private void Update()

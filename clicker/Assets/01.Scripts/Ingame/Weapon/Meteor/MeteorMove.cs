@@ -45,9 +45,9 @@ public class MeteorMove : MonoBehaviour
         CheckScreenBoundaries();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollision(Vector2 hitNormal)
     {
-        HandleCollisionBounce(collision.contacts[0].normal);
+        HandleCollisionBounce(hitNormal);
     }
 
     private void InitializePhysics()

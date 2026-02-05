@@ -6,33 +6,16 @@ public class RocketAttack : MonoBehaviour
 {
     private double Damage => UpgradeManager.Instance.GetUpgrade(EUpgradeEffect.RocketPower)?.Value ?? 0;
 
-    private RocketMove _rocketMove;
     private Transform _target;
     private PlanetPressure _planetPressure;
 
-    private void Awake()
+    public void Initialize(Transform target, PlanetPressure planetPressure)
     {
-        _rocketMove = GetComponent<RocketMove>();
+        _target = target;
+        _planetPressure = planetPressure;
     }
 
-    private void Start()
-    {
-        var planet = GameObject.FindGameObjectWithTag("Planet");
-        if (planet != null)
-        {
-            _target = planet.transform;
-            _planetPressure = planet.GetComponent<PlanetPressure>();
-        }
-
-        _rocketMove.OnPassedCenter += OnPassedCenter;
-    }
-
-    private void OnDestroy()
-    {
-        _rocketMove.OnPassedCenter -= OnPassedCenter;
-    }
-
-    private void OnPassedCenter()
+    public void Attack()
     {
         _planetPressure.TakeDamage(Damage);
 

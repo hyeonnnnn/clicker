@@ -3,20 +3,18 @@
 public class MiniPlanetSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _miniPlanetPrefab;
-    private MiniPlanetAttackSequence _attackerSelector;
+    private MiniPlanetAttackSequence _attackSequence;
     private MiniPlanetMove _miniPlanetMove;
-    private Transform _spawnParent;
 
     private void Awake()
     {
-        _attackerSelector = GetComponent<MiniPlanetAttackSequence>();
+        _attackSequence = GetComponent<MiniPlanetAttackSequence>();
         _miniPlanetMove = GetComponent<MiniPlanetMove>();
-        _spawnParent = transform;
     }
 
     public void Spawn(Sprite sprite)
     {
-        var miniPlanet = Instantiate(_miniPlanetPrefab, _spawnParent);
+        var miniPlanet = Instantiate(_miniPlanetPrefab, transform);
 
         var spriteRenderer = miniPlanet.GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
@@ -24,10 +22,10 @@ public class MiniPlanetSpawner : MonoBehaviour
             spriteRenderer.sprite = sprite;
         }
 
-        var attack = miniPlanet.GetComponent<MiniPlanetAttack>();
-        if (attack != null)
+        var controller = miniPlanet.GetComponent<MiniPlanetController>();
+        if (controller != null)
         {
-            _attackerSelector.AddMiniPlanet(attack);
+            _attackSequence.AddMiniPlanet(controller);
         }
 
         _miniPlanetMove.Rearrange();
