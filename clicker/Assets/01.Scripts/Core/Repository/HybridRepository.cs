@@ -75,21 +75,20 @@ public class HybridRepository<T> where T : class, ISaveData, new()
     {
         _debounceCts?.Cancel();
 
-        if (_pendingData != null) // 대기 중인 데이터가 있으면 바로 저장
+        var dataToSave = _pendingData ?? await _localRepository.Load();
+
+        if (dataToSave != null)
         {
-            await _localRepository.Save(_pendingData);
-            await _firebaseRepository.Save(_pendingData);
+            // // 저장 직전에 LastSavedAt을 지금으로 찍고
+            // 로컬 + 원격 둘 다 같은 데이터를 저장
+            dataToSave.LastSavedAt = DateTime.UtcNow.ToString("o"); 
+            
+            await UniTask.WhenAll(
+                _localRepository.Save(dataToSave),
+                _firebaseRepository.Save(dataToSave)
+            );
             _pendingData = null;
             _localSaveCount = 0;
-        }
-        else // 없으면 로컬의 최신 데이터를 서버에 강제로 저장
-        {
-            var data = await _localRepository.Load();
-            if (data != null)
-            {
-                await _firebaseRepository.Save(data);
-                _localSaveCount = 0;
-            }
         }
     }
 
