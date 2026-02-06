@@ -7,7 +7,7 @@ public class PlanetManager : MonoBehaviour
     public static PlanetManager Instance { get; private set; }
 
     [SerializeField] private PlanetSpecTableSO _specTable;
-    private IPlanetRepository _repository;
+    private HybridRepository<PlanetSaveData> _repository;
 
     private Planet _planet;
 
@@ -24,7 +24,11 @@ public class PlanetManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        _repository = new FirebasePlanetRepository();
+        string userId = AccountManager.Instance.Email;
+        _repository = new HybridRepository<PlanetSaveData>(
+            new LocalPlanetRepository(userId),
+            new FirebasePlanetRepository()
+        );
         InitializePlanets().Forget();
     }
 
@@ -49,14 +53,14 @@ public class PlanetManager : MonoBehaviour
     {
         _planet.NextLevel();
 
-        Save().Forget();
+        Save();
         OnDataChanged?.Invoke();
     }
 
     // ── 저장/불러오기 ──
-    private async UniTask Save()
+    private void Save()
     {
-        await _repository.Save(new PlanetSaveData
+        _repository.Save(new PlanetSaveData
         {
             CurrentStage = _planet.Level,
             CurrentPressure = _planet.CurrentPressure
@@ -65,11 +69,16 @@ public class PlanetManager : MonoBehaviour
 
     private void OnApplicationPause(bool pause)
     {
-        if (pause) Save().Forget();
+        if (pause)
+        {
+            Save();
+            _repository.ForceRemoteSave().Forget();
+        }
     }
 
     private void OnApplicationQuit()
     {
-        Save().Forget();
+        Save();
+        _repository.ForceRemoteSave().Forget();
     }
 }

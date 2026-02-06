@@ -8,7 +8,7 @@ public class UpgradeManager : MonoBehaviour
     public static UpgradeManager Instance { get; private set; }
 
     [SerializeField] private UpgradeSpecTableSO _specTable;
-    private IUpgradeRepository _repository; // 저장, 로드
+    private HybridRepository<UpgradeSaveData> _repository;
 
     private Dictionary<EUpgradeEffect, Upgrade> _upgradeDict = new(); // 실제 업그레이드 상태
     private Dictionary<EUpgradeType, UpgradeGroup> _groupDict = new(); // 순환 표시 규칙
@@ -28,7 +28,11 @@ public class UpgradeManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        _repository = new FirebaseUpgradeRepository();
+        string userId = AccountManager.Instance.Email;
+        _repository = new HybridRepository<UpgradeSaveData>(
+            new JsonUpgradeRepository(userId),
+            new FirebaseUpgradeRepository()
+        );
         InitializeUpgrades().Forget();
     }
 
@@ -104,7 +108,7 @@ public class UpgradeManager : MonoBehaviour
 
     // ── 비즈니스 로직 ──
 
-    public async UniTask<bool> TryLevelUp(EUpgradeType type)
+    public bool TryLevelUp(EUpgradeType type)
     {
         var group = GetGroup(type);
         if (group == null) return false;
@@ -115,13 +119,13 @@ public class UpgradeManager : MonoBehaviour
         var upgrade = _upgradeDict[effect.Value];
 
         double cost = upgrade.Cost;
-        if (!await CurrencyManager.Instance.TrySpend(ECurrencyType.Star, cost))
+        if (!CurrencyManager.Instance.TrySpend(ECurrencyType.Star, cost))
             return false;
 
         upgrade.TryLevelUp();
         group.AdvanceToNextAvailable();
 
-        await Save();
+        Save();
         OnDataChanged?.Invoke();
         OnUpgraded?.Invoke(effect.Value);
         return true;
@@ -143,7 +147,7 @@ public class UpgradeManager : MonoBehaviour
 
     // ── 저장/불러오기 ──
 
-    private async UniTask Save()
+    private void Save()
     {
         var data = new UpgradeSaveData
         {
@@ -161,16 +165,21 @@ public class UpgradeManager : MonoBehaviour
             data.TypeCursors[(int)pair.Key] = pair.Value.Cursor;
         }
 
-        await _repository.Save(data);
+        _repository.Save(data);
     }
 
     private void OnApplicationPause(bool pause)
     {
-        if (pause) Save().Forget();
+        if (pause)
+        {
+            Save();
+            _repository.ForceRemoteSave().Forget();
+        }
     }
 
     private void OnApplicationQuit()
     {
-        Save().Forget();
+        Save();
+        _repository.ForceRemoteSave().Forget();
     }
 }

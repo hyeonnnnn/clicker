@@ -19,7 +19,7 @@ public class UI_UpgradeItem : MonoBehaviour
 
     private void Start()
     {
-        _purchaseButton.onClick.AddListener(() => OnPurchaseClicked().Forget());
+        _purchaseButton.onClick.AddListener(OnPurchaseClicked);
         Refresh();
     }
 
@@ -34,11 +34,11 @@ public class UI_UpgradeItem : MonoBehaviour
         _purchaseButton.interactable = data.CanPurchase;
     }
 
-    private async UniTask OnPurchaseClicked()
+    private void OnPurchaseClicked()
     {
         // 중복 클릭 방지
         _purchaseButton.interactable = false;
-        bool success = await UpgradeManager.Instance.TryLevelUp(_upgradeType);
+        UpgradeManager.Instance.TryLevelUp(_upgradeType);
         Refresh();
     }
 }
