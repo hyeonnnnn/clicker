@@ -40,7 +40,7 @@ public class UpgradeManager : MonoBehaviour
         {
             var effects = new List<EUpgradeEffect>();
 
-            foreach (var stepData in specData.Steps)
+            foreach (var stepData in specData.Steps)  //1-3
             {
                 if (_upgradeDict.ContainsKey(stepData.Effect))
                 {
@@ -104,6 +104,8 @@ public class UpgradeManager : MonoBehaviour
         var upgrade = group.GetCurrentUpgrade();
         bool isMax = group.IsAllMaxLevel();
 
+        // ui 표현까지 넘겨주는게 매니저의 역할일까?
+        // 
         return new UpgradeItemViewData
         {
             Name = group.Name,

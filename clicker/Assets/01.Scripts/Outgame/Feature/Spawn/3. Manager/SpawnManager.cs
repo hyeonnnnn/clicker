@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -6,6 +7,11 @@ public class SpawnManager : MonoBehaviour
     public static SpawnManager Instance { get; private set; }
 
     private ISpawnRepository _repository;
+
+    public Spawn Spawn;
+
+    public Action OnDataInitiailized;
+    public Action OnSaveRequest;
 
     private void Awake()
     {
@@ -34,18 +40,29 @@ public class SpawnManager : MonoBehaviour
     private async UniTask Initialize()
     {
         SpawnSaveData saveData = await _repository.Load();
-        Vector2[] directions = ToVector2Array(saveData.MeteorDirections);
-        SpawnController.Instance.Initialize(saveData.RocketTimes, directions);
+
+        Spawn = new Spawn(saveData.RocketTimes, saveData.MeteorDirections);
+
+        OnDataInitiailized?.Invoke();
     }
 
     // ── 저장 ──
+    public void Set(float[] rocketTimes, Vector2[] meteorDirections)
+    {
+        Spawn.SetRocketTimes(rocketTimes);
+        Spawn.SetMeteorDirections(meteorDirections);
+    }
+
+
 
     private async UniTask Save()
     {
+        OnSaveRequest?.Invoke();
+
         var data = new SpawnSaveData
         {
-            RocketTimes = SpawnController.Instance.GetRocketTimes(),
-            MeteorDirections = ToFloatArray(SpawnController.Instance.GetMeteorDirections())
+            RocketTimes = Spawn.RocketTimes,
+            MeteorDirections = Spawn.MeteorDirections
         };
 
         await _repository.Save(data);
@@ -53,30 +70,7 @@ public class SpawnManager : MonoBehaviour
 
     // ── Vector2 변환 ──
 
-    private static float[] ToFloatArray(Vector2[] vectors)
-    {
-        if (vectors == null) return null;
-
-        float[] result = new float[vectors.Length * 2];
-        for (int i = 0; i < vectors.Length; i++)
-        {
-            result[i * 2] = vectors[i].x;
-            result[i * 2 + 1] = vectors[i].y;
-        }
-        return result;
-    }
-
-    private static Vector2[] ToVector2Array(float[] floats)
-    {
-        if (floats == null || floats.Length % 2 != 0) return null;
-
-        Vector2[] result = new Vector2[floats.Length / 2];
-        for (int i = 0; i < result.Length; i++)
-        {
-            result[i] = new Vector2(floats[i * 2], floats[i * 2 + 1]);
-        }
-        return result;
-    }
+    
 
     private void OnApplicationPause(bool pause)
     {

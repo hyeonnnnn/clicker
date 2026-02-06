@@ -16,6 +16,10 @@ public sealed class UpgradeGroup
                         IReadOnlyDictionary<EUpgradeEffect, Upgrade> upgrades,
                         int initialCursor = 0)
     {
+        // todo: 유효성 검사를 해줘야지
+        // - 옛날에는 표현력이 증가해서 실수가 감소
+        // - 지금은 ai조차 이 표현력을 읽고 코딩을 도와준다.
+
         Type = type;
         Name = name;
         _effects = effects;

@@ -18,6 +18,12 @@ public class SpawnController : MonoBehaviour
             return;
         }
         Instance = this;
+
+        SpawnManager.Instance.OnDataInitiailized += Initialize;
+        SpawnManager.Instance.OnSaveRequest += () =>
+        {
+            SpawnManager.Instance.Set(_rocketSpawner.GetTimes(), _meteorSpawner.GetDirections());
+        };
     }
 
     private void Start()
@@ -40,8 +46,12 @@ public class SpawnController : MonoBehaviour
 
     // ── 초기화 (SpawnManager가 호출) ──
 
-    public void Initialize(float[] rocketTimes, Vector2[] meteorDirections)
+    private void Initialize()
     {
+        float[] rocketTimes = SpawnManager.Instance.Spawn.RocketTimes;
+
+        Vector2[] meteorDirections = SpawnManager.Instance.Spawn.VectorMeteorDirections;
+
         // 로켓
         int rocketCount = UpgradeManager.Instance.GetUpgrade(EUpgradeEffect.RocketCount)?.Level ?? 0;
         for (int i = 0; i < rocketCount; i++)
@@ -86,8 +96,5 @@ public class SpawnController : MonoBehaviour
         _miniPlanetSpawner.Spawn(StageController.Instance.PreviousSprite);
     }
 
-    // ── 상태 조회 (SpawnManager가 저장할 때 호출) ──
 
-    public float[] GetRocketTimes() => _rocketSpawner.GetTimes();
-    public Vector2[] GetMeteorDirections() => _meteorSpawner.GetDirections();
 }
