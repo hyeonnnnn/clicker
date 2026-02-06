@@ -50,6 +50,6 @@ public class ClickTarget : MonoBehaviour, IClickable
 
     private void OnPlanetDamaged(double damage)
     {
-        CurrencyManager.Instance.Add(ECurrencyType.Star, damage).Forget();
+        CurrencyManager.Instance.Add(ECurrencyType.Star, damage);
     }
 }

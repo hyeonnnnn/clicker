@@ -6,7 +6,7 @@ public class WeaponStateManager : MonoBehaviour
 {
     public static WeaponStateManager Instance { get; private set; }
 
-    private IWeaponStateRepository _repository;
+    private HybridRepository<WeaponStateSaveData> _repository;
 
     public WeaponState weaponState;
 
@@ -21,7 +21,12 @@ public class WeaponStateManager : MonoBehaviour
             return;
         }
         Instance = this;
-        _repository = new FirebaseWeaponStateRepository();
+
+        string userId = AccountManager.Instance?.Email ?? "local";
+        _repository = new HybridRepository<WeaponStateSaveData>(
+            new LocalWeaponStateRepository(userId),
+            new FirebaseWeaponStateRepository()
+        );
     }
 
     private async UniTaskVoid Start()
@@ -53,7 +58,7 @@ public class WeaponStateManager : MonoBehaviour
         weaponState.SetMeteorCount(meteorCount);
     }
 
-    private async UniTask Save()
+    private void Save()
     {
         OnSaveRequest?.Invoke();
 
@@ -63,16 +68,21 @@ public class WeaponStateManager : MonoBehaviour
             MeteorCount = weaponState.MeteorCount
         };
 
-        await _repository.Save(data);
+        _repository.Save(data);
     }
 
     private void OnApplicationPause(bool pause)
     {
-        if (pause) Save().Forget();
+        if (pause)
+        {
+            Save();
+            _repository.ForceRemoteSave().Forget();
+        }
     }
 
     private void OnApplicationQuit()
     {
-        Save().Forget();
+        Save();
+        _repository.ForceRemoteSave().Forget();
     }
 }
