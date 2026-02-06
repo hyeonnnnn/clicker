@@ -1,16 +1,30 @@
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class LocalPlanetRepository : MonoBehaviour
+public class LocalPlanetRepository : IPlanetRepository
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private readonly string _key;
+
+    public LocalPlanetRepository(string userId)
     {
-        
+        _key = $"{userId}_planet";
     }
 
-    // Update is called once per frame
-    void Update()
+    public UniTask Save(PlanetSaveData data)
     {
-        
+        string json = JsonUtility.ToJson(data);
+        PlayerPrefs.SetString(_key, json);
+        PlayerPrefs.Save();
+        return UniTask.CompletedTask;
+    }
+
+    public UniTask<PlanetSaveData> Load()
+    {
+        if (!PlayerPrefs.HasKey(_key))
+            return UniTask.FromResult(PlanetSaveData.Default);
+
+        string json = PlayerPrefs.GetString(_key);
+        var data = JsonUtility.FromJson<PlanetSaveData>(json);
+        return UniTask.FromResult(data);
     }
 }
