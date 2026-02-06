@@ -1,7 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
-
-public interface IWeaponStateRepository
+﻿
+public interface IWeaponStateRepository : IRepository<WeaponStateSaveData>
 {
-    UniTask Save(WeaponStateSaveData saveData);
-    UniTask<WeaponStateSaveData> Load();
+
 }

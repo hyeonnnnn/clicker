@@ -3,7 +3,7 @@ using System;
 
 [Serializable]
 [FirestoreData]
-public class WeaponStateSaveData
+public class WeaponStateSaveData : ISaveData
 {
     [FirestoreProperty]
     public float[] RocketTimes { get; set; }
@@ -11,9 +11,13 @@ public class WeaponStateSaveData
     [FirestoreProperty]
     public int MeteorCount { get; set; }
 
+    [FirestoreProperty]
+    public string LastSavedAt { get; set; }
+
     public static WeaponStateSaveData Default => new WeaponStateSaveData
     {
         RocketTimes = Array.Empty<float>(),
-        MeteorCount = 0
+        MeteorCount = 0,
+        LastSavedAt = null
     };
 }
