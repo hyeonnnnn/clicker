@@ -2,13 +2,13 @@
 using System;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class WeaponStateManager : MonoBehaviour
 {
-    public static SpawnManager Instance { get; private set; }
+    public static WeaponStateManager Instance { get; private set; }
 
-    private ISpawnRepository _repository;
+    private IWeaponStateRepository _repository;
 
-    public Spawn Spawn;
+    public WeaponState weaponState;
 
     public Action OnDataInitiailized;
     public Action OnSaveRequest;
@@ -21,7 +21,7 @@ public class SpawnManager : MonoBehaviour
             return;
         }
         Instance = this;
-        _repository = new FirebaseSpawnRepository();
+        _repository = new FirebaseWeaponStateRepository();
     }
 
     private async UniTaskVoid Start()
@@ -39,38 +39,32 @@ public class SpawnManager : MonoBehaviour
 
     private async UniTask Initialize()
     {
-        SpawnSaveData saveData = await _repository.Load();
+        WeaponStateSaveData saveData = await _repository.Load();
 
-        Spawn = new Spawn(saveData.RocketTimes, saveData.MeteorDirections);
+        weaponState = new WeaponState(saveData.RocketTimes, saveData.MeteorCount);
 
         OnDataInitiailized?.Invoke();
     }
 
     // ── 저장 ──
-    public void Set(float[] rocketTimes, Vector2[] meteorDirections)
+    public void Set(float[] rocketTimes, int meteorCount)
     {
-        Spawn.SetRocketTimes(rocketTimes);
-        Spawn.SetMeteorDirections(meteorDirections);
+        weaponState.SetRocketLaunchTimes(rocketTimes);
+        weaponState.SetMeteorCount(meteorCount);
     }
-
-
 
     private async UniTask Save()
     {
         OnSaveRequest?.Invoke();
 
-        var data = new SpawnSaveData
+        var data = new WeaponStateSaveData
         {
-            RocketTimes = Spawn.RocketTimes,
-            MeteorDirections = Spawn.MeteorDirections
+            RocketTimes = weaponState.RocketLaunchTimes,
+            MeteorCount = weaponState.MeteorCount
         };
 
         await _repository.Save(data);
     }
-
-    // ── Vector2 변환 ──
-
-    
 
     private void OnApplicationPause(bool pause)
     {

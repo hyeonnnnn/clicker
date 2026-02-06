@@ -15,12 +15,9 @@ public class UI_UpgradeItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private Button _purchaseButton;
 
-    private void Start()
-    {
-        Initialize();
-    }
+    private readonly UpgradeViewModel _viewModel = new();
 
-    private void Initialize()
+    private void Start()
     {
         _purchaseButton.onClick.AddListener(() => OnPurchaseClicked().Forget());
         Refresh();
@@ -28,7 +25,7 @@ public class UI_UpgradeItem : MonoBehaviour
 
     public void Refresh()
     {
-        var data = UpgradeManager.Instance.GetUpgradeItemViewData(_upgradeType);
+        var data = _viewModel.GetItemViewData(_upgradeType);
 
         _nameText.text = data.Name;
         _descriptionText.text = data.Description;

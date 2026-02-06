@@ -11,7 +11,7 @@ public class UpgradeManager : MonoBehaviour
     private IUpgradeRepository _repository; // 저장, 로드
 
     private Dictionary<EUpgradeEffect, Upgrade> _upgradeDict = new(); // 실제 업그레이드 상태
-    private Dictionary<EUpgradeType, UpgradeGroup> _groups = new(); // 순환 표시 규칙
+    private Dictionary<EUpgradeType, UpgradeGroup> _groupDict = new(); // 순환 표시 규칙
     
     public bool IsInitialized { get; private set; }
 
@@ -38,88 +38,68 @@ public class UpgradeManager : MonoBehaviour
 
         foreach (var specData in _specTable.Datas)
         {
-            var effects = new List<EUpgradeEffect>();
-
-            foreach (var stepData in specData.Steps)  //1-3
-            {
-                if (_upgradeDict.ContainsKey(stepData.Effect))
-                {
-                    Debug.LogWarning($"업그레이드 이펙트가 중복되었습니다. {stepData.Effect}");
-                    continue;
-                }
-
-                int savedLevel = 0;
-                int effectIndex = (int)stepData.Effect;
-                if (saveData.EffectLevels != null && effectIndex < saveData.EffectLevels.Length)
-                {
-                    savedLevel = saveData.EffectLevels[effectIndex];
-                }
-
-                var upgrade = new Upgrade(stepData, specData, savedLevel);
-
-                // 이펙트 별 업그레이드 상태 채우기
-                _upgradeDict[stepData.Effect] = upgrade;
-
-                // 순환할 이펙트 배열 채우기
-                effects.Add(stepData.Effect);
-            }
-
-            // UpgradeGroup은
-            // - 이 타입에서 어떤 이펙트를 돌릴지
-            // - 현재 커서가 어디인지
-            // - Max면 스킵하는 규칙을 들고 있음
-
-            int savedCursor = 0;
-            int typeIndex = (int)specData.Type;
-            if (saveData.TypeCursors != null && typeIndex < saveData.TypeCursors.Length)
-            {
-                savedCursor = saveData.TypeCursors[typeIndex];
-            }
-
-            var group = new UpgradeGroup(specData.Type, specData.Name, effects.ToArray(), _upgradeDict, savedCursor);
-            _groups[specData.Type] = group;
+            var effects = CreateUpgrades(specData, saveData);
+            CreateGroup(specData, effects, saveData);
         }
 
         IsInitialized = true;
     }
 
+    private List<EUpgradeEffect> CreateUpgrades(UpgradeSpecData specData, UpgradeSaveData saveData)
+    {
+        var effects = new List<EUpgradeEffect>();
+
+        foreach (var stepData in specData.Steps)
+        {
+            if (_upgradeDict.ContainsKey(stepData.Effect))
+            {
+                Debug.LogWarning($"업그레이드 이펙트가 중복되었습니다. {stepData.Effect}");
+                continue;
+            }
+
+            int savedLevel = GetSavedLevel(saveData, stepData.Effect);
+            var upgrade = new Upgrade(stepData, specData, savedLevel);
+
+            _upgradeDict[stepData.Effect] = upgrade;
+            effects.Add(stepData.Effect);
+        }
+
+        return effects;
+    }
+
+    private void CreateGroup(UpgradeSpecData specData, List<EUpgradeEffect> effects, UpgradeSaveData saveData)
+    {
+        int savedCursor = GetSavedCursor(saveData, specData.Type);
+        var group = new UpgradeGroup(specData.Type, specData.Name, effects.ToArray(), _upgradeDict, savedCursor);
+        _groupDict[specData.Type] = group;
+    }
+
+    private int GetSavedLevel(UpgradeSaveData saveData, EUpgradeEffect effect)
+    {
+        int index = (int)effect;
+        if (saveData.EffectLevels != null && index < saveData.EffectLevels.Length)
+            return saveData.EffectLevels[index];
+        return 0;
+    }
+
+    private int GetSavedCursor(UpgradeSaveData saveData, EUpgradeType type)
+    {
+        int index = (int)type;
+        if (saveData.TypeCursors != null && index < saveData.TypeCursors.Length)
+            return saveData.TypeCursors[index];
+        return 0;
+    }
+
     // ── 조회 ──
     // UI가 읽을 때 쓰는 것
-
     public UpgradeGroup GetGroup(EUpgradeType type)
     {
-        return _groups.TryGetValue(type, out var group) ? group : null;
+        return _groupDict.TryGetValue(type, out var group) ? group : null;
     }
 
     public Upgrade GetUpgrade(EUpgradeEffect effect)
     {
         return _upgradeDict.TryGetValue(effect, out var upgrade) ? upgrade : null;
-    }
-
-    public UpgradeItemViewData GetUpgradeItemViewData(EUpgradeType type)
-    {
-        var group = GetGroup(type);
-        if (group == null) return default;
-
-        var upgrade = group.GetCurrentUpgrade();
-        bool isMax = group.IsAllMaxLevel();
-
-        // ui 표현까지 넘겨주는게 매니저의 역할일까?
-        // 
-        return new UpgradeItemViewData
-        {
-            Name = group.Name,
-            Level = $"Lv.{group.GetTotalLevel()}",
-            Description = upgrade != null ? FormatDescription(upgrade) : (isMax ? "Max Level" : ""),
-            Cost = isMax ? "MAX" : (upgrade?.Cost.ToFormattedString() ?? ""),
-            CanPurchase = CanLevelUp(type)
-        };
-    }
-
-    private string FormatDescription(Upgrade upgrade)
-    {
-        string sign = upgrade.Effect == EUpgradeEffect.RocketCooldown ? "-" : "+";
-        return $"{upgrade.Description} {sign}{upgrade.BaseValue.ToFormattedString()}";
     }
 
     // ── 비즈니스 로직 ──
@@ -176,7 +156,7 @@ public class UpgradeManager : MonoBehaviour
             data.EffectLevels[(int)pair.Key] = pair.Value.Level;
         }
 
-        foreach (var pair in _groups)
+        foreach (var pair in _groupDict)
         {
             data.TypeCursors[(int)pair.Key] = pair.Value.Cursor;
         }
