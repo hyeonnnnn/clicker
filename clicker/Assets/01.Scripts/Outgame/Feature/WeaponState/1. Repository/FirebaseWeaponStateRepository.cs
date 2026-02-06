@@ -1,16 +1,16 @@
-using System;
+﻿using System;
 using Cysharp.Threading.Tasks;
 using Firebase.Auth;
 using Firebase.Firestore;
 using UnityEngine;
 
-public class FirebaseSpawnRepository : ISpawnRepository
+public class FirebaseWeaponStateRepository : IWeaponStateRepository
 {
     private string SPAWN_COLLECTION_NAME = "Spawn";
     private FirebaseAuth _auth = FirebaseAuth.DefaultInstance;
     private FirebaseFirestore _db = FirebaseFirestore.DefaultInstance;
 
-    public async UniTask Save(SpawnSaveData saveData)
+    public async UniTask Save(WeaponStateSaveData saveData)
     {
         try
         {
@@ -23,7 +23,7 @@ public class FirebaseSpawnRepository : ISpawnRepository
         }
     }
 
-    public async UniTask<SpawnSaveData> Load()
+    public async UniTask<WeaponStateSaveData> Load()
     {
         try
         {
@@ -31,15 +31,15 @@ public class FirebaseSpawnRepository : ISpawnRepository
             DocumentSnapshot snapshot = await _db.Collection(SPAWN_COLLECTION_NAME).Document(email).GetSnapshotAsync();
 
             if (!snapshot.Exists)
-                return SpawnSaveData.Default;
+                return WeaponStateSaveData.Default;
 
-            return snapshot.ConvertTo<SpawnSaveData>();
+            return snapshot.ConvertTo<WeaponStateSaveData>();
         }
         catch (Exception e)
         {
             Debug.LogError("Spawn 로드 실패: " + e.Message);
         }
 
-        return SpawnSaveData.Default;
+        return WeaponStateSaveData.Default;
     }
 }

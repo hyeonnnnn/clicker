@@ -1,8 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
-
-public interface IPlanetRepository
+﻿
+public interface IPlanetRepository : IRepository<PlanetSaveData>
 {
-    UniTask Save(PlanetSaveData data);
-    UniTask<PlanetSaveData> Load();
+
 }

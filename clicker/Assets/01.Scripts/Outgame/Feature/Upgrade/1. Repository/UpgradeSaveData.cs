@@ -3,7 +3,7 @@ using Firebase.Firestore;
 
 [Serializable]
 [FirestoreData]
-public class UpgradeSaveData
+public class UpgradeSaveData : ISaveData
 {
     [FirestoreProperty]
     public int[] EffectLevels { get; set; }
@@ -12,12 +12,12 @@ public class UpgradeSaveData
     public int[] TypeCursors { get; set; }
 
     [FirestoreProperty]
-    public string LastSaveTime { get; set; }
+    public string LastSavedAt { get; set; }
 
     public static UpgradeSaveData Default => new UpgradeSaveData
     {
         EffectLevels = new int[(int)EUpgradeEffect.Count],
         TypeCursors = new int[(int)EUpgradeType.Count],
-        LastSaveTime = DateTime.Now.ToString("o")
+        LastSavedAt = DateTime.Now.ToString("o")
     };
 }

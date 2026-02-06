@@ -15,20 +15,17 @@ public class UI_UpgradeItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private Button _purchaseButton;
 
+    private readonly UpgradeViewModel _viewModel = new();
+
     private void Start()
     {
-        Initialize();
-    }
-
-    private void Initialize()
-    {
-        _purchaseButton.onClick.AddListener(() => OnPurchaseClicked().Forget());
+        _purchaseButton.onClick.AddListener(OnPurchaseClicked);
         Refresh();
     }
 
     public void Refresh()
     {
-        var data = UpgradeManager.Instance.GetUpgradeItemViewData(_upgradeType);
+        var data = _viewModel.GetItemViewData(_upgradeType);
 
         _nameText.text = data.Name;
         _descriptionText.text = data.Description;
@@ -37,11 +34,11 @@ public class UI_UpgradeItem : MonoBehaviour
         _purchaseButton.interactable = data.CanPurchase;
     }
 
-    private async UniTask OnPurchaseClicked()
+    private void OnPurchaseClicked()
     {
         // 중복 클릭 방지
         _purchaseButton.interactable = false;
-        bool success = await UpgradeManager.Instance.TryLevelUp(_upgradeType);
+        UpgradeManager.Instance.TryLevelUp(_upgradeType);
         Refresh();
     }
 }

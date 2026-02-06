@@ -6,9 +6,7 @@ public class CurrencyManager : MonoBehaviour
 {
     public static CurrencyManager Instance { get; private set; }
 
-    // DIP
-    // 구현체에 의존하지 않고 약속에 의존
-    private ICurrencyRepository _repository;
+    private HybridRepository<CurrencySaveData> _repository;
 
     // 재화 데이터를 배열로 관리
     // 변경에는 닫혀있고, 확장에는 열려있게
@@ -27,8 +25,10 @@ public class CurrencyManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         string email = AccountManager.Instance.Email;
-      
-        _repository = new FirebaseCurrencyRepository();
+        _repository = new HybridRepository<CurrencySaveData>(
+            new LocalCurrencyRepository(email),
+            new FirebaseCurrencyRepository()
+        );
         InitializeCurrency().Forget();
     }
 
@@ -50,20 +50,20 @@ public class CurrencyManager : MonoBehaviour
     }
 
     // ── 비즈니스 로직 ──
-    public async UniTask Add(ECurrencyType type, Currency amount)
+    public void Add(ECurrencyType type, Currency amount)
     {
         _currencies[(int)type] += amount;
         OnDataChanged?.Invoke(type, _currencies[(int)type]);
-        await Save();
+        Save();
     }
 
-    public async UniTask<bool> TrySpend(ECurrencyType type, Currency amount)
+    public bool TrySpend(ECurrencyType type, Currency amount)
     {
         if (_currencies[(int)type] >= amount)
         {
             _currencies[(int)type] -= amount;
             OnDataChanged?.Invoke(type, _currencies[(int)type]);
-            await Save();
+            Save();
             return true;
         }
         return false;
@@ -71,9 +71,9 @@ public class CurrencyManager : MonoBehaviour
 
     // ── 저장/불러오기 ──
 
-    private async UniTask Save()
+    private void Save()
     {
-        await _repository.Save(new CurrencySaveData()
+        _repository.Save(new CurrencySaveData()
         {
             Currencies = ToSaveData()
         });
@@ -96,11 +96,16 @@ public class CurrencyManager : MonoBehaviour
 
     private void OnApplicationPause(bool pause)
     {
-        if (pause) Save().Forget();
+        if (pause)
+        {
+            Save();
+            _repository.ForceRemoteSave().Forget();
+        }
     }
 
     private void OnApplicationQuit()
     {
-        Save().Forget();
+        Save();
+        _repository.ForceRemoteSave().Forget();
     }
 }

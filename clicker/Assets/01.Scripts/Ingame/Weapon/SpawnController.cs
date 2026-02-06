@@ -24,6 +24,12 @@ public class SpawnController : MonoBehaviour
     {
         UpgradeManager.OnUpgraded += OnUpgraded;
         StageController.Instance.OnStageChanged += OnStageChanged;
+
+        WeaponStateManager.Instance.OnDataInitiailized += Initialize;
+        WeaponStateManager.Instance.OnSaveRequest += () =>
+        {
+            WeaponStateManager.Instance.Set(_rocketSpawner.GetTimes(), _meteorSpawner.GetCount());
+        };
     }
 
     private void OnDestroy()
@@ -38,15 +44,16 @@ public class SpawnController : MonoBehaviour
     public void RegisterMeteorSpawner(MeteorSpawner spawner) => _meteorSpawner = spawner;
     public void RegisterMiniPlanetSpawner(MiniPlanetSpawner spawner) => _miniPlanetSpawner = spawner;
 
-    // ── 초기화 (SpawnManager가 호출) ──
+    // ── 초기화 ──
 
-    public void Initialize(float[] rocketTimes, Vector2[] meteorDirections)
+    private void Initialize()
     {
         // 로켓
         int rocketCount = UpgradeManager.Instance.GetUpgrade(EUpgradeEffect.RocketCount)?.Level ?? 0;
         for (int i = 0; i < rocketCount; i++)
             _rocketSpawner.Spawn();
 
+        float[] rocketTimes = WeaponStateManager.Instance.weaponState.RocketLaunchTimes;
         if (rocketTimes != null && rocketTimes.Length == rocketCount)
             _rocketSpawner.SetTimes(rocketTimes);
         else
@@ -57,9 +64,6 @@ public class SpawnController : MonoBehaviour
         for (int i = 0; i < meteorCount; i++)
             _meteorSpawner.Spawn();
 
-        if (meteorDirections != null && meteorDirections.Length == meteorCount)
-            _meteorSpawner.SetDirections(meteorDirections);
-
         // 미니행성
         int stage = PlanetManager.Instance.CurrentPlanet.Level;
         for (int i = 2; i <= stage; i++)
@@ -67,7 +71,6 @@ public class SpawnController : MonoBehaviour
     }
 
     // ── 실시간 이벤트 ──
-
     private void OnUpgraded(EUpgradeEffect effect)
     {
         switch (effect)
@@ -85,9 +88,4 @@ public class SpawnController : MonoBehaviour
     {
         _miniPlanetSpawner.Spawn(StageController.Instance.PreviousSprite);
     }
-
-    // ── 상태 조회 (SpawnManager가 저장할 때 호출) ──
-
-    public float[] GetRocketTimes() => _rocketSpawner.GetTimes();
-    public Vector2[] GetMeteorDirections() => _meteorSpawner.GetDirections();
 }

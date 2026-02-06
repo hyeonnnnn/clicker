@@ -27,20 +27,7 @@ public class MeteorSpawner : MonoBehaviour
         _meteorList.Add(controller);
     }
 
-    public Vector2[] GetDirections()
-    {
-        var directions = new Vector2[_meteorList.Count];
-        for (int i = 0; i < _meteorList.Count; i++)
-            directions[i] = _meteorList[i].GetDirection();
-        return directions;
-    }
-
-    public void SetDirections(Vector2[] directions)
-    {
-        int count = Mathf.Min(_meteorList.Count, directions.Length);
-        for (int i = 0; i < count; i++)
-            _meteorList[i].SetDirection(directions[i]);
-    }
+    public int GetCount() => _meteorList.Count;
 
     private Vector3 GetRandomCircleWorldPosition(Vector3 centerWorld)
     {

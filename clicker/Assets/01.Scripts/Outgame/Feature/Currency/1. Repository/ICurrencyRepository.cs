@@ -1,7 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
-
-public interface ICurrencyRepository
+﻿
+public interface ICurrencyRepository : IRepository<CurrencySaveData>
 {
-    UniTask Save(CurrencySaveData saveData);
-    UniTask<CurrencySaveData> Load();
+
 }

@@ -3,17 +3,21 @@ using Firebase.Firestore;
 
 [Serializable]
 [FirestoreData]
-public class PlanetSaveData
+public class PlanetSaveData : ISaveData
 {
     [FirestoreProperty]
-    public int CurrentStage { get; set; } // 행성의 순서
+    public int CurrentStage { get; set; }
 
     [FirestoreProperty]
-    public double CurrentPressure { get; set; }  // 현재 행성의 압력
+    public double CurrentPressure { get; set; } 
+
+    [FirestoreProperty]
+    public string LastSavedAt { get; set; }
 
     public static PlanetSaveData Default => new PlanetSaveData
     {
         CurrentStage = 0,
-        CurrentPressure = 0
+        CurrentPressure = 0,
+        LastSavedAt = null
     };
 }

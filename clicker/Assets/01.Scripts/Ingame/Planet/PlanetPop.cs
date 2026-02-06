@@ -56,7 +56,7 @@ public class PlanetPop : MonoBehaviour
         }
 
         double bonusStar = PlanetManager.Instance.CurrentPlanet.BonusCoin;
-        CurrencyManager.Instance.Add(ECurrencyType.Star, bonusStar).Forget();
+        CurrencyManager.Instance.Add(ECurrencyType.Star, bonusStar);
         TextFloaterSpawner.Instance.ShowBonusCoin(transform.position, bonusStar);
         SoundManager.Instance.PlaySFX(Sfx.COIN);
 

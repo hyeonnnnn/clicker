@@ -14,7 +14,7 @@ public class JsonUpgradeRepository : IUpgradeRepository
 
     public UniTask Save(UpgradeSaveData data)
     {
-        data.LastSaveTime = System.DateTime.Now.ToString("o");
+        data.LastSavedAt = System.DateTime.Now.ToString("o");
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(_filePath, json);
 
