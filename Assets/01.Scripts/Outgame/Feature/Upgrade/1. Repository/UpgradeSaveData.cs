@@ -1,5 +1,7 @@
 ﻿using System;
+#if !UNITY_WEBGL || UNITY_EDITOR
 using Firebase.Firestore;
+#endif
 
 [Serializable]
 [FirestoreData]

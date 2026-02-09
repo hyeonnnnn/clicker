@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !UNITY_WEBGL || UNITY_EDITOR
+using System;
 using Cysharp.Threading.Tasks;
 using Firebase.Auth;
 using Firebase.Firestore;
@@ -43,3 +44,4 @@ public class FirebaseWeaponStateRepository : IWeaponStateRepository
         return WeaponStateSaveData.Default;
     }
 }
+#endif
