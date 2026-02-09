@@ -22,8 +22,9 @@ public class WeaponStateManager : MonoBehaviour
         }
         Instance = this;
 
+        string userId = AccountManager.Instance.Email;
         _repository = new HybridRepository<WeaponStateSaveData>(
-            new LocalWeaponStateRepository(),
+            new LocalWeaponStateRepository(userId),
 #if !UNITY_WEBGL || UNITY_EDITOR
             new FirebaseWeaponStateRepository()
 #else

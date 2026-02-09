@@ -3,15 +3,17 @@ using UnityEngine;
 
 public class LocalCurrencyRepository : ICurrencyRepository
 {
-    private string UserId => AccountManager.Instance.Email;
+    private readonly string _userId;
+    public LocalCurrencyRepository(string userId)
+    {
+        _userId = userId;
+    }
 
-    private string GetKey(ECurrencyType type) => $"{UserId}_{type}";
+    private string GetKey(ECurrencyType type) => $"{_userId}_{type}";
 
     // 재화 데이터 저장
     public UniTask Save(CurrencySaveData saveData)
     {
-        Debug.Log($"LocalCurrencyRepository: {AccountManager.Instance.Email}");
-
         for (int i = 0; i < (int)ECurrencyType.Count; i++)
         {
             var type = (ECurrencyType)i;

@@ -25,7 +25,7 @@ public class CurrencyManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         _repository = new HybridRepository<CurrencySaveData>(
-            new LocalCurrencyRepository(),
+            new LocalCurrencyRepository(AccountManager.Instance.Email),
 #if !UNITY_WEBGL || UNITY_EDITOR
             new FirebaseCurrencyRepository()
 #else

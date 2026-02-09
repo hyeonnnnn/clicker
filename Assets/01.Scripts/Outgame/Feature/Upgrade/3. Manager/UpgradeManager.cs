@@ -28,8 +28,9 @@ public class UpgradeManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        string userId = AccountManager.Instance.Email;
         _repository = new HybridRepository<UpgradeSaveData>(
-            new JsonUpgradeRepository(),
+            new JsonUpgradeRepository(userId),
 #if !UNITY_WEBGL || UNITY_EDITOR
             new FirebaseUpgradeRepository()
 #else
