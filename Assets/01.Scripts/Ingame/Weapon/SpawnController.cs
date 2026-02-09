@@ -8,6 +8,8 @@ public class SpawnController : MonoBehaviour
     private MeteorSpawner _meteorSpawner;
     private MiniPlanetSpawner _miniPlanetSpawner;
 
+    private bool _isInitialized;
+
     public bool IsReady => _rocketSpawner != null && _meteorSpawner != null && _miniPlanetSpawner != null;
 
     private void Awake()
@@ -66,8 +68,11 @@ public class SpawnController : MonoBehaviour
 
         // 미니행성
         int stage = PlanetManager.Instance.CurrentPlanet.Level;
-        for (int i = 2; i <= stage; i++)
+        int count = Mathf.Min(stage - 1, MiniPlanetSpawner.MAX_COUNT);
+        for (int i = 1; i <= count; i++)
             _miniPlanetSpawner.Spawn(StageController.Instance.GetMiniSprite(i));
+
+        _isInitialized = true;
     }
 
     // ── 실시간 이벤트 ──
@@ -86,6 +91,9 @@ public class SpawnController : MonoBehaviour
 
     private void OnStageChanged(int newStage)
     {
+        if (!_isInitialized)
+            return;
+
         _miniPlanetSpawner.Spawn(StageController.Instance.PreviousSprite);
     }
 }
