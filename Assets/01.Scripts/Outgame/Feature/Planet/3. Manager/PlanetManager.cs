@@ -27,7 +27,11 @@ public class PlanetManager : MonoBehaviour
         string userId = AccountManager.Instance.Email;
         _repository = new HybridRepository<PlanetSaveData>(
             new LocalPlanetRepository(userId),
+#if !UNITY_WEBGL || UNITY_EDITOR
             new FirebasePlanetRepository()
+#else
+            null
+#endif
         );
         InitializePlanets().Forget();
     }

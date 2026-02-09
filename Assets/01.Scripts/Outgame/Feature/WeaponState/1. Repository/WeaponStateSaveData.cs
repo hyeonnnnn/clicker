@@ -1,6 +1,4 @@
-﻿#if !UNITY_WEBGL || UNITY_EDITOR
-using Firebase.Firestore;
-#endif
+﻿using Firebase.Firestore;
 using System;
 
 [Serializable]

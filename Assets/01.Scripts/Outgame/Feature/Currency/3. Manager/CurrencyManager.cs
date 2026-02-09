@@ -27,7 +27,11 @@ public class CurrencyManager : MonoBehaviour
         string email = AccountManager.Instance.Email;
         _repository = new HybridRepository<CurrencySaveData>(
             new LocalCurrencyRepository(email),
+#if !UNITY_WEBGL || UNITY_EDITOR
             new FirebaseCurrencyRepository()
+#else
+            null
+#endif
         );
         InitializeCurrency().Forget();
     }

@@ -31,7 +31,11 @@ public class UpgradeManager : MonoBehaviour
         string userId = AccountManager.Instance.Email;
         _repository = new HybridRepository<UpgradeSaveData>(
             new JsonUpgradeRepository(userId),
+#if !UNITY_WEBGL || UNITY_EDITOR
             new FirebaseUpgradeRepository()
+#else
+            null
+#endif
         );
         InitializeUpgrades().Forget();
     }

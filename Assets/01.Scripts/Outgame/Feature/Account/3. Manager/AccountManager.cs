@@ -22,7 +22,11 @@ public class AccountManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+#if !UNITY_WEBGL || UNITY_EDITOR
         _repository = new FirebaseAccountRepository();
+#else
+        _repository = new LocalAccountRepository();
+#endif
     }
 
     public async UniTask<AccountResult> TryLogin(string email, string password)
