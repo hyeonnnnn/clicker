@@ -48,15 +48,6 @@ public class StageController : MonoBehaviour
     private void OnPlanetDataChanged()
     {
         int newStage = CurrentStage;
-
-        if (!_isInitialized)
-        {
-            _previousStage = newStage;
-            InitializeStage();
-            _isInitialized = true;
-            return;
-        }
-
         bool stageChanged = _previousStage != newStage;
 
         if (stageChanged)
