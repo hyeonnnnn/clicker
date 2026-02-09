@@ -51,7 +51,8 @@ public class LocalAccountRepository : IAccountRepository
 
         // 비밀번호 맞는지 검사
         string myPassword = PlayerPrefs.GetString(email);
-        if (myPassword != password)
+        string hashedPassword = Crypto.HashPassword(password, SALT);
+        if (myPassword != hashedPassword)
         {
             return UniTask.FromResult(new AccountResult
             {

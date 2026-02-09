@@ -24,9 +24,8 @@ public class PlanetManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        string userId = AccountManager.Instance.Email;
         _repository = new HybridRepository<PlanetSaveData>(
-            new LocalPlanetRepository(userId),
+            new LocalPlanetRepository(),
 #if !UNITY_WEBGL || UNITY_EDITOR
             new FirebasePlanetRepository()
 #else

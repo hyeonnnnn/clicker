@@ -4,29 +4,23 @@ using UnityEngine;
 
 public class JsonUpgradeRepository : IUpgradeRepository
 {
-    private readonly string _filePath;
-
-    // userId를 받아서 파일을 분리
-    public JsonUpgradeRepository(string userId)
-    {
-        _filePath = Path.Combine(Application.persistentDataPath, $"{userId}_upgrade_save.json");
-    }
+    private string FilePath => Path.Combine(Application.persistentDataPath, $"{AccountManager.Instance.Email}_upgrade_save.json");
 
     public UniTask Save(UpgradeSaveData data)
     {
         data.LastSavedAt = System.DateTime.Now.ToString("o");
         string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(_filePath, json);
+        File.WriteAllText(FilePath, json);
 
         return UniTask.CompletedTask;
     }
 
     public UniTask<UpgradeSaveData> Load()
     {
-        if (!File.Exists(_filePath))
+        if (!File.Exists(FilePath))
             return UniTask.FromResult(UpgradeSaveData.Default);
 
-        string json = File.ReadAllText(_filePath);
+        string json = File.ReadAllText(FilePath);
         return UniTask.FromResult(JsonUtility.FromJson<UpgradeSaveData>(json));
     }
 }

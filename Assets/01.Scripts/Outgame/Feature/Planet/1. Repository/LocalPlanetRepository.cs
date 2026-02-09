@@ -3,27 +3,22 @@ using UnityEngine;
 
 public class LocalPlanetRepository : IPlanetRepository
 {
-    private readonly string _key;
-
-    public LocalPlanetRepository(string userId)
-    {
-        _key = $"{userId}_planet";
-    }
+    private string Key => $"{AccountManager.Instance.Email}_planet";
 
     public UniTask Save(PlanetSaveData data)
     {
         string json = JsonUtility.ToJson(data);
-        PlayerPrefs.SetString(_key, json);
+        PlayerPrefs.SetString(Key, json);
         PlayerPrefs.Save();
         return UniTask.CompletedTask;
     }
 
     public UniTask<PlanetSaveData> Load()
     {
-        if (!PlayerPrefs.HasKey(_key))
+        if (!PlayerPrefs.HasKey(Key))
             return UniTask.FromResult(PlanetSaveData.Default);
 
-        string json = PlayerPrefs.GetString(_key);
+        string json = PlayerPrefs.GetString(Key);
         var data = JsonUtility.FromJson<PlanetSaveData>(json);
         return UniTask.FromResult(data);
     }

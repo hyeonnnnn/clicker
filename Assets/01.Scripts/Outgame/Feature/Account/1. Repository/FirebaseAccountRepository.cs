@@ -41,6 +41,7 @@ public class FirebaseAccountRepository : IAccountRepository
             return new AccountResult()
             {
                 Success = true,
+                Account = new Account(email, password)
             };
         }
         catch (Exception e)
