@@ -30,9 +30,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: Library
-          key: Library-Windows-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-WebGL-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
-            Library-Windows-
+            Library-WebGL-
             Library-
       
       # 3. Unity 빌드 (데스크탑)
@@ -50,5 +50,5 @@ jobs:
       - name: Upload Build
         uses: actions/upload-artifact@v4
         with:
-          name: Windows-Build
+          name: WebGL-Build
           path: build/WebGL
