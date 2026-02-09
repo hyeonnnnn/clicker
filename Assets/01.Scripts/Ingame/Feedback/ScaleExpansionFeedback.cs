@@ -8,7 +8,10 @@ public class ScaleExpansionFeedback : MonoBehaviour, IFeedback
 
     [Header("팽창 설정")]
     [SerializeField] private float _maxScaleMultiplier = 1.7f;
+
+    [Header("애니메이션 설정")]
     [SerializeField] private float _punchScale = 0.2f;
+    [SerializeField] private float _duration = 0.15f;
 
     private Vector3 _originalScale;
     private Vector3 _targetScale;
@@ -39,8 +42,9 @@ public class ScaleExpansionFeedback : MonoBehaviour, IFeedback
         double scaleOffset = (_maxScaleMultiplier - 1f) * ratio;
         _targetScale = _originalScale * (1f + (float)scaleOffset);
 
-        _owner.transform.DOScale(_targetScale, _punchScale).SetEase(Ease.OutCubic);
-
-        Debug.Log("ExpandPlanet");
+        _owner.transform.DOKill();
+        Sequence seq = DOTween.Sequence();
+        seq.Append(_owner.transform.DOScale(_targetScale * (1f + _punchScale), _duration * 0.5f).SetEase(Ease.OutQuad));
+        seq.Append(_owner.transform.DOScale(_targetScale, _duration * 0.5f).SetEase(Ease.InQuad));
     }
 }

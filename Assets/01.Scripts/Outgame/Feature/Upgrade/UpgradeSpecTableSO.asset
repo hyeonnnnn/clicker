@@ -59,7 +59,7 @@ MonoBehaviour:
     - Description: "\uC18D\uB3C4"
       Effect: 6
       BaseValue: 0.5
-      ValueMultiplier: 1.2
+      ValueMultiplier: 0.5
       MaxLevel: 5
     - Description: "\uD30C\uC6CC"
       Effect: 7
