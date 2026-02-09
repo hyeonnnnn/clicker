@@ -21,6 +21,7 @@ public class WeaponStateManager : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         string userId = AccountManager.Instance.Email;
         _repository = new HybridRepository<WeaponStateSaveData>(

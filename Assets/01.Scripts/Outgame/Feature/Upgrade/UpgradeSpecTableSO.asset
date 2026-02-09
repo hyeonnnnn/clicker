@@ -27,7 +27,7 @@ MonoBehaviour:
   - Type: 1
     MaxLevel: 0
     Name: "\uB85C\uCF13"
-    BaseCost: 5000
+    BaseCost: 50000
     CostMultiplier: 3
     Steps:
     - Description: "\uAC1C\uC218"
@@ -48,7 +48,7 @@ MonoBehaviour:
   - Type: 2
     MaxLevel: 0
     Name: "\uC6B4\uC11D"
-    BaseCost: 5000
+    BaseCost: 500000
     CostMultiplier: 3
     Steps:
     - Description: "\uAC1C\uC218"
@@ -63,7 +63,7 @@ MonoBehaviour:
       MaxLevel: 5
     - Description: "\uD30C\uC6CC"
       Effect: 7
-      BaseValue: 1000
+      BaseValue: 100000
       ValueMultiplier: 1.2
       MaxLevel: 0
   - Type: 3
