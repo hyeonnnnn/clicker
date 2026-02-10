@@ -21,12 +21,12 @@ public class PlanetPressure : MonoBehaviour
 
     private void Start()
     {
-        PlanetManager.OnDataChanged += OnPlanetDataChanged;
-
         if (PlanetManager.Instance.CurrentPlanet != null)
         {
             OnPlanetDataChanged();
         }
+
+        PlanetManager.OnDataChanged += OnPlanetDataChanged;
     }
 
     private void OnDestroy()

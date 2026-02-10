@@ -32,7 +32,7 @@ public class GameOver : MonoBehaviour
     {
         // Used to disable pause/resume function when player crashed.
         crashed = true;
-        rocketController.Crashed();
+        //rocketController.Crashed();
         // Play game over window open animation.
         anim.Play("Game-Over-In");
         // Disable game menu gameobject with all buttons.

@@ -28,16 +28,20 @@ public class SpawnController : MonoBehaviour
         StageController.Instance.OnStageChanged += OnStageChanged;
 
         WeaponStateManager.Instance.OnDataInitiailized += Initialize;
-        WeaponStateManager.Instance.OnSaveRequest += () =>
-        {
-            WeaponStateManager.Instance.Set(_rocketSpawner.GetTimes(), _meteorSpawner.GetCount());
-        };
+        WeaponStateManager.Instance.OnSaveRequest += OnSaveRequest;
+    }
+
+    private void OnSaveRequest()
+    {
+        WeaponStateManager.Instance.Set(_rocketSpawner.GetTimes(), _meteorSpawner.GetCount());
     }
 
     private void OnDestroy()
     {
         UpgradeManager.OnUpgraded -= OnUpgraded;
         StageController.Instance.OnStageChanged -= OnStageChanged;
+        WeaponStateManager.Instance.OnDataInitiailized -= Initialize;
+        WeaponStateManager.Instance.OnSaveRequest -= OnSaveRequest;
     }
 
     // ── 등록 ──

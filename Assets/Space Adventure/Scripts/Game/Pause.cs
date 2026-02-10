@@ -21,7 +21,7 @@ public class Pause : MonoBehaviour
     public void PauseGame()
     {
         // Pause player controller.
-        rocketController.Pause();
+        //rocketController.Pause();
         // Open pause winodw.
         animationController.OpenWindow();
         // Used to check if game is paused/resumed.
@@ -34,7 +34,7 @@ public class Pause : MonoBehaviour
     public void ResumeGame()
     {
         // Resume player controller.
-        rocketController.Resume();
+        //rocketController.Resume();
         // Close pause window.
         animationController.CloseWindow();
         // Used to check if game is paused/resumed.

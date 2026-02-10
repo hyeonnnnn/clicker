@@ -48,7 +48,7 @@ public class RocketMove : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _currentVelocity, _smoothTime);
 
         // 회전
-        RotateTowardVelocity();
+        RotateTowardTangent();
     }
 
     private float CalculateTimeStep()
@@ -94,11 +94,12 @@ public class RocketMove : MonoBehaviour
         return _patrolSpeed + (float)(upgrade.BaseValue * upgrade.Level);
     }
 
-    private void RotateTowardVelocity()
+    private void RotateTowardTangent()
     {
-        if (_currentVelocity.sqrMagnitude < 0.01f) return;
+        float dx = Mathf.Cos(_currentTime) * _curveScale;
+        float dy = Mathf.Cos(2f * _currentTime) * _curveScale;
 
-        float angle = Mathf.Atan2(_currentVelocity.y, _currentVelocity.x) * Mathf.Rad2Deg - 90f;
+        float angle = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg - 90f;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 }

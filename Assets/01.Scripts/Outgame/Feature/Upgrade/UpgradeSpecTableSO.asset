@@ -16,8 +16,8 @@ MonoBehaviour:
   - Type: 0
     MaxLevel: 0
     Name: "\uD074\uB9AD"
-    BaseCost: 5000
-    CostMultiplier: 3
+    BaseCost: 10000
+    CostMultiplier: 5
     Steps:
     - Description: "\uD30C\uC6CC"
       Effect: 0
@@ -27,8 +27,8 @@ MonoBehaviour:
   - Type: 1
     MaxLevel: 0
     Name: "\uB85C\uCF13"
-    BaseCost: 50000
-    CostMultiplier: 3
+    BaseCost: 100000
+    CostMultiplier: 5
     Steps:
     - Description: "\uAC1C\uC218"
       Effect: 2
@@ -49,7 +49,7 @@ MonoBehaviour:
     MaxLevel: 0
     Name: "\uC6B4\uC11D"
     BaseCost: 500000
-    CostMultiplier: 3
+    CostMultiplier: 5
     Steps:
     - Description: "\uAC1C\uC218"
       Effect: 5
@@ -74,6 +74,6 @@ MonoBehaviour:
     Steps:
     - Description: "\uD30C\uC6CC"
       Effect: 8
-      BaseValue: 10
+      BaseValue: 5
       ValueMultiplier: 1.2
       MaxLevel: 0
