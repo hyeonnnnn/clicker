@@ -44,7 +44,7 @@ public class HybridRepository<T> where T : class, ISaveData, new()
             _localSaveCount++;
 
             // 파이어베이스에는 5번 중 1번만 저장
-            if (_localSaveCount >= REMOTE_SAVE_INTERVAL)
+            if (_firebaseRepository != null && _localSaveCount >= REMOTE_SAVE_INTERVAL)
             {
                 await _firebaseRepository.Save(_pendingData);
                 _localSaveCount = 0;
@@ -60,6 +60,11 @@ public class HybridRepository<T> where T : class, ISaveData, new()
 
     public async UniTask<T> Load()
     {
+        if (_firebaseRepository == null)
+        {
+            return await _localRepository.Load();
+        }
+
         var (local, firebase) = await UniTask.WhenAll(
             _localRepository.Load(),
             _firebaseRepository.Load()
@@ -79,14 +84,20 @@ public class HybridRepository<T> where T : class, ISaveData, new()
 
         if (dataToSave != null)
         {
-            // // 저장 직전에 LastSavedAt을 지금으로 찍고
-            // 로컬 + 원격 둘 다 같은 데이터를 저장
-            dataToSave.LastSavedAt = DateTime.UtcNow.ToString("o"); 
-            
-            await UniTask.WhenAll(
-                _localRepository.Save(dataToSave),
-                _firebaseRepository.Save(dataToSave)
-            );
+            dataToSave.LastSavedAt = DateTime.UtcNow.ToString("o");
+
+            if (_firebaseRepository != null)
+            {
+                await UniTask.WhenAll(
+                    _localRepository.Save(dataToSave),
+                    _firebaseRepository.Save(dataToSave)
+                );
+            }
+            else
+            {
+                await _localRepository.Save(dataToSave);
+            }
+
             _pendingData = null;
             _localSaveCount = 0;
         }
