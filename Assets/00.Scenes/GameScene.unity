@@ -3881,7 +3881,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExtensionFeedback
   _owner: {fileID: 1420666648}
   _maxScaleMultiplier: 1.7
-  _punchScale: 0.2
+  _punchScale: 0.1
+  _duration: 0.2
 --- !u!114 &1420666663
 MonoBehaviour:
   m_ObjectHideFlags: 0

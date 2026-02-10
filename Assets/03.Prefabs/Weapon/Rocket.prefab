@@ -122,9 +122,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RocketMove
   _curveScale: 3
-  _patrolSpeed: 1.5
+  _patrolSpeed: 1
   _attackBoostSpeed: 8
   _smoothTime: 0.01
+  _boostThreshold: 0.3
+  _centerPassDistance: 3
 --- !u!70 &6858674175042769716
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

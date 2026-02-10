@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlanetSpecTableSO
   m_EditorClassIdentifier: Assembly-CSharp::PlanetSpecTableSO
   Datas:
-  - BasePressure: 50000
+  - BasePressure: 20000
     PressureMultiplier: 2
-    BaseBonusCoin: 10000
+    BaseBonusCoin: 20000
     BonusCoinMultiplier: 2

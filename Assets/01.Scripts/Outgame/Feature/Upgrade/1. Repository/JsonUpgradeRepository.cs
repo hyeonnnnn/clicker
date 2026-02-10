@@ -6,7 +6,6 @@ public class JsonUpgradeRepository : IUpgradeRepository
 {
     private readonly string _filePath;
 
-    // userId를 받아서 파일을 분리
     public JsonUpgradeRepository(string userId)
     {
         _filePath = Path.Combine(Application.persistentDataPath, $"{userId}_upgrade_save.json");

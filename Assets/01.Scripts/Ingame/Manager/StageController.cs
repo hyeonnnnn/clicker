@@ -9,6 +9,7 @@ public class StageController : MonoBehaviour
     [SerializeField] private SpriteRenderer _planetRenderer;
 
     private int _previousStage;
+    private bool _isInitialized;
 
     public int CurrentStage => PlanetManager.Instance.CurrentPlanet.Level;
     public PlanetData CurrentPlanetData => _planetInfo.GetPlanet(CurrentStage % _planetInfo.Count);
@@ -35,6 +36,7 @@ public class StageController : MonoBehaviour
         {
             _previousStage = CurrentStage;
             InitializeStage();
+            _isInitialized = true;
         }
     }
 
@@ -46,16 +48,16 @@ public class StageController : MonoBehaviour
     private void OnPlanetDataChanged()
     {
         int newStage = CurrentStage;
-        bool stageChanged = _previousStage != 0 && _previousStage != newStage;
-
-        _previousStage = newStage;
-        InitializeStage();
+        bool stageChanged = _previousStage != newStage;
 
         if (stageChanged)
         {
             SoundManager.Instance.PlaySFX(SoundManager.Sfx.POPPLANET);
             OnStageChanged?.Invoke(newStage);
         }
+
+        _previousStage = newStage;
+        InitializeStage();
     }
 
     public PlanetInfoViewData GetPlanetInfoViewData()

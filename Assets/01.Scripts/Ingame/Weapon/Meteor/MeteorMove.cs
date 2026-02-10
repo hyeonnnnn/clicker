@@ -4,11 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MeteorMove : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    [SerializeField] private float _baseSpeed = 5f;
+    [Header("이동")]
+    [SerializeField] private float _baseSpeed;
     [SerializeField] private float _bounceRandomAngle = 30f;
 
-    [Header("Boost Settings")]
+    [Header("부스트")]
     [SerializeField] private float _boostMultiplier = 2f;
     [SerializeField] private float _boostDuration = 0.3f;
 
