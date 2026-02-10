@@ -17,8 +17,8 @@ namespace MapleAPI.UI
         [SerializeField] private TextMeshProUGUI statusText;
         [SerializeField] private GameObject loadingIndicator;
 
-        //[Header("결과 전달")]
-        //[SerializeField] private CharacterCardUI characterCardUI;
+        [Header("결과 전달")]
+        [SerializeField] private CharacterCardUI characterCardUI;
 
         // 이벤트
         public event Action<MapleCharacterData> OnCharacterFound;
@@ -87,8 +87,8 @@ namespace MapleAPI.UI
                     OnCharacterFound?.Invoke(data);
 
                     // CharacterCardUI에 직접 전달
-                    //if (characterCardUI != null)
-                    //    characterCardUI.SetCharacterData(data);
+                    if (characterCardUI != null)
+                        characterCardUI.SetCharacterData(data);
 
                     return data;
                 }
