@@ -33,6 +33,14 @@ namespace MapleAPI.UI
         [SerializeField] private Transform _statContainer;
         [SerializeField] private StatToggleController _statToggleController;
 
+        [Header("프레임")]
+        [SerializeField] private Image _frameImage;           // 프레임을 표시할 Image
+        [SerializeField] private Sprite _spriteNone;          // 기본 (미적용)
+        [SerializeField] private Sprite _spriteRare;          // 레어
+        [SerializeField] private Sprite _spriteEpic;          // 에픽
+        [SerializeField] private Sprite _spriteUnique;        // 유니크
+        [SerializeField] private Sprite _spriteLegendary;     // 레전더리
+
         private MapleCharacterData _currentData;
         private MapleAPIClient _apiClient;
 
@@ -150,6 +158,23 @@ namespace MapleAPI.UI
         {
             if (textComponent != null)
                 textComponent.text = value;
+        }
+
+        /// <summary>
+        /// 프레임 설정
+        /// </summary>
+        public void SetFrame(FrameRarity rarity)
+        {
+            if (_frameImage == null) return;
+
+            _frameImage.sprite = rarity switch
+            {
+                FrameRarity.Rare => _spriteRare,
+                FrameRarity.Epic => _spriteEpic,
+                FrameRarity.Unique => _spriteUnique,
+                FrameRarity.Legendary => _spriteLegendary,
+                _ => _spriteNone
+            };
         }
 
         /// <summary>
