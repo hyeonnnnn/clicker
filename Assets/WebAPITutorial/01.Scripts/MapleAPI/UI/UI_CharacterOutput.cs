@@ -121,6 +121,31 @@ namespace MapleAPI.UI
             }
         }
 
+        /// <summary>
+        /// 모션 변경으로 캐릭터 이미지 업데이트
+        /// </summary>
+        public void UpdateCharacterImage(string action, string emotion)
+        {
+            if (_currentData == null) return;
+
+            string baseUrl = _currentData.ImageUrl;
+            if (string.IsNullOrEmpty(baseUrl)) return;
+
+            string newUrl = _apiClient.BuildCharacterImageUrl(baseUrl, action, emotion);
+            LoadCharacterImageFromUrl(newUrl).Forget();
+        }
+
+        private async UniTaskVoid LoadCharacterImageFromUrl(string imageUrl)
+        {
+            if (_characterImage == null || string.IsNullOrEmpty(imageUrl)) return;
+
+            var texture = await _apiClient.GetCharacterImageAsync(imageUrl);
+            if (texture != null && _characterImage != null)
+            {
+                _characterImage.texture = texture;
+            }
+        }
+
         private void SetTextSafe(TextMeshProUGUI textComponent, string value)
         {
             if (textComponent != null)

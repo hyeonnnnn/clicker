@@ -113,6 +113,30 @@ namespace MapleAPI
             }
         }
 
+        /// <summary>
+        /// 모션 파라미터가 포함된 캐릭터 이미지 URL 생성
+        /// </summary>
+        public string BuildCharacterImageUrl(string baseUrl, string action, string emotion)
+        {
+            if (string.IsNullOrEmpty(baseUrl))
+                return baseUrl;
+
+            // 기존 쿼리 파라미터 제거하고 새로 구성
+            string urlWithoutQuery = baseUrl.Split('?')[0];
+
+            var queryParams = new System.Collections.Generic.List<string>();
+
+            if (!string.IsNullOrEmpty(action))
+                queryParams.Add($"action={action}");
+            if (!string.IsNullOrEmpty(emotion))
+                queryParams.Add($"emotion={emotion}");
+
+            if (queryParams.Count > 0)
+                return urlWithoutQuery + "?" + string.Join("&", queryParams);
+
+            return urlWithoutQuery;
+        }
+
         private async UniTask<T> SendRequestAsync<T>(string url) where T : class
         {
             using var request = UnityWebRequest.Get(url);

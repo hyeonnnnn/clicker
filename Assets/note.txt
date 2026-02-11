@@ -26,20 +26,159 @@ Analytic 스크립트: <script type="text/javascript" src="https://openapi.nexon
 - 최대 MP
 - 공격력
 - 마력
-- 방어력
-- 이동속도
-- 점프력
-- 보스 몬스터 공격 시 데미지 (%)
-- 몬스터 방어율 무시 (%)
-- 데미지 (%)
-- 크리티컬 확률 (%)
-- 크리티컬 데미지 (%)
-- 아이템 드롭률 (%)
-- 메소 획득량 (%)
-- 포스
 
 설명 작성 (입력)
 - 설명 작성 방법
 - 1. 새 줄 : Shift + Enter
 - 2. 글자 주황색 적용 : 적용하고 싶은 글자를 <!> </!>로 감싸기
 - 예) 강조하고 싶은 부분에 <!>이렇게</!> 적용하세요.
+
+
+파라미터 명
+
+파라미터 설명
+
+개발 가이드
+
+action
+
+액션
+
+A00: stand1 (default)
+- frame: 0 ~ 2
+A01: stand2
+- frame: 0 ~ 2
+A02: walk1
+- frame: 0 ~ 3
+A03: walk2
+- frame: 0 ~ 3
+A04: prone
+- frame: 0
+A05: fly
+- frame: 0 ~ 1
+A06: jump
+- frame: 0
+A07: sit
+- frame: 0
+A08: ladder
+- frame: 0 ~ 1
+A09: rope
+- frame: 0 ~ 1
+A10: heal
+- frame: 0 ~ 2
+A11: alert
+- frame: 0 ~ 2
+A12: proneStab
+- frame: 0 ~ 1
+A13: swingO1
+- frame: 0 ~ 2
+A14: swingO2
+- frame: 0 ~ 2
+A15: swingO3
+- frame: 0 ~ 2
+A16: swingOF
+- frame: 0 ~ 3
+A17: swingP1
+- frame: 0 ~ 2
+A18: swingP2
+- frame: 0 ~ 2
+A19: swingPF
+- frame: 0 ~ 3
+A20: swingT1
+- frame: 0 ~ 2
+A21: swingT2
+- frame: 0 ~ 2
+A22: swingT3
+- frame: 0 ~ 2
+A23: swingTF
+- frame: 0 ~ 3
+A24: stabO1
+- frame: 0 ~ 1
+A25: stabO2
+- frame: 0 ~ 1
+A26: stabOF
+- frame: 0 ~ 2
+A27: stabT1
+- frame: 0 ~ 2
+A28: stabT2
+- frame: 0 ~ 2
+A29: stabTF
+- frame: 0 ~ 3
+A30: shoot1
+- frame: 0 ~ 2
+A31: shoot2
+- frame: 0 ~ 4
+A32: shootF
+- frame: 0 ~ 2
+A33: dead
+- frame: 0
+A34: ghostwalk
+- frame: 0 ~ 3
+A35: ghoststand
+- frame: 0 ~ 2
+A36: ghostjump
+- frame: 0
+A37: ghostproneStab
+- frame: 0 ~ 1
+A38: ghostladder
+- frame: 0 ~ 1
+A39: ghostrope
+- frame: 0 ~ 1
+A40: ghostfly
+- frame: 0 ~ 1
+A41: ghostsit
+- frame: 0 ~ 0
+emotion
+
+감정표현 
+
+E00: default (default)
+- frame: 0
+E01: wink
+- frame: 0
+E02: smile
+- frame: 0
+E03: cry
+- frame: 0
+E04: angry
+- frame: 0
+E05: bewildered
+- frame: 0
+E06: blink
+- frame: 0 ~ 2
+E07: blaze
+- frame: 0 ~ 1
+E08: bowing
+- frame: 0 ~ 1
+E09: cheers
+- frame: 0
+E10: chu
+- frame: 0
+E11: dam
+- frame: 0 ~ 1
+E12: despair
+- frame: 0 ~ 1
+E13: glitter
+- frame: 0 ~ 1
+E14: hit
+- frame: 0
+E15: hot
+- frame: 0 ~ 1
+E16: hum
+- frame: 0 ~ 1
+E17: love
+- frame: 0 ~ 1
+E18: oops
+- frame: 0
+E19: pain
+- frame: 0
+E20: troubled
+- frame: 0
+E21: qBlue
+- frame: 0
+E22: shine
+- frame: 0
+E23: stunned
+- frame: 0
+E24: vomit
+- frame: 0 ~ 1
