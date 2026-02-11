@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.Networking;
 using Cysharp.Threading.Tasks;
@@ -47,7 +47,7 @@ namespace MapleAPI
             }
             catch (Exception e)
             {
-                Debug.LogError($"캐릭터 정보 조회 실패: {e.Message}");
+                Debug.Log($"캐릭터 정보 조회 실패: {e.Message}");
                 return null;
             }
         }

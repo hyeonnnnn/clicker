@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,7 +34,7 @@ namespace MapleAPI.UI
         [Header("설정")]
         [SerializeField] private bool initializeOnStart = true;
 
-        // 기본 스탯 목록 (note.txt 기준)
+        // 기본 스탯 목록
         private readonly List<StatInfo> _defaultStats = new List<StatInfo>
         {
             new StatInfo("전투력"),
@@ -49,14 +49,6 @@ namespace MapleAPI.UI
             new StatInfo("방어력"),
             new StatInfo("이동속도"),
             new StatInfo("점프력"),
-            new StatInfo("보스 몬스터 데미지", "보스 데미지"),
-            new StatInfo("방어율 무시", "방무"),
-            new StatInfo("데미지"),
-            new StatInfo("크리티컬 확률", "크확"),
-            new StatInfo("크리티컬 데미지", "크뎀"),
-            new StatInfo("아이템 드롭률", "드롭률"),
-            new StatInfo("메소 획득량", "메획"),
-            new StatInfo("스타포스"),
         };
 
         private List<StatInfo> _stats;

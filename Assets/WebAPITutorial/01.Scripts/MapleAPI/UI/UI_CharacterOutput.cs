@@ -15,10 +15,13 @@ namespace MapleAPI.UI
         Legendary   // 레전더리
     }
 
-    public class CharacterCardUI : MonoBehaviour
+    public class UI_CharacterOutput : MonoBehaviour
     {
         [Header("캐릭터 카드 프레임")]
-        [SerializeField] private GameObject _cardFrame;
+        [SerializeField] private GameObject _characterCardFrame;
+
+        [Header("캐릭터 정보 프레임")]
+        [SerializeField] private GameObject _characterInfoFrame;
 
         [Header("캐릭터 이미지")]
         [SerializeField] private RawImage _characterImage;
@@ -29,10 +32,6 @@ namespace MapleAPI.UI
         [Header("능력치 표시")]
         [SerializeField] private Transform _statContainer;
         [SerializeField] private StatToggleController _statToggleController;
-
-        [Header("설명")]
-        [SerializeField] private TMP_InputField _descriptionInput;
-        [SerializeField] private TextMeshProUGUI _descriptionDisplay;
 
         private MapleCharacterData _currentData;
         private MapleAPIClient _apiClient;
@@ -51,14 +50,26 @@ namespace MapleAPI.UI
 
         private void DeactivateCard()
         {
-            if (_cardFrame != null)
-                _cardFrame.SetActive(false);
+            if (_characterCardFrame != null)
+                _characterCardFrame.SetActive(false);
+
+            if (_characterImage != null)
+                _characterImage.gameObject.SetActive(false);
+
+            if (_characterInfoFrame != null)
+                _characterInfoFrame.SetActive(false);
         }
 
         private void ActivateCard()
         {
-            if (_cardFrame != null)
-                _cardFrame.SetActive(true);
+            if (_characterCardFrame != null)
+                _characterCardFrame.SetActive(true);
+
+            if (_characterImage != null)
+                _characterImage.gameObject.SetActive(true);
+
+            if (_characterInfoFrame != null)
+                _characterInfoFrame.SetActive(true);
         }
 
         /// <summary>
@@ -67,6 +78,12 @@ namespace MapleAPI.UI
         public void SetCharacterData(MapleCharacterData data)
         {
             _currentData = data;
+
+            if (data == null)
+            {
+                return;
+            }
+
             UpdateUI();
             LoadCharacterImage().Forget();
         }
@@ -104,29 +121,6 @@ namespace MapleAPI.UI
             }
         }
 
-        /// <summary>
-        /// 설명 텍스트 업데이트 (<!> </!> 파싱)
-        /// </summary>
-        public void UpdateDescription(string rawText)
-        {
-            if (_descriptionDisplay == null) return;
-
-            // <!> </!>를 TMP 리치텍스트로 변환
-            string parsed = rawText
-                .Replace("<!>", "<color=#FFA500>")
-                .Replace("</!>", "</color>");
-
-            _descriptionDisplay.text = parsed;
-        }
-
-        /// <summary>
-        /// 설명 입력 필드 변경 시 호출
-        /// </summary>
-        public void OnDescriptionChanged(string text)
-        {
-            UpdateDescription(text);
-        }
-
         private void SetTextSafe(TextMeshProUGUI textComponent, string value)
         {
             if (textComponent != null)
@@ -147,9 +141,6 @@ namespace MapleAPI.UI
                 _characterImage.texture = null;
                 _characterImage.gameObject.SetActive(false);
             }
-
-            if (_descriptionDisplay != null)
-                _descriptionDisplay.text = "";
         }
     }
 }
