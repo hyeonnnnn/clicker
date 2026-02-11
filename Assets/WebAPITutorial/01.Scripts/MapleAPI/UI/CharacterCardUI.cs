@@ -17,20 +17,22 @@ namespace MapleAPI.UI
 
     public class CharacterCardUI : MonoBehaviour
     {
+        [Header("캐릭터 카드 프레임")]
+        [SerializeField] private GameObject _cardFrame;
+
         [Header("캐릭터 이미지")]
-        [SerializeField] private RawImage characterImage;
-        [SerializeField] private Image frameImage;
+        [SerializeField] private RawImage _characterImage;
 
         [Header("기본 정보")]
-        [SerializeField] private TextMeshProUGUI characterInfoText;  // "Lv. 0 닉네임 (월드)"
+        [SerializeField] private TextMeshProUGUI _characterInfoText;  // "Lv. 0 닉네임 (월드)"
 
         [Header("능력치 표시")]
-        [SerializeField] private Transform statContainer;
-        [SerializeField] private StatToggleController statToggleController;
+        [SerializeField] private Transform _statContainer;
+        [SerializeField] private StatToggleController _statToggleController;
 
         [Header("설명")]
-        [SerializeField] private TMP_InputField descriptionInput;
-        [SerializeField] private TextMeshProUGUI descriptionDisplay;
+        [SerializeField] private TMP_InputField _descriptionInput;
+        [SerializeField] private TextMeshProUGUI _descriptionDisplay;
 
         private MapleCharacterData _currentData;
         private MapleAPIClient _apiClient;
@@ -44,9 +46,19 @@ namespace MapleAPI.UI
 
         private void Start()
         {
-            // 캐릭터 이미지 초기 비활성화
-            if (characterImage != null)
-                characterImage.gameObject.SetActive(false);
+            DeactivateCard();
+        }
+
+        private void DeactivateCard()
+        {
+            if (_cardFrame != null)
+                _cardFrame.SetActive(false);
+        }
+
+        private void ActivateCard()
+        {
+            if (_cardFrame != null)
+                _cardFrame.SetActive(true);
         }
 
         /// <summary>
@@ -67,11 +79,11 @@ namespace MapleAPI.UI
             if (_currentData == null) return;
 
             // 기본 정보: "Lv. 0 닉네임 (월드)"
-            SetTextSafe(characterInfoText, $"Lv. {_currentData.Level} {_currentData.Name} ({_currentData.World})");
+            SetTextSafe(_characterInfoText, $"Lv. {_currentData.Level} {_currentData.Name} ({_currentData.World})");
 
             // 능력치 업데이트
-            if (statToggleController != null)
-                statToggleController.UpdateStats(_currentData);
+            if (_statToggleController != null)
+                _statToggleController.UpdateStats(_currentData);
         }
 
         /// <summary>
@@ -79,16 +91,16 @@ namespace MapleAPI.UI
         /// </summary>
         private async UniTaskVoid LoadCharacterImage()
         {
-            if (characterImage == null || _currentData == null) return;
+            if (_characterImage == null || _currentData == null) return;
 
             string imageUrl = _currentData.ImageUrl;
             if (string.IsNullOrEmpty(imageUrl)) return;
 
             var texture = await _apiClient.GetCharacterImageAsync(imageUrl);
-            if (texture != null && characterImage != null)
+            if (texture != null && _characterImage != null)
             {
-                characterImage.texture = texture;
-                characterImage.gameObject.SetActive(true);
+                _characterImage.texture = texture;
+                ActivateCard();
             }
         }
 
@@ -97,14 +109,14 @@ namespace MapleAPI.UI
         /// </summary>
         public void UpdateDescription(string rawText)
         {
-            if (descriptionDisplay == null) return;
+            if (_descriptionDisplay == null) return;
 
             // <!> </!>를 TMP 리치텍스트로 변환
             string parsed = rawText
                 .Replace("<!>", "<color=#FFA500>")
                 .Replace("</!>", "</color>");
 
-            descriptionDisplay.text = parsed;
+            _descriptionDisplay.text = parsed;
         }
 
         /// <summary>
@@ -128,16 +140,16 @@ namespace MapleAPI.UI
         {
             _currentData = null;
 
-            SetTextSafe(characterInfoText, "");
+            SetTextSafe(_characterInfoText, "");
 
-            if (characterImage != null)
+            if (_characterImage != null)
             {
-                characterImage.texture = null;
-                characterImage.gameObject.SetActive(false);
+                _characterImage.texture = null;
+                _characterImage.gameObject.SetActive(false);
             }
 
-            if (descriptionDisplay != null)
-                descriptionDisplay.text = "";
+            if (_descriptionDisplay != null)
+                _descriptionDisplay.text = "";
         }
     }
 }
