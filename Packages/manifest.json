@@ -2,6 +2,7 @@
   "dependencies": {
     "com.coffee.ui-effect": "https://github.com/mob-sakai/UIEffect.git?path=Packages/src",
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+    "com.openai.unity": "8.8.9",
     "com.unity.2d.animation": "13.0.4",
     "com.unity.2d.aseprite": "3.0.1",
     "com.unity.2d.psdimporter": "12.0.1",
@@ -20,6 +21,8 @@
     "com.unity.timeline": "1.8.9",
     "com.unity.ugui": "2.0.0",
     "com.unity.visualscripting": "1.9.9",
+    "com.utilities.buildpipeline": "1.8.2",
+    "com.utilities.encoder.ogg": "5.0.1",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.adaptiveperformance": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
@@ -54,5 +57,15 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "OpenUPM",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.openai",
+        "com.utilities"
+      ]
+    }
+  ]
 }
