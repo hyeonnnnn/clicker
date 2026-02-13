@@ -14,6 +14,8 @@ public class ChatNPC : MonoBehaviour
 
     [SerializeField] private ApiKeyConfig _config;
 
+    private List<Message> _messages = new List<Message>();
+
     private void Start()
     {
         // 버튼 클릭 이벤트
@@ -35,14 +37,11 @@ public class ChatNPC : MonoBehaviour
         // 1. 챗지피티 사이트에 API_Key로 로그인한다.
         var api = new OpenAIClient(_config.OpenAIKey);
 
-        // 2. 프롬프트를 작성한다.
-        var messages = new List<Message>
-        {
-                new Message(Role.User, prompt),
-        };
+        // 2. 프롬프트를 작성해서 콘텍스트에 담는다.
+        _messages.Add(new Message(Role.User, prompt));
 
         // 3. 모델을 선택하고 요청을 보낸다.
-        var chatRequest = new ChatRequest(messages, Model.GPT4oMini);
+        var chatRequest = new ChatRequest(_messages, Model.GPT4oMini, temperature: 0);
 
         // 4. 응답을 비동기로 받는다.
         var response = await api.ChatEndpoint.GetCompletionAsync(chatRequest);
@@ -50,12 +49,13 @@ public class ChatNPC : MonoBehaviour
         // 5. 답변이 여러 개일 수 있으므로 첫번째를 선택한다. (디폴트: 1개)
         var choice = response.FirstChoice;
 
-        Debug.Log($"[{choice.Index}] {choice.Message.Role}: {choice.Message} | Finish Reason: {choice.FinishReason}");
+        // 6. 응답을 콘텍스트에 담는다.
+        _messages.Add(new Message(Role.Assistant, choice.Message));
 
-        // 6. 결과값을 UI에 출력한다.
+        // 결과값을 UI에 출력한다.
         _resultTextUI.text = choice.Message;
 
-        // 7. 버튼을 푼다. (초기화)
+        // 버튼을 푼다. (초기화)
         _promptTextField.text = string.Empty;
         _sendButton.interactable = true;
     }
